@@ -1,0 +1,39 @@
+<html lang='en-GB'>
+
+<head>
+    <title>Agrometeorological Indicators</title>
+
+    <!-- CSS -->
+    <link rel='stylesheet' href='https://js.arcgis.com/4.15/esri/themes/light/main.css'>
+    <link rel='stylesheet' href='css/map-style.css'>
+
+    <!-- JS -->
+    <script src='https://js.arcgis.com/4.15/'></script>
+    <script src='js/map-config.js'></script>
+</head>
+
+<body>
+    <div id='applicationDiv'>
+        <div id='mapDiv'> </div>
+        <div id='timeSlider'></div>
+        <div id='leftDiv'>
+
+            <select id='indicatorSelect' class='esri-widget esri-input esri-select'>
+                <option value='plantHeatStressLayer' selected>Plant Heat Stress</option>
+                <option value='plantHeatStressLayer_test'>Start Grow Day of Year</option>
+                <option value='start_fieldops_doy'>Start Field Operations</option>
+
+            </select>
+
+            <select id='ensembleSelect' class='esri-widget esri-input esri-select'>
+                <option value='ensemble 1' selected>Ensemble Member 1</option>
+                <option value='ensemble 4'>Ensemble Member 4</option>
+                <option value='ensemble 5'>Ensemble Member 5</option>
+
+            </select>
+        </div>
+
+    </div>
+</body>
+
+</html>
