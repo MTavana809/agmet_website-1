@@ -15,12 +15,13 @@
 <body>
     <div id='applicationDiv'>
         <div id='mapDiv'> </div>
-        <div id='timeSlider'></div>
+        <!-- <div id='yearSlider'></div> -->
         <div id='leftDiv'>
 
             <select id='indicatorSelect' class='esri-widget esri-input esri-select'>
                 <option value='plantHeatStressLayer' selected>Plant Heat Stress</option>
-                <option value='plantHeatStressLayer_test'>Start Grow Day of Year</option>
+                <option value='start_grow_doyLayer'>Start Grow Day of Year</option>
+                <option value='plantHeatStressLayer_test'>Plant Heat Stress TEST</option>
                 <option value='start_fieldops_doy'>Start Field Operations</option>
 
             </select>
@@ -33,6 +34,20 @@
             </select>
         </div>
 
+        <div id='bottomDiv'>
+            <p id='title' class='esri-widget slider-title'>Press Play to animate the time slider or Drag to select year</p>
+            <div id='sliderDiv' class='esri-widget'>
+                <div id='playButton' class='esri-widget esri-widget--button toggle-button'>
+                    <div>
+                        <span class='toggle-button-icon esri-icon-play' aria-label='play icon'></span> Play
+                    </div>
+                    <div>
+                        <span class='toggle-button-icon esri-icon-pause' aria-label='pause icon'></span> Pause
+                    </div>
+                </div>
+                <div id='yearSlider' class='esri-widget'></div>
+            </div>
+        </div>
     </div>
 </body>
 

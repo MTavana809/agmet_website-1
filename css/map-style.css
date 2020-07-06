@@ -59,7 +59,10 @@ body {
     }
 } */
 
-******* Misc ******* @media (max-width: 600px) {
+
+/******* Misc ******* */
+
+@media (max-width: 600px) {
     .esri-ui-bottom-right {
         display: none;
     }
@@ -68,13 +71,69 @@ body {
     }
 }
 
-.esri-time-slider__time-extent,
-.esri-time-slider__min-date,
-.esri-time-slider__max-date {
-    display: none !important;
+
+/******** bottom Slider with years and play button ********/
+
+#bottomDiv {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    max-height: 13%;
+    left: 0;
+    right: 0;
+    padding: 0 5 10 5;
+    background-color: white;
+    z-index: 0;
 }
 
-.esri-time-slider__layout--wide .esri-time-slider__min,
-.esri-time-slider__layout--wide .esri-time-slider__max {
-    width: 0 !important;
+#title.slider-title {
+    margin-top: 20px;
+    margin-bottom: 0 !important;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#sliderDiv {
+    display: flex;
+    flex: 0 0 70px;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 0 40 20 0;
+    bottom: 15;
+    left: 0;
+    right: 0;
+}
+
+#yearSlider {
+    flex: 0 1 90%;
+}
+
+#playButton {
+    flex: 0 0 100px;
+    margin: 30px 0;
+}
+
+.toggle-button {
+    display: flex;
+}
+
+.toggle-button.toggled .toggle-button-icon {
+    color: #cc1b1b;
+}
+
+.toggle-button .toggle-button-icon {
+    color: #1bcc1b;
+}
+
+.toggle-button> :nth-child(2) {
+    display: none;
+}
+
+.toggle-button.toggled> :nth-child(1) {
+    display: none;
+}
+
+.toggle-button.toggled> :nth-child(2) {
+    display: block;
 }
