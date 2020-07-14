@@ -151,7 +151,7 @@ require([
     const yearDefinition = new DimensionalDefinition({
         variableName: [],
         dimensionName: 'Year',
-        values: [],
+        values: [1961],
         isSlice: true
     });
 
@@ -161,7 +161,7 @@ require([
     });
 
     // create and add imagery layer to view
-    const plantHeatStressLayer = new ImageryLayer({
+    const indicatorLayer = new ImageryLayer({
         // title: [],
         url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agromet_Indicators/plantheatstress_test/ImageServer',
         mosaicRule: mosaicRule,
@@ -172,51 +172,51 @@ require([
                 //content: [] //'{Raster.ServicePixelValue}'
         },
     });
-    map.add(plantHeatStressLayer);
+    map.add(indicatorLayer);
 
     // TEST add layer with drop down select box
     // set initial variable and dimension on mosaic dataset
-    const yearDefinition_test = new DimensionalDefinition({
-        variableName: 'UKCP18_interpolated_gridded_observed_1km',
-        dimensionName: 'Year',
-        values: [2017],
-        isSlice: true
-    });
-    // create mosaicRule and set multidimensionalDefinition
-    let mosaicRule_test = new MosaicRule({
-        multidimensionalDefinition: yearDefinition_test
-    });
+    // const yearDefinition_test = new DimensionalDefinition({
+    //     variableName: 'UKCP18_interpolated_gridded_observed_1km',
+    //     dimensionName: 'Year',
+    //     values: [2017],
+    //     isSlice: true
+    // });
+    // // create mosaicRule and set multidimensionalDefinition
+    // let mosaicRule_test = new MosaicRule({
+    //     multidimensionalDefinition: yearDefinition_test
+    // });
 
-    const plantHeatStressLayer_test = new ImageryLayer({
-        title: [],
-        url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agromet_Indicators/plantheatstress_test/ImageServer',
-        mosaicRule: mosaicRule_test,
-        opacity: 0.9
-    });
-    map.add(plantHeatStressLayer, 0);
+    // const indicatorLayer_test = new ImageryLayer({
+    //     title: [],
+    //     url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agromet_Indicators/plantheatstress_test/ImageServer',
+    //     mosaicRule: mosaicRule_test,
+    //     opacity: 0.9
+    // });
+    // map.add(indicatorLayer, 0);
 
     /******************************
      * leftDiv configs
      * ****************************/
 
     //listen to change events on indicatorSelect 
-    const indicatorSelect = document.getElementById('indicatorSelect');
+    // const indicatorSelect = document.getElementById('indicatorSelect');
 
-    indicatorSelect.addEventListener('change', function() {
-        const chosenIndicator = indicatorSelect.value;
-        changeIndicator(chosenIndicator);
-    });
+    // indicatorSelect.addEventListener('change', function() {
+    //     const chosenIndicator = indicatorSelect.value;
+    //     changeIndicator(chosenIndicator);
+    // });
 
-    function changeIndicator(chosenIndicator) {
-        map.removeAll();
-        switch (chosenIndicator) {
-            case 'plantHeatStressLayer':
-                map.add(plantHeatStressLayer);
-                break;
-            case 'plantHeatStressLayer_test':
-                map.add(plantHeatStressLayer_test);
-        }
-    };
+    // function changeIndicator(chosenIndicator) {
+    //     map.removeAll();
+    //     switch (chosenIndicator) {
+    //         case 'indicatorLayer':
+    //             map.add(indicatorLayer);
+    //             break;
+    //         case 'indicatorLayer_test':
+    //             map.add(indicatorLayer_test);
+    //     }
+    // };
 
     //listen to change events on ensembleSelect
     // const ensembleSelect = document.getElementById('ensembleSelect');
@@ -227,23 +227,23 @@ require([
 
     // function changeEnsemble(chosenEnsemble) {
 
-    //     const mosaicRuleClone = plantHeatStressLayer.mosaicRule.clone(); // makes clone of layer's mosaicRule
+    //     const mosaicRuleClone = indicatorLayer.mosaicRule.clone(); // makes clone of layer's mosaicRule
     //     const ensembleVariable = mosaicRuleClone.multidimensionalDefinition;
     //     switch (chosenEnsemble) {
     //         case 'ensemble 1':
     //             ensembleVariable.variableName = 'UKCP18_12KM_UK_corrected1km_ens01';
     //             mosaicRuleClone.multidimensionalDefinition = ensembleVariable;
-    //             plantHeatStressLayer.mosaicRule = mosaicRuleClone;
+    //             indicatorLayer.mosaicRule = mosaicRuleClone;
     //             break;
     //         case 'ensemble 4':
     //             ensembleVariable.variableName = 'UKCP18_12KM_UK_corrected1km_ens04';
     //             mosaicRuleClone.multidimensionalDefinition = ensembleVariable;
-    //             plantHeatStressLayer.mosaicRule = mosaicRuleClone;
+    //             indicatorLayer.mosaicRule = mosaicRuleClone;
     //             break;
     //         case 'ensemble 5':
     //             ensembleVariable.variableName = 'UKCP18_12KM_UK_corrected1km_ens05';
     //             mosaicRuleClone.multidimensionalDefinition = ensembleVariable;
-    //             plantHeatStressLayer.mosaicRule = mosaicRuleClone;
+    //             indicatorLayer.mosaicRule = mosaicRuleClone;
     //             break;
     //     }
 
@@ -278,11 +278,11 @@ require([
     });
 
     function updateYearDef(value) {
-        const mosaicRuleClone = plantHeatStressLayer.mosaicRule.clone(); // makes clone of layer's mosaicRule
+        const mosaicRuleClone = indicatorLayer.mosaicRule.clone(); // makes clone of layer's mosaicRule
         const yearVariable = mosaicRuleClone.multidimensionalDefinition;
         yearVariable.values = yearSlider.get('values');
         mosaicRuleClone.multidimensionalDefinition = yearVariable;
-        plantHeatStressLayer.mosaicRule = mosaicRuleClone;
+        indicatorLayer.mosaicRule = mosaicRuleClone;
     };
 
     // set vars for play button 
@@ -333,27 +333,6 @@ require([
         playButton.classList.remove('toggled');
     };
 
-    // const timeSlider = new TimeSlider({
-    //     container: 'timeSlider',
-    //     mode: 'instant',
-    //     view: view,
-    //     playRate: 300, // default is 1000 milliseconds
-    //     fullTimeExtent: {
-    //         start: new Date(1961, 0, 1),
-    //         end: new Date(2080, 0, 1)
-    //     },
-    //     stops: {
-    //         interval: {
-    //             value: 1,
-    //             unit: 'years'
-    //         }
-    //     }
-    // });
-    // view.ui.add(timeSlider, 'bottom');
-
-
-
-
     /******************************
      * Small ui widgets
      *******************************/
@@ -378,21 +357,71 @@ require([
     var legend = new Legend({
         view: view,
         layerInfos: [{
-                layer: plantHeatStressLayer,
-                title: 'Plant Heat Stress Days per Year'
-            },
-            {
-                layer: plantHeatStressLayer_test,
-                title: 'TEST Plant Heat Stress Days per Year'
-            }
-        ]
+            layer: indicatorLayer,
+            title: 'Plant Heat Stress Days per Year'
+        }]
     });
     view.ui.add(legend, 'top-right');
 
 
     // histogram
-    const histogram = new Histogram({
 
+    const bins10 = [{
+            minValue: 0,
+            maxValue: 10,
+            count: 10
+        },
+        {
+            minValue: 10,
+            maxValue: 20,
+            count: 18
+        },
+        {
+            minValue: 20,
+            maxValue: 30,
+            count: 100
+        },
+        {
+            minValue: 30,
+            maxValue: 40,
+            count: 189
+        },
+        {
+            minValue: 40,
+            maxValue: 50,
+            count: 300
+        },
+        {
+            minValue: 50,
+            maxValue: 60,
+            count: 400
+        },
+        {
+            minValue: 60,
+            maxValue: 70,
+            count: 200
+        },
+        {
+            minValue: 70,
+            maxValue: 80,
+            count: 40
+        },
+        {
+            minValue: 80,
+            maxValue: 90,
+            count: 80
+        },
+        {
+            minValue: 90,
+            maxValue: 100,
+            count: 30
+        }
+    ];
+    const histogram = new Histogram({
+        min: 0,
+        max: 100,
+        bins: bins10,
+        container: 'histogramDiv'
     })
 
 
