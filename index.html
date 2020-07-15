@@ -16,24 +16,39 @@
     <div id='applicationDiv'>
         <div id='mapDiv'> </div>
         <!-- <div id='yearSlider'></div> -->
-        <div id='leftDiv'>
-
-            <select id='indicatorSelect' class='esri-widget esri-input esri-select'>
-                <option value='plantHeatStressLayer' selected>Plant Heat Stress</option>
-                <option value='start_grow_doyLayer'>Start Grow Day of Year</option>
-                <option value='plantHeatStressLayer_test'>Plant Heat Stress TEST</option>
-                <option value='start_fieldops_doy'>Start Field Operations</option>
-
-            </select>
-
-            <select id='ensembleSelect' class='esri-widget esri-input esri-select'>
-                <option value='ensemble 1' selected>Ensemble Member 1</option>
-                <option value='ensemble 4'>Ensemble Member 4</option>
-                <option value='ensemble 5'>Ensemble Member 5</option>
-
+        <div id='leftDiv' class='esri-widget'>
+            <p>Please select the Agrometeorological Indicator you wish to view:</p>
+            <select id='indicatorSelect' class='esri-widget'>
+                <option value='accumulatedfrost_degreedays'>accumulatedfrost_degreedays</option>
+                <option value='airfrost_count'>airfrost_count</option>
+                <option value='cold_spell_n'>cold_spell_n</option>
+                <option value='dry_count'>dry_count</option>
+                <option value='dry_spell_n'>dry_spell_n</option>
+                <option value='end_growingseason'>end_growingseason</option>
+                <option value='first_airfrost_doy'>first_airfrost_doy</option>
+                <option value='first_grassfrost_doy'>first_grassfrost_doy</option>
+                <option value='grassfrost_count'>grassfrost_count</option>
+                <option value='growing_degreedays'>growing_degreedays</option>
+                <option value='growing_season'>growing_season</option>
+                <option value='growseason_length'>growseason_length</option>
+                <option value='growseason_range'>growseason_range</option>
+                <option value='heating_degreedays'>heating_degreedays</option>
+                <option value='heatwave_n'>heatwave_n</option>
+                <option value='last_airfrost_doy'>last_airfrost_doy</option>
+                <option value='last_grassfrost_doy'>last_grassfrost_doy</option>
+                <option value='p_intensity'>p_intensity</option>
+                <option value='p_seasonality'>p_seasonality</option>
+                <option value='personheatstress_count'>personheatstress_count</option>
+                <option value='plantheatstress_count' selected>plantheatstress_count</option>
+                <option value='start_fieldops_doy'>start_fieldops_doy</option>
+                <option value='start_grow_doy'>start_grow_doy</option>
+                <option value='tempgrowingperiod_length'>tempgrowingperiod_length</option>
+                <option value='thermaltime_sum'>thermaltime_sum</option>
+                <option value='wet_count'>wet_count</option>
+                <option value='wettestweek_mm'>wettestweek_mm</option>
             </select>
         </div>
-        <div id='histogramDiv'></div>
+        <!-- <div id='histogramDiv'></div> -->
         <div id='bottomDiv'>
             <p id='title' class='esri-widget slider-title'>Press Play to animate the time slider or Drag to select year</p>
             <div id='sliderDiv' class='esri-widget'>
