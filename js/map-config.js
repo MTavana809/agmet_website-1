@@ -165,7 +165,7 @@ require([
 
     // create and add imagery layer to view
     const indicatorLayer = new ImageryLayer({
-        // title: [],
+        // title: [], The legend automatically updates when a layer's renderer, opacity, or title is changed
         url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/agmetInds_netcdf/ImageServer',
         mosaicRule: mosaicRule,
         renderer: countOfDayRenderer,
