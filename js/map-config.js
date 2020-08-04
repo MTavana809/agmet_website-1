@@ -128,7 +128,7 @@ require([
         colorRamp: combineColorRamp,
         stretchType: 'min-max',
         statistics: [
-                [1, 50, 5, 5]
+                [1, 60, 5, 5]
             ] // min, max, avg, stddev
     });
 
@@ -169,7 +169,7 @@ require([
         url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/agmetInds_netcdf/ImageServer',
         mosaicRule: mosaicRule,
         renderer: countOfDayRenderer,
-        opacity: 0.8,
+        opacity: 0.7,
         popupTemplate: {
             title: '{Raster.ServicePixelValue} plant heat stress day(s) in {Year}' // need to customize based on variable
                 //content: [] //'{Raster.ServicePixelValue}'
@@ -271,7 +271,7 @@ require([
                 }
                 yearSlider.values = [year];
                 updateYearDef(year);
-            }, 500) // speed of playback, milliseconds
+            }, 5000) // speed of playback, milliseconds
         playButton.classList.add('toggled');
     };
 
@@ -311,7 +311,7 @@ require([
         view: view,
         layerInfos: [{
             layer: indicatorLayer,
-            title: ['Plant Heat Stress: count of days when Tmax > 25']
+            title: ['Plant Heat Stress: count of days when Tmax > 25\u00B0C']
         }]
     });
     view.ui.add(legend, 'top-left');
