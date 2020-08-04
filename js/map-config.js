@@ -128,7 +128,7 @@ require([
         colorRamp: combineColorRamp,
         stretchType: 'min-max',
         statistics: [
-                [0, 50, 4, 3]
+                [1, 50, 5, 5]
             ] // min, max, avg, stddev
     });
 
@@ -311,9 +311,9 @@ require([
         view: view,
         layerInfos: [{
             layer: indicatorLayer,
-            title: ['Plant Heat Stress Days per Year']
+            title: ['Plant Heat Stress: count of days when Tmax > 25']
         }]
     });
-    view.ui.add(legend, 'top-right');
+    view.ui.add(legend, 'top-left');
 
 });

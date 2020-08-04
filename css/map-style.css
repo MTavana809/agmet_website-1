@@ -27,6 +27,7 @@ body {
 /******** Floating leftDiv********/
 
 #leftDiv {
+    display: none;
     position: fixed;
     top: 15;
     left: 15;
@@ -134,4 +135,12 @@ body {
 
 .toggle-button.toggled> :nth-child(2) {
     display: block;
+}
+
+.esri-popup__footer {
+    display: none;
+}
+
+.esri-ui-corner .esri-component.esri-widget--panel {
+    width: 350px;
 }
