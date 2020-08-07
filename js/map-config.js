@@ -171,11 +171,11 @@ require([
         renderer: countOfDayRenderer,
         opacity: 0.7,
         popupTemplate: {
-            //title: '{Raster.ServicePixelValue} plant heat stress day(s) in {Year}' // need to customize based on variable
+            title: 'this is a test',
             content: '{expression/pixelvalue} plant heat stress day(s) in {Year}',
             expressionInfos: [{
                     name: 'pixelvalue',
-                    expression: 'Round(($Raster.ServicePixelValue), 2)'
+                    expression: 'Round($Raster.ServicePixelValue, 2)'
                 }] //'{Raster.ServicePixelValue}'
         },
     });
@@ -275,7 +275,7 @@ require([
                 }
                 yearSlider.values = [year];
                 updateYearDef(year);
-            }, 5000) // speed of playback, milliseconds
+            }, 1000) // speed of playback, milliseconds
         playButton.classList.add('toggled');
     };
 
