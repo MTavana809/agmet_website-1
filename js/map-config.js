@@ -117,7 +117,6 @@ require([
         toColor: [165, 0, 38, 1]
     });
 
-
     const combineColorRamp = new MultipartColorRamp({
         colorRamps: [colorRamp1, colorRamp2, colorRamp3, colorRamp4, colorRamp5, colorRamp6,
             colorRamp7, colorRamp8, colorRamp9, colorRamp10
@@ -150,6 +149,12 @@ require([
     /******************************
      * Layer rules
      * ****************************/
+    // create server-defined raster function
+    let serviceRasterFunction = new RasterFunction({
+        functionName: 'plantheatstress_count'
+            // variableName: 'plantheatstress_count'
+    });
+
     // set initial variable and dimension on mosaic dataset
     const yearDefinition = new DimensionalDefinition({
         variableName: 'plantheatstress_count',
@@ -165,10 +170,11 @@ require([
 
     // create and add imagery layer to view
     const indicatorLayer = new ImageryLayer({
-        // title: [], The legend automatically updates when a layer's renderer, opacity, or title is changed
+        title: ['Plant Heat Stress: count of days when Tmax > 25\u00B0C'], //The legend automatically updates when a layer's renderer, opacity, or title is changed
         url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/agmetInds_netcdf/ImageServer',
         mosaicRule: mosaicRule,
-        renderer: countOfDayRenderer,
+        //renderer: countOfDayRenderer,
+        renderingRule: serviceRasterFunction,
         opacity: 0.7,
         popupTemplate: {
             title: 'this is a test',
@@ -181,11 +187,9 @@ require([
     });
     map.add(indicatorLayer);
 
-
     /******************************
      * leftDiv configs
      * ****************************/
-
     //listen to change events on indicatorSelect and change multidimensional variable
     const indicatorSelect = document.getElementById('indicatorSelect');
 
@@ -195,18 +199,108 @@ require([
     });
 
     function changeIndicator(chosenIndicator) {
+        // change mosaicRule of layer as clone and reassign
         const mosaicRuleClone = indicatorLayer.mosaicRule.clone(); // makes clone of layer's mosaicRule
         const indicatorVariable = mosaicRuleClone.multidimensionalDefinition[0];
         indicatorVariable.values = yearSlider.get('values');
         indicatorVariable.variableName = chosenIndicator;
         mosaicRuleClone.multidimensionalDefinition = [indicatorVariable];
         indicatorLayer.mosaicRule = mosaicRuleClone;
-        //   legend.layerInfos.title = [chosenIndicator];
+
+        // change renderingRule of layer as clone and reassign 
+        const renderingRuleClone = indicatorLayer.renderingRule.clone();
+        renderingRuleClone.functionName = chosenIndicator;
+        indicatorLayer.renderingRule = renderingRuleClone;
+
+        // change title of layer as clone and reassign
+        //let layerTitleClone = indicatorLayer.title.clone();
+        switch (chosenIndicator) {
+            case 'accumulatedfrost_degreedays':
+                indicatorLayer.title = 'Accumulated Frost: sum of degree days where Tmin < 0'
+                break;
+            case 'airfrost_count':
+                indicatorLayer.title = ''
+                break;
+            case 'cold_spell_n':
+                indicatorLayer.title = ''
+                break;
+            case 'dry_count':
+                indicatorLayer.title = ''
+                break;
+            case 'dry_spell_n':
+                indicatorLayer.title = ''
+                break;
+            case 'end_growingseason':
+                indicatorLayer.title = ''
+                break;
+            case 'first_airfrost_doy':
+                indicatorLayer.title = ''
+                break;
+            case 'first_grassfrost_doy':
+                indicatorLayer.title = ''
+                break;
+            case 'grassfrost_count':
+                indicatorLayer.title = ''
+                break;
+            case 'growing_degreedays':
+                indicatorLayer.title = ''
+                break;
+            case 'growing_season':
+                indicatorLayer.title = ''
+                break;
+            case 'growseason_length':
+                indicatorLayer.title = ''
+                break;
+            case 'growseason_range':
+                indicatorLayer.title = ''
+                break;
+            case 'heating_degreedays':
+                indicatorLayer.title = ''
+                break;
+            case 'heatwave_n':
+                indicatorLayer.title = ''
+                break;
+            case 'last_airfrost_doy':
+                indicatorLayer.title = ''
+                break;
+            case 'last_grassfrost_doy':
+                indicatorLayer.title = ''
+                break;
+            case 'p_intensity':
+                indicatorLayer.title = ''
+                break;
+            case 'p_seasonality':
+                indicatorLayer.title = ''
+                break;
+            case 'personheatstress_count':
+                indicatorLayer.title = ''
+                break;
+            case 'plantheatstress_count':
+                indicatorLayer.title = 'Plant Heat Stress: count of days when Tmax > 25\u00B0C';
+                break;
+            case 'start_fieldops_doy':
+                indicatorLayer.title = '';
+                break;
+            case 'start_grow_doy':
+                indicatorLayer.title = ''
+                break;
+            case 'tempgrowingperiod_length':
+                indicatorLayer.title = ''
+                break;
+            case 'thermaltime_sum':
+                indicatorLayer.title = ''
+                break;
+            case 'wet_count':
+                indicatorLayer.title = ''
+                break;
+            case 'wettestweek_mm':
+                indicatorLayer.title = ''
+                break;
+        }
     };
 
-
     /************************************
-     * Slider
+     * Year Slider
      *************************************/
     const yearSlider = new Slider({
         container: 'yearSlider',
@@ -306,18 +400,17 @@ require([
     const home = new Home({
         view: view
     });
-
+    // add elements in order
     view.ui.add([scaleBar, home], 'bottom-right');
 
     // create and add legend to view 
-
     const legend = new Legend({
         view: view,
         layerInfos: [{
             layer: indicatorLayer,
-            title: ['Plant Heat Stress: count of days when Tmax > 25\u00B0C']
+            title: ['Observed 1961-2017, modelled 2018-2080 (ensemble mean)']
         }]
     });
-    view.ui.add(legend, 'top-left');
+    view.ui.add(legend, 'top-right');
 
 });
