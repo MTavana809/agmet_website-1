@@ -152,7 +152,6 @@ require([
     // create server-defined raster function
     let serviceRasterFunction = new RasterFunction({
         functionName: 'plantheatstress_count'
-            // variableName: 'plantheatstress_count'
     });
 
     // set initial variable and dimension on mosaic dataset
@@ -168,6 +167,12 @@ require([
         multidimensionalDefinition: [yearDefinition]
     });
 
+    // Set up popup template
+    let indicatorLayerPopupTemplate = {
+        title: 'this is a test',
+        content: '<b>{Raster.ItemPixelValue}</b> Plant Heat Stress Day(s) in <b>{Year}</b> '
+    };
+
     // create and add imagery layer to view
     const indicatorLayer = new ImageryLayer({
         title: ['Plant Heat Stress: count of days when Tmax > 25\u00B0C'], //The legend automatically updates when a layer's renderer, opacity, or title is changed
@@ -176,14 +181,7 @@ require([
         //renderer: countOfDayRenderer,
         renderingRule: serviceRasterFunction,
         opacity: 0.7,
-        popupTemplate: {
-            title: 'this is a test',
-            content: '{expression/pixelvalue} plant heat stress day(s) in {Year}',
-            expressionInfos: [{
-                    name: 'pixelvalue',
-                    expression: 'Round($Raster.ServicePixelValue, 2)'
-                }] //'{Raster.ServicePixelValue}'
-        },
+        popupTemplate: indicatorLayerPopupTemplate
     });
     map.add(indicatorLayer);
 
@@ -212,11 +210,14 @@ require([
         renderingRuleClone.functionName = chosenIndicator;
         indicatorLayer.renderingRule = renderingRuleClone;
 
-        // change title of layer as clone and reassign
-        //let layerTitleClone = indicatorLayer.title.clone();
+        // change popupTemplate of layer as clone and reassign
+        // change title of layer 
+        const popupTemplateClone = indicatorLayer.popupTemplate.clone();
+        let popupCloneContent = popupTemplateClone.content;
         switch (chosenIndicator) {
             case 'accumulatedfrost_degreedays':
                 indicatorLayer.title = 'Accumulated Frost: sum of degree days where Tmin < 0'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> Accumulated Frost in <b>{Year}</b> '
                 break;
             case 'airfrost_count':
                 indicatorLayer.title = ''
@@ -277,9 +278,11 @@ require([
                 break;
             case 'plantheatstress_count':
                 indicatorLayer.title = 'Plant Heat Stress: count of days when Tmax > 25\u00B0C';
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> Plant Heat Stress Day(s) in <b>{Year}</b> ';
                 break;
             case 'start_fieldops_doy':
-                indicatorLayer.title = '';
+                indicatorLayer.title = 'Start FieldOps Day of Year: day when Tavg from 1 Jan > 200\u00B0C';
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> Start FieldOps Day in <b>{Year}</b> '
                 break;
             case 'start_grow_doy':
                 indicatorLayer.title = ''
@@ -296,7 +299,9 @@ require([
             case 'wettestweek_mm':
                 indicatorLayer.title = ''
                 break;
-        }
+        };
+        popupTemplateClone.content = popupCloneContent;
+        indicatorLayer.popupTemplate = popupTemplateClone;
     };
 
     /************************************
