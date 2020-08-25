@@ -153,3 +153,7 @@ body {
 .esri-ui-corner .esri-component.esri-widget--panel {
     width: 360px;
 }
+
+.esri-legend__layer-caption {
+    display: none;
+}
