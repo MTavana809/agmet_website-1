@@ -4,11 +4,11 @@
     <title>Agrometeorological Indicators</title>
 
     <!-- CSS -->
-    <link rel='stylesheet' href='https://js.arcgis.com/4.15/esri/themes/light/main.css'>
+    <link rel='stylesheet' href='https://js.arcgis.com/4.16/esri/themes/light/main.css'>
     <link rel='stylesheet' href='css/map-style.css'>
 
     <!-- JS -->
-    <script src='https://js.arcgis.com/4.15/'></script>
+    <script src='https://js.arcgis.com/4.16/'></script>
     <script src='js/map-config.js'></script>
 </head>
 
@@ -23,39 +23,40 @@
         <div id='leftDiv' class='esri-widget'>
             <p>Select Agrometeorological Indicator:</p>
             <select id='indicatorSelect' class='esri-widget'>
-                <option value='accumulatedfrost_degreedays'>accumulatedfrost_degreedays</option>
-                <option value='airfrost_count'>airfrost_count</option>
-                <option value='cold_spell_n'>cold_spell_n</option>
-                <option value='dry_count'>dry_count</option>
-                <option value='dry_spell_n'>dry_spell_n</option>
-                <option value='end_growingseason'>end_growingseason</option>
-                <option value='first_airfrost_doy'>first_airfrost_doy</option>
-                <option value='first_grassfrost_doy'>first_grassfrost_doy</option>
-                <option value='grassfrost_count'>grassfrost_count</option>
-                <option value='growing_degreedays'>growing_degreedays</option>
-                <option value='growing_season'>growing_season</option>
-                <option value='growseason_length'>growseason_length</option>
-                <option value='growseason_range'>growseason_range</option> 
-                <option value='heating_degreedays'>heating_degreedays</option>
-                <option value='heatwave_n'>heatwave_n</option>
-                <option value='last_airfrost_doy'>last_airfrost_doy</option>
-                <option value='last_grassfrost_doy'>last_grassfrost_doy</option>
-                <option value='p_intensity'>p_intensity</option>
-                <option value='p_seasonality'>p_seasonality</option>
-                <option value='personheatstress_count'>personheatstress_count</option>
-                <option value='plantheatstress_count' selected>plantheatstress_count</option>
-                <option value='start_fieldops_doy'>start_fieldops_doy</option>
-                <option value='start_grow_doy'>start_grow_doy</option>
-                <option value='tempgrowingperiod_length'>tempgrowingperiod_length</option>
-                <option value='thermaltime_sum'>thermaltime_sum</option>
-                <option value='wet_count'>wet_count</option>
-                <option value='wet_spell_n'>wet_spell_n</option>
-                <option value='wettestweek_doy'>wettestweek_doy</option>
-                <option value='wettestweek_mm'>wettestweek_mm</option>
+                <option value='accumulatedfrost_degreedays'>Accumulated Frost (degree days)</option>
+                <option value='airfrost_count'>Air Frost (count of days)</option>
+                <option value='cold_spell_n'>Cold Spell (count of days)</option>
+                <option value='dry_count'>'Dry Count (count of days)</option>
+                <option value='dry_spell_n'>Dry Spell (count of days)</option>
+                <option value='end_growingseason'>End of Growing Season (day of year)</option>
+                <option value='first_airfrost_doy'>First Airfrost (day of year)</option>
+                <option value='first_grassfrost_doy'>First Grassfrost (day of year)</option>
+                <option value='grassfrost_count'>Grassfrost Count (count of days)</option>
+                <option value='growing_degreedays'>Growing (degree days)</option>
+                <option value='growing_season'>Growing Season (degree days)</option>
+                <option value='growseason_length'>Grow Season Length (count of days)</option>
+                <option value='growseason_range'>Grow Season Range (count of days)</option> 
+                <option value='heating_degreedays'>Heating (degree days)</option>
+                <option value='heatwave_n'>Heatwave (count of days)</option>
+                <option value='last_airfrost_doy'>Last Airfrost (day of year)</option>
+                <option value='last_grassfrost_doy'>Last Grassfrost (day of year)</option>
+                <option value='p_intensity'>P Intensity (index)</option>
+                <option value='p_seasonality'>P Seasonality (index)</option>
+                <option value='personheatstress_count'>Person Heat Stress (count of days)</option>
+                <option value='plantheatstress_count' selected>Plant Heat Stress (count of days)</option>
+                <option value='start_fieldops_doy'>Start FieldOps (day of year)</option>
+                <option value='start_grow_doy'>Start Grow (day of year)</option>
+                <option value='tempgrowingperiod_length'>Temp Growing Period (count of days)</option>
+                <option value='thermaltime_sum'>Thermal Time (degree days)</option>
+                <option value='wet_count'>Wet Count (count of days)</option>
+                <option value='wet_spell_n'>Wet Spell (count of days)</option>
+                <option value='wettestweek_doy'>Wettest Week (day of year)</option>
+                <option value='wettestweek_mm'>Wettest Week (mm)</option>
             </select>
         </div>
 
         <!-- <div id='histogramDiv'></div> -->
+
         <div id='bottomDiv'>
             <p id='title' class='esri-widget slider-title'>Press Play to animate the time slider or Drag to select year</p>
             <div id='sliderDiv' class='esri-widget'>
