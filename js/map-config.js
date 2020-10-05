@@ -9,7 +9,6 @@ require([
     'esri/widgets/Slider',
     'esri/widgets/Home',
     'esri/widgets/Legend',
-    'esri/widgets/Histogram',
     'esri/layers/ImageryLayer',
     'esri/layers/support/RasterFunction',
     'esri/layers/support/MosaicRule',
@@ -25,7 +24,6 @@ require([
     Slider,
     Home,
     Legend,
-    Histogram,
     ImageryLayer,
     RasterFunction,
     MosaicRule,
@@ -222,119 +220,119 @@ require([
         switch (chosenIndicator) {
             case 'accumulatedfrost_degreedays':
                 indicatorLayer.title = 'Accumulated Frost (degree days): sum of degree days where Tmin < 0\u00B0C'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> Accumulated Frost degree days in <b>{Year}</b> '
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C'
                 break;
             case 'airfrost_count':
                 indicatorLayer.title = 'Air Frost (count of days): count of days when Tmin < 0\u00B0C'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> Air Frost days per year in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C'
                 break;
             case 'cold_spell_n':
                 indicatorLayer.title = 'Cold Spell (count of days): Max count of consecutive days when Tmax < avgTmax (baseline year) - 3\u00B0C (min 6 days)'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> Cold Spells days per year in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when the maximum temperature is less than the average maximum temperature in a baseline year minus 3\u00B0C'
                 break;
             case 'dry_count':
                 indicatorLayer.title = 'Dry Count (count of days): count of days when P < 0.2 mm'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> Dry Count days per year in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when precipitation is less than 0.2 mm '
                 break;
             case 'dry_spell_n':
                 indicatorLayer.title = 'Dry Spell (count of days): max consecutive count P < 0.2 mm'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> Dry Spell count of days in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when precipitation is less than 0.2 mm'
                 break;
             case 'end_growingseason':
                 indicatorLayer.title = 'End of Growing Season (day of year): day when 5 consecutive days Tavg < 5.6\u00B0C from 1 July'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day when growing season ends in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July'
                 break;
             case 'first_airfrost_doy':
                 indicatorLayer.title = 'First Airfrost (day of year): first day when Tmin < 0\u00B0C from 1 July'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day when first airfrost in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C from 1 July'
                 break;
             case 'first_grassfrost_doy':
                 indicatorLayer.title = 'First Grassfrost (day of year): first day when Tmin < 5\u00B0C from 1 July'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day when first grassfrost in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C from 1 July'
                 break;
             case 'grassfrost_count':
                 indicatorLayer.title = 'Grassfrost (count of days): count of days when Tmin < 5\u00B0C'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> grassfrost days in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C'
                 break;
             case 'growing_degreedays':
                 indicatorLayer.title = 'Growing (degree days): sum Tavg > 5.6\u00B0C'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> growing degree days in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C'
                 break;
             case 'growing_season':
-                indicatorLayer.title = 'Growing Season (degree days): beginning when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> count of growing days in <b>{Year}</b>'
+                indicatorLayer.title = 'Growing Season (count of days): beginning when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C'
                 break;
             case 'growseason_length':
                 indicatorLayer.title = 'Grow Season Length (count of days): days when Tavg > 5.6\u00B0C between start and end of growing season'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> grow season days in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C between the start and the end of growing season'
                 break;
             case 'growseason_range':
                 indicatorLayer.title = 'Grow Season Range (count of days): days between start and end of growing season'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> grow season range in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> calculated from the count of days between the start and end of the growing season'
                 break;
             case 'heating_degreedays':
                 indicatorLayer.title = 'Heating (degree days): Sum of 15.5\u00B0C minus Tavg where Tavg < 15.5\u00B0C'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> heating degree days in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> representing the sum of 15.5\u00B0C minus the average temperature where the average temperature is less than 15.5\u00B0C'
                 break;
             case 'heatwave_n':
                 indicatorLayer.title = 'Heatwave (count of days): Max count of consecutive days when Tmax > avgTmax (baseline year) + 3\u00B0C (min 6 days)'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> heatwave days in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than the average temperature in a baseline year plus 3\u00B0C'
                 break;
             case 'last_airfrost_doy':
                 indicatorLayer.title = 'Last Airfrost (day of year): last day when Tmin < 0\u00B0C before 1 July'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day when last airfrost in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C before 1 July'
                 break;
             case 'last_grassfrost_doy':
                 indicatorLayer.title = 'Last Grassfrost (day of year): last day when Tmin < 5\u00B0C before 1 July'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day when last grassfrost in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C before 1 July'
                 break;
             case 'p_intensity':
                 indicatorLayer.title = 'P Intensity (index): P > 0.2 / count days P > 0.2mm'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> index of P Intensity in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b>: index of precipitation intensity in <b>{Year}</b>'
                 break;
             case 'p_seasonality':
                 indicatorLayer.title = 'P Seasonality (index): S = winter P - summer P / annual total P'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> index of P Seasonality in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b>: index of precipitation seasonality in <b>{Year}</b>'
                 break;
             case 'personheatstress_count':
                 indicatorLayer.title = 'Person Heat Stress (count of days): count of days when Tmax > 32\u00B0C'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> count of person heat stress days in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 32\u00B0C'
                 break;
             case 'plantheatstress_count':
                 indicatorLayer.title = 'Plant Heat Stress (count of days): count of days when Tmax > 25\u00B0C';
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> plant heat stress day(s)  in <b>{Year}</b>';
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 25\u00B0C'
                 break;
             case 'start_fieldops_doy':
                 indicatorLayer.title = 'Start FieldOps (day of year): day when Tavg from 1 Jan > 200\u00B0C';
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day when start fieldops in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when the sum of the daily average temperatures from 1 Jan is greater than 200\u00B0C'
                 break;
             case 'start_grow_doy':
                 indicatorLayer.title = 'Start Grow (day of year): day when 5 consecutve days Tavg > 5.6\u00B0C'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day when start grow in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when five consecutive days have an average temperature greater than 5.6\u00B0C'
                 break;
             case 'tempgrowingperiod_length':
                 indicatorLayer.title = 'Temp Growing Period (count of days): count of days between average 5 day temp > 5\u00B0C and average 5 day temp < 5\u00B0C where average daily temp greater than 5\u00B0C'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day when start grow in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> between when the average five-day temperature is greater than 5\u00B0C and when the average five-day temperature is less than 5\u00B0C'
                 break;
             case 'thermaltime_sum':
                 indicatorLayer.title = 'Thermal Time (degree days): sum of day degrees for period from 5th of 5 day period where Tavg greater than 5\u00B0C to end point where Tavg less than 5\u00B0C'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> degree days of thermal time in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> for the period from fifth day of a five-day period where the average temperater is greater than 5\u00B0C to the end point when the average temperature is less than 5\u00B0C'
                 break;
             case 'wet_count':
                 indicatorLayer.title = 'Wet Count (count of days): days when P >= 0.2 mm'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> count of wet days in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total wet days in <b>{Year}</b> when precipitation is greater than or equal to 0.2 mm'
                 break;
             case 'wet_spell_n':
                 indicatorLayer.title = 'Wet Spell (count of days): max consecutive count P > 0.2 mm'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> days of wet spell in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum consecutive count of precipitation is greater than 0.2 mm'
                 break;
             case 'wettestweek_doy':
                 indicatorLayer.title = 'Wettest Week (day of year): mid-week date when maximum 7d value of P occurs'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year where wettest week in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when the maximum seven-day value of precipitation occurs'
                 break;
             case 'wettestweek_mm':
                 indicatorLayer.title = 'Wettest Week (mm): Maximum amount of P (7 consecutive days)'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> mm of rain when wettest week in <b>{Year}</b>'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> mm of precipitation in <b>{Year}</b> calculated from the maximum amount of precipitation in seven consecutive days'
                 break;
         };
         popupTemplateClone.content = popupCloneContent;
@@ -357,8 +355,10 @@ require([
         },
         // steps: 119,
         tickConfigs: [{
-            mode: 'count',
-            values: 119,
+            mode: 'position',
+            values: [1970, 1980, 1990, 2000, 2010, 2020, 2030, 2040, 2050, 2060, 2070],
+            // mode: 'count',
+            // values: 119,
             labelsVisible: false,
         }]
     });
@@ -455,15 +455,5 @@ require([
     });
     view.ui.add(legend, 'top-right');
 
-    // create and add histogram
-
-    const histogram = new Histogram({
-        min: 1,
-        max: 122,
-        bins: 100,
-        container: document.createElement('histogramDiv')
-
-    });
-    view.ui.add(histogram, 'bottom-right');
 
 });

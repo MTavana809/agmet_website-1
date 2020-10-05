@@ -13,27 +13,25 @@
 </head>
 
 <body>
-    <div id='applicationDiv'>
-        <div id='mapDiv'> </div>
+    <!-- <div id='applicationDiv'> -->
+    <div id='mapDiv'> </div>
 
-        <div id='leftDiv2' class='esri-widget'>
-            <p><b>Observed 1961-2017, modelled 2018-2080 (ensemble mean)</b></p>
-        </div>
 
-        <div id='leftDiv' class='esri-widget'>
-            <p>Select Agrometeorological Indicator:</p>
-            <select id='indicatorSelect' class='esri-widget'>
+
+    <div id='leftDiv' class='esri-widget'>
+        <p>Select Agrometeorological Indicator:</p>
+        <select id='indicatorSelect' class='esri-widget'>
                 <option value='accumulatedfrost_degreedays'>Accumulated Frost (degree days)</option>
                 <option value='airfrost_count'>Air Frost (count of days)</option>
                 <option value='cold_spell_n'>Cold Spell (count of days)</option>
-                <option value='dry_count'>'Dry Count (count of days)</option>
+                <option value='dry_count'>Dry Count (count of days)</option>
                 <option value='dry_spell_n'>Dry Spell (count of days)</option>
                 <option value='end_growingseason'>End of Growing Season (day of year)</option>
                 <option value='first_airfrost_doy'>First Airfrost (day of year)</option>
                 <option value='first_grassfrost_doy'>First Grassfrost (day of year)</option>
                 <option value='grassfrost_count'>Grassfrost Count (count of days)</option>
                 <option value='growing_degreedays'>Growing (degree days)</option>
-                <option value='growing_season'>Growing Season (degree days)</option>
+                <option value='growing_season'>Growing Season (count of days)</option>
                 <option value='growseason_length'>Grow Season Length (count of days)</option>
                 <option value='growseason_range'>Grow Season Range (count of days)</option> 
                 <option value='heating_degreedays'>Heating (degree days)</option>
@@ -53,25 +51,31 @@
                 <option value='wettestweek_doy'>Wettest Week (day of year)</option>
                 <option value='wettestweek_mm'>Wettest Week (mm)</option>
             </select>
-        </div>
+    </div>
 
-        <!-- <div id='histogramDiv'></div> -->
+    <div id='leftDiv2' class='esri-widget'>
+        <p><b>Observed 1961-2017, modelled 2018-2080 (ensemble mean)</b></p>
+    </div>
 
-        <div id='bottomDiv'>
-            <p id='title' class='esri-widget slider-title'>Press Play to animate the time slider or Drag to select year</p>
-            <div id='sliderDiv' class='esri-widget'>
-                <div id='playButton' class='esri-widget esri-widget--button toggle-button'>
-                    <div>
-                        <span class='toggle-button-icon esri-icon-play' aria-label='play icon'></span> Play
-                    </div>
-                    <div>
-                        <span class='toggle-button-icon esri-icon-pause' aria-label='pause icon'></span> Pause
-                    </div>
+    <!-- <div id='histogramDiv'></div> -->
+
+    <div id='bottomDiv'>
+        <p id='title' class='esri-widget slider-title'>Press Play to animate the time slider or Drag to select year</p>
+        <div id='sliderDiv' class='esri-widget'>
+            <div id='playButton' class='esri-widget esri-widget--button toggle-button'>
+                <div>
+                    <span class='toggle-button-icon esri-icon-play' aria-label='play icon'></span> Play
                 </div>
-                <div id='yearSlider' class='esri-widget'></div>
+                <div>
+                    <span class='toggle-button-icon esri-icon-pause' aria-label='pause icon'></span> Pause
+                </div>
             </div>
+            <div id='yearSlider' class='esri-widget'></div>
         </div>
     </div>
+
+
+    <!-- </div> -->
 </body>
 
 </html>
