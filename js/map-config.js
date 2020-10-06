@@ -15,7 +15,10 @@ require([
     'esri/layers/support/DimensionalDefinition',
     'esri/renderers/RasterStretchRenderer',
     'esri/tasks/support/AlgorithmicColorRamp',
-    'esri/tasks/support/MultipartColorRamp'
+    'esri/tasks/support/MultipartColorRamp',
+    'esri/smartMapping/symbology/support/colorRamps',
+    'esri/renderers/RasterColormapRenderer',
+    'esri/symbols/support/symbolUtils'
 ], function(Map,
     Basemap,
     Point,
@@ -30,7 +33,10 @@ require([
     DimensionalDefinition,
     RasterStretchRenderer,
     AlgorithmicColorRamp,
-    MultipartColorRamp) {
+    MultipartColorRamp,
+    colorRamps,
+    RasterColormapRenderer,
+    symbolUtils) {
 
     // new basemap definition 
     const basemap = new Basemap({
@@ -110,16 +116,28 @@ require([
             colorRamp7, colorRamp8, colorRamp9, colorRamp10
         ]
     });
+    //const colorRamp = colorRamps.byName('Red and Green 9');
+    // const flowerFieldRamp = colorRamps.byName("Flower Field");
+    // console.log(flowerFieldRamp.colors);
+
+    // const flowerColorRamp = new MultipartColorRamp({
+    //     colorRamps: [flowerFieldRamp.colors[0], flowerFieldRamp.colors[1], flowerFieldRamp.colors[2], flowerFieldRamp.colors[3], flowerFieldRamp.colors[4], flowerFieldRamp.colors[5], flowerFieldRamp.colors[6], flowerFieldRamp.colors[7], flowerFieldRamp.colors[8], flowerFieldRamp.colors[9]]
+    // });
+    // console.log(combineColorRamp);
+    // console.log(flowerColorRamp);
+
+    // const flowerColorRampRenderer = new RasterColormapRenderer({
+    //     colorMapInfos: []
+    // });
 
     const countOfDayRenderer = new RasterStretchRenderer({
-        colorRamp: combineColorRamp,
+        colorRamp: combineColorRamp, //flowerColorRamp
         stretchType: 'min-max',
         //statistics: [
         //  [1, 60, 5, 5]
         //   ] // min, max, avg, stddev
     });
 
-    //const colorRamp = colorRamps.byName('Red and Green 9');
     // const continuousColors = colorRamp.colors;
     // const countOfDaysRenderer = new RasterStretchRenderer({
     //     colorRamp: colorRamps.byName("Red and Green 9"),
@@ -158,7 +176,7 @@ require([
     // Set up popup template
     let indicatorLayerPopupTemplate = {
         title: '',
-        content: '<b>{Raster.ItemPixelValue}</b> plant heat stress day(s) in <b>{Year}</b>',
+        content: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 25\u00B0C',
         fieldInfos: [{
             fieldName: 'Raster.ItemPixelValue',
             format: {
@@ -181,8 +199,8 @@ require([
         mosaicRule: mosaicRule,
         renderer: countOfDayRenderer,
         renderingRule: serviceRasterFunction,
-        opacity: 0.7,
-        popupTemplate: indicatorLayerPopupTemplate
+        popupTemplate: indicatorLayerPopupTemplate,
+        opacity: 0.7
     });
     map.add(indicatorLayer);
 
@@ -240,15 +258,15 @@ require([
                 break;
             case 'end_growingseason':
                 indicatorLayer.title = 'End of Growing Season (day of year): day when 5 consecutive days Tavg < 5.6\u00B0C from 1 July'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July'
                 break;
             case 'first_airfrost_doy':
                 indicatorLayer.title = 'First Airfrost (day of year): first day when Tmin < 0\u00B0C from 1 July'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C from 1 July'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C from 1 July'
                 break;
             case 'first_grassfrost_doy':
                 indicatorLayer.title = 'First Grassfrost (day of year): first day when Tmin < 5\u00B0C from 1 July'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C from 1 July'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C from 1 July'
                 break;
             case 'grassfrost_count':
                 indicatorLayer.title = 'Grassfrost (count of days): count of days when Tmin < 5\u00B0C'
@@ -280,11 +298,11 @@ require([
                 break;
             case 'last_airfrost_doy':
                 indicatorLayer.title = 'Last Airfrost (day of year): last day when Tmin < 0\u00B0C before 1 July'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C before 1 July'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C before 1 July'
                 break;
             case 'last_grassfrost_doy':
                 indicatorLayer.title = 'Last Grassfrost (day of year): last day when Tmin < 5\u00B0C before 1 July'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C before 1 July'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C before 1 July'
                 break;
             case 'p_intensity':
                 indicatorLayer.title = 'P Intensity (index): P > 0.2 / count days P > 0.2mm'
@@ -304,11 +322,11 @@ require([
                 break;
             case 'start_fieldops_doy':
                 indicatorLayer.title = 'Start FieldOps (day of year): day when Tavg from 1 Jan > 200\u00B0C';
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when the sum of the daily average temperatures from 1 Jan is greater than 200\u00B0C'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the sum of the daily average temperatures from 1 Jan is greater than 200\u00B0C'
                 break;
             case 'start_grow_doy':
                 indicatorLayer.title = 'Start Grow (day of year): day when 5 consecutve days Tavg > 5.6\u00B0C'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when five consecutive days have an average temperature greater than 5.6\u00B0C'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when five consecutive days have an average temperature greater than 5.6\u00B0C'
                 break;
             case 'tempgrowingperiod_length':
                 indicatorLayer.title = 'Temp Growing Period (count of days): count of days between average 5 day temp > 5\u00B0C and average 5 day temp < 5\u00B0C where average daily temp greater than 5\u00B0C'
@@ -328,7 +346,7 @@ require([
                 break;
             case 'wettestweek_doy':
                 indicatorLayer.title = 'Wettest Week (day of year): mid-week date when maximum 7d value of P occurs'
-                popupCloneContent = '<b>{Raster.ItemPixelValue}</b> day of year (out of 365) in <b>{Year}</b> when the maximum seven-day value of precipitation occurs'
+                popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the maximum seven-day value of precipitation occurs'
                 break;
             case 'wettestweek_mm':
                 indicatorLayer.title = 'Wettest Week (mm): Maximum amount of P (7 consecutive days)'
