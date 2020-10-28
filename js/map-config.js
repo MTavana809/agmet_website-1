@@ -218,7 +218,7 @@ require([
     console.log(view.popup);
 
     function changeIndicator(chosenIndicator) {
-        //close popupTemplate
+        //close popupTemplate if open
         if (view.popup.visible) {
             view.popup.close()
         }
