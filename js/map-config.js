@@ -215,13 +215,12 @@ require([
         const chosenIndicator = indicatorSelect.value;
         changeIndicator(chosenIndicator);
     });
-    console.log(view.popup);
 
     function changeIndicator(chosenIndicator) {
         //close popupTemplate if open
         if (view.popup.visible) {
             view.popup.close()
-        }
+        };
 
         // change mosaicRule of layer as clone and reassign
         const mosaicRuleClone = indicatorLayer.mosaicRule.clone(); // makes clone of layer's mosaicRule
