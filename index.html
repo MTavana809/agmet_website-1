@@ -13,12 +13,9 @@
 </head>
 
 <body>
-    <!-- <div id='applicationDiv'> -->
     <div id='mapDiv'> </div>
 
-
-
-    <div id='leftDiv' class='esri-widget'>
+    <div id='selectorDiv' class='esri-widget'>
         <p>Select Agrometeorological Indicator:</p>
         <select id='indicatorSelect' class='esri-widget'>
                 <option value='accumulatedfrost_degreedays'>Accumulated Frost (degree days)</option>
@@ -53,11 +50,11 @@
             </select>
     </div>
 
-    <div id='leftDiv2' class='esri-widget'>
+    <!-- <div id='leftDiv2' class='esri-widget'>
         <p><b>Observed 1961-2017, modelled 2018-2080 (ensemble mean)</b></p>
-    </div>
+    </div> -->
 
-    <div id='leftDiv3' class='esri-widget resizable'>
+    <div id='descriptorDiv' class='esri-widget resizable'>
         <h2>Plant Heat Stress</h2>
         <img src="http://www.parkwestinc.com/wp-content/uploads/2017/07/193092-131-A181B66B-copy.jpg">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat. Sed
@@ -72,10 +69,8 @@
             auctor euismod tortor a aliquam. Sed nisi leo, rutrum et dui in, facilisis convallis risus. Duis ut turpis nunc. Donec facilisis hendrerit est, et dictum justo laoreet eu. Aliquam erat volutpat.</p>
     </div>
 
-    <!-- <div id='histogramDiv'></div> -->
-
-    <div id='bottomDiv'>
-        <p id='title' class='esri-widget slider-title'>Press Play to animate the time slider or Drag to select year</p>
+    <div id='bottomDiv' class='esri-widget'>
+        <p><b>Press Play to animate the time slider or Drag to select the year</b><br> Observed 1961-2017, modelled 2018-2080 (ensemble mean)</p>
         <div id='sliderDiv' class='esri-widget'>
             <div id='playButton' class='esri-widget esri-widget--button toggle-button'>
                 <div>
@@ -88,9 +83,6 @@
             <div id='yearSlider' class='esri-widget'></div>
         </div>
     </div>
-
-
-    <!-- </div> -->
 </body>
 
 </html>

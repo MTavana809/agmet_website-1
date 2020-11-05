@@ -68,27 +68,21 @@ body {
 
 /******** Floating leftDiv(s) ********/
 
-#leftDiv {
+#selectorDiv {
     position: absolute;
-    top: 77;
-    /* ^ height of leftDiv with padding*/
+    top: 15;
     left: 15;
     padding: 0 10px 10px 10px;
     background-color: white;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-#leftDiv2 {
-    position: absolute;
-    top: 15;
-    left: 15;
-    /* bottom: 180; */
-    padding: 0 10px;
-    background-color: white;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+#descriptorDiv {
+    padding: 10;
 }
 
-#leftDiv3 {
+
+/* #descriptorDiv {
     position: absolute;
     left: 15;
     bottom: 180;
@@ -104,8 +98,9 @@ body {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     resize: both;
 }
+*/
 
-img {
+#descriptorDiv img {
     max-width: 100%;
     height: auto;
 }
@@ -115,4 +110,15 @@ img {
 
 .esri-popup__footer {
     display: none;
+}
+
+.esri-expand__content--expanded {
+    overflow-y: auto;
+    width: 25vw;
+}
+
+.esri-slider__label {
+    font-weight: 999;
+    font-size: 2em;
+    transform: translate(0px, -.2em);
 }

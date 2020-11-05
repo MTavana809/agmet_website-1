@@ -9,6 +9,7 @@ require([
     'esri/widgets/Slider',
     'esri/widgets/Home',
     'esri/widgets/Legend',
+    'esri/widgets/Expand',
     'esri/layers/ImageryLayer',
     'esri/layers/support/RasterFunction',
     'esri/layers/support/MosaicRule',
@@ -27,6 +28,7 @@ require([
     Slider,
     Home,
     Legend,
+    Expand,
     ImageryLayer,
     RasterFunction,
     MosaicRule,
@@ -119,6 +121,10 @@ require([
     //const colorRamp = colorRamps.byName('Red and Green 9');
     // const flowerFieldRamp = colorRamps.byName("Flower Field");
     // console.log(flowerFieldRamp.colors);
+    // returns the colors of the Flower Field color ramp
+    // const colorRamp = colorRamps.byName("Red and Green 9");
+    // console.log(colorRamp.colors);
+
 
     // const flowerColorRamp = new MultipartColorRamp({
     //     colorRamps: [flowerFieldRamp.colors[0], flowerFieldRamp.colors[1], flowerFieldRamp.colors[2], flowerFieldRamp.colors[3], flowerFieldRamp.colors[4], flowerFieldRamp.colors[5], flowerFieldRamp.colors[6], flowerFieldRamp.colors[7], flowerFieldRamp.colors[8], flowerFieldRamp.colors[9]]
@@ -190,7 +196,7 @@ require([
         dockOptions: {
             buttonEnabled: false
         }
-    }
+    };
 
     // create and add imagery layer to view
     const indicatorLayer = new ImageryLayer({
@@ -204,12 +210,12 @@ require([
     });
     map.add(indicatorLayer);
 
-
     /******************************
-     * leftDiv configs
+     * selectorDiv configs
      * ****************************/
     //listen to change events on indicatorSelect and change multidimensional variable
     const indicatorSelect = document.getElementById('indicatorSelect');
+    const descriptorDiv = document.getElementById('descriptorDiv');
 
     indicatorSelect.addEventListener('change', function() {
         const chosenIndicator = indicatorSelect.value;
@@ -237,119 +243,140 @@ require([
 
         // change popupTemplate of layer as clone and reassign
         // change title of layer for Legend display
-        // change description in leftDiv3
+        // change description in descriptorDiv
         const popupTemplateClone = indicatorLayer.popupTemplate.clone();
         let popupCloneContent = popupTemplateClone.content;
-        const leftDiv3 = document.getElementById('leftDiv3');
 
         switch (chosenIndicator) {
             case 'accumulatedfrost_degreedays':
                 indicatorLayer.title = 'Accumulated Frost (degree days): sum of degree days where Tmin < 0\u00B0C'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C'
-                leftDiv3.innerHTML = '<h2>Accumulated Frost (degree days)</h2><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXxjIExlTtbSZ1oTG2pOpYswkrrwuAsyFsWg&usqp=CAU"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>'
+                descriptorDiv.innerHTML = '<h2>Accumulated Frost (degree days)</h2><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXxjIExlTtbSZ1oTG2pOpYswkrrwuAsyFsWg&usqp=CAU"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>'
                 break;
             case 'airfrost_count':
                 indicatorLayer.title = 'Air Frost (count of days): count of days when Tmin < 0\u00B0C'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C'
-                leftDiv3.innerHTML = '<h2>Air Frost (count of days)</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>'
+                descriptorDiv.innerHTML = '<h2>Air Frost (count of days)</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>'
                 break;
             case 'cold_spell_n':
                 indicatorLayer.title = 'Cold Spell (count of days): Max count of consecutive days when Tmax < avgTmax (baseline year) - 3\u00B0C (min 6 days)'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when the maximum temperature is less than the average maximum temperature in a baseline year minus 3\u00B0C'
-                leftDiv3.innerHTML = '<h2>Cold Spell (count of days)</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>        <p>Vestibulum auctor, ipsum vitae fermentum vulputate, mi leo convallis justo, quis elementum sem dui eu nulla. Vestibulum a turpis a sapien facilisis faucibus. In eget nibh luctus, rhoncus lectus et, imperdiet purus. Aliquam sodales sem ut molestieconsequat. In ornare metus porttitor lacinia imperdiet. Donec cursus convallis magna, ut scelerisque magna facilisis eget. Aliquam rutrum, metus ut aliquet vestibulum, lectus lorem gravida nibh, at pulvinar diam risus et sapien. Vivamus necrhoncus erat, a viverra enim. Morbi eu fringilla elit. Nam sed convallis ex, sit amet mattis massa. Ut dui elit, semper id suscipit vitae, rhoncus ac ipsum. Etiam purus risus, vestibulum aliquet ipsum at, interdum consequat risus. Vivamusin quam ut turpis tempor semper. Sed lectus urna, elementum vel sodales a, aliquet eget purus. Suspendisse eget ultrices erat.</p>'
+                descriptorDiv.innerHTML = '<h2>Cold Spell (count of days)</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>        <p>Vestibulum auctor, ipsum vitae fermentum vulputate, mi leo convallis justo, quis elementum sem dui eu nulla. Vestibulum a turpis a sapien facilisis faucibus. In eget nibh luctus, rhoncus lectus et, imperdiet purus. Aliquam sodales sem ut molestieconsequat. In ornare metus porttitor lacinia imperdiet. Donec cursus convallis magna, ut scelerisque magna facilisis eget. Aliquam rutrum, metus ut aliquet vestibulum, lectus lorem gravida nibh, at pulvinar diam risus et sapien. Vivamus necrhoncus erat, a viverra enim. Morbi eu fringilla elit. Nam sed convallis ex, sit amet mattis massa. Ut dui elit, semper id suscipit vitae, rhoncus ac ipsum. Etiam purus risus, vestibulum aliquet ipsum at, interdum consequat risus. Vivamusin quam ut turpis tempor semper. Sed lectus urna, elementum vel sodales a, aliquet eget purus. Suspendisse eget ultrices erat.</p>'
                 break;
             case 'dry_count':
                 indicatorLayer.title = 'Dry Count (count of days): count of days when P < 0.2 mm'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when precipitation is less than 0.2 mm '
+                descriptorDiv.innerHTML = ''
                 break;
             case 'dry_spell_n':
                 indicatorLayer.title = 'Dry Spell (count of days): max consecutive count P < 0.2 mm'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when precipitation is less than 0.2 mm'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'end_growingseason':
                 indicatorLayer.title = 'End of Growing Season (day of year): day when 5 consecutive days Tavg < 5.6\u00B0C from 1 July'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'first_airfrost_doy':
                 indicatorLayer.title = 'First Airfrost (day of year): first day when Tmin < 0\u00B0C from 1 July'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C from 1 July'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'first_grassfrost_doy':
                 indicatorLayer.title = 'First Grassfrost (day of year): first day when Tmin < 5\u00B0C from 1 July'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C from 1 July'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'grassfrost_count':
                 indicatorLayer.title = 'Grassfrost (count of days): count of days when Tmin < 5\u00B0C'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'growing_degreedays':
                 indicatorLayer.title = 'Growing (degree days): sum Tavg > 5.6\u00B0C'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'growing_season':
                 indicatorLayer.title = 'Growing Season (count of days): beginning when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'growseason_length':
                 indicatorLayer.title = 'Grow Season Length (count of days): days when Tavg > 5.6\u00B0C between start and end of growing season'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C between the start and the end of growing season'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'growseason_range':
                 indicatorLayer.title = 'Grow Season Range (count of days): days between start and end of growing season'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> calculated from the count of days between the start and end of the growing season'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'heating_degreedays':
                 indicatorLayer.title = 'Heating (degree days): Sum of 15.5\u00B0C minus Tavg where Tavg < 15.5\u00B0C'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> representing the sum of 15.5\u00B0C minus the average temperature where the average temperature is less than 15.5\u00B0C'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'heatwave_n':
                 indicatorLayer.title = 'Heatwave (count of days): Max count of consecutive days when Tmax > avgTmax (baseline year) + 3\u00B0C (min 6 days)'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than the average temperature in a baseline year plus 3\u00B0C'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'last_airfrost_doy':
                 indicatorLayer.title = 'Last Airfrost (day of year): last day when Tmin < 0\u00B0C before 1 July'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C before 1 July'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'last_grassfrost_doy':
                 indicatorLayer.title = 'Last Grassfrost (day of year): last day when Tmin < 5\u00B0C before 1 July'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C before 1 July'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'p_intensity':
                 indicatorLayer.title = 'P Intensity (index): P > 0.2 / count days P > 0.2mm'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b>: index of precipitation intensity in <b>{Year}</b>'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'p_seasonality':
                 indicatorLayer.title = 'P Seasonality (index): S = winter P - summer P / annual total P'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b>: index of precipitation seasonality in <b>{Year}</b>'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'personheatstress_count':
                 indicatorLayer.title = 'Person Heat Stress (count of days): count of days when Tmax > 32\u00B0C'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 32\u00B0C'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'plantheatstress_count':
                 indicatorLayer.title = 'Plant Heat Stress (count of days): count of days when Tmax > 25\u00B0C';
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 25\u00B0C'
-                leftDiv3.innerHTML = '<h2>Plant Heat Stress</h2><img src="http://www.parkwestinc.com/wp-content/uploads/2017/07/193092-131-A181B66B-copy.jpg"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat. Sed    vitae tellus sit amet dui bibendum porta in sed tellus. Nunc porttitor mollis luctus. Duis ut luctus urna. Vivamus at fermentum eros. Nullam a pulvinar tortor, eu bibendum libero. Integer nec consectetur eros, et dapibus lectus. Nulla sem    nulla, auctor eget lobortis feugiat, ornare sit amet nisl. Donec dolor turpis, feugiat sodales tellus a, vulputate ultrices felis. Quisque lobortis eu turpis molestie fermentum.</p><p>Vestibulum auctor, ipsum vitae fermentum vulputate, mi leo convallis justo, quis elementum sem dui eu nulla. Vestibulum a turpis a sapien facilisis faucibus. In eget nibh luctus, rhoncus lectus et, imperdiet purus. Aliquam sodales sem ut molestie    consequat. In ornare metus porttitor lacinia imperdiet. Donec cursus convallis magna, ut scelerisque magna facilisis eget. Aliquam rutrum, metus ut aliquet vestibulum, lectus lorem gravida nibh, at pulvinar diam risus et sapien. Vivamus nec    rhoncus erat, a viverra enim. Morbi eu fringilla elit. Nam sed convallis ex, sit amet mattis massa. Ut dui elit, semper id suscipit vitae, rhoncus ac ipsum. Etiam purus risus, vestibulum aliquet ipsum at, interdum consequat risus. Vivamus    in quam ut turpis tempor semper. Sed lectus urna, elementum vel sodales a, aliquet eget purus. Suspendisse eget ultrices erat.</p><p>Quisque mattis vulputate metus, et mattis eros lacinia at. Aliquam ac viverra mauris. Duis sit amet sollicitudin elit. Aenean pulvinar convallis felis, quis euismod velit cursus suscipit. Pellentesque mattis molestie imperdiet. Vivamus et risus    quis leo interdum euismod. In augue tortor, pretium vel pharetra ut, accumsan non nulla. Proin ac felis molestie, rutrum enim eu, gravida orci. Etiam rhoncus sit amet ligula dapibus fermentum. Vivamus sagittis id purus vitae semper. Curabitur auctor euismod tortor a aliquam. Sed nisi leo, rutrum et dui in, facilisis convallis risus. Duis ut turpis nunc. Donec facilisis hendrerit est, et dictum justo laoreet eu. Aliquam erat volutpat.</p>'
+                descriptorDiv.innerHTML = '<h2>Plant Heat Stress</h2><img src="http://www.parkwestinc.com/wp-content/uploads/2017/07/193092-131-A181B66B-copy.jpg"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat. Sed    vitae tellus sit amet dui bibendum porta in sed tellus. Nunc porttitor mollis luctus. Duis ut luctus urna. Vivamus at fermentum eros. Nullam a pulvinar tortor, eu bibendum libero. Integer nec consectetur eros, et dapibus lectus. Nulla sem    nulla, auctor eget lobortis feugiat, ornare sit amet nisl. Donec dolor turpis, feugiat sodales tellus a, vulputate ultrices felis. Quisque lobortis eu turpis molestie fermentum.</p><p>Vestibulum auctor, ipsum vitae fermentum vulputate, mi leo convallis justo, quis elementum sem dui eu nulla. Vestibulum a turpis a sapien facilisis faucibus. In eget nibh luctus, rhoncus lectus et, imperdiet purus. Aliquam sodales sem ut molestie    consequat. In ornare metus porttitor lacinia imperdiet. Donec cursus convallis magna, ut scelerisque magna facilisis eget. Aliquam rutrum, metus ut aliquet vestibulum, lectus lorem gravida nibh, at pulvinar diam risus et sapien. Vivamus nec    rhoncus erat, a viverra enim. Morbi eu fringilla elit. Nam sed convallis ex, sit amet mattis massa. Ut dui elit, semper id suscipit vitae, rhoncus ac ipsum. Etiam purus risus, vestibulum aliquet ipsum at, interdum consequat risus. Vivamus    in quam ut turpis tempor semper. Sed lectus urna, elementum vel sodales a, aliquet eget purus. Suspendisse eget ultrices erat.</p><p>Quisque mattis vulputate metus, et mattis eros lacinia at. Aliquam ac viverra mauris. Duis sit amet sollicitudin elit. Aenean pulvinar convallis felis, quis euismod velit cursus suscipit. Pellentesque mattis molestie imperdiet. Vivamus et risus    quis leo interdum euismod. In augue tortor, pretium vel pharetra ut, accumsan non nulla. Proin ac felis molestie, rutrum enim eu, gravida orci. Etiam rhoncus sit amet ligula dapibus fermentum. Vivamus sagittis id purus vitae semper. Curabitur auctor euismod tortor a aliquam. Sed nisi leo, rutrum et dui in, facilisis convallis risus. Duis ut turpis nunc. Donec facilisis hendrerit est, et dictum justo laoreet eu. Aliquam erat volutpat.</p>'
                 break;
             case 'start_fieldops_doy':
                 indicatorLayer.title = 'Start FieldOps (day of year): day when Tavg from 1 Jan > 200\u00B0C';
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the sum of the daily average temperatures from 1 Jan is greater than 200\u00B0C'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'start_grow_doy':
                 indicatorLayer.title = 'Start Grow (day of year): day when 5 consecutve days Tavg > 5.6\u00B0C'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when five consecutive days have an average temperature greater than 5.6\u00B0C'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'tempgrowingperiod_length':
                 indicatorLayer.title = 'Temp Growing Period (count of days): count of days between average 5 day temp > 5\u00B0C and average 5 day temp < 5\u00B0C where average daily temp greater than 5\u00B0C'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> between when the average five-day temperature is greater than 5\u00B0C and when the average five-day temperature is less than 5\u00B0C'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'thermaltime_sum':
                 indicatorLayer.title = 'Thermal Time (degree days): sum of day degrees for period from 5th of 5 day period where Tavg greater than 5\u00B0C to end point where Tavg less than 5\u00B0C'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> for the period from fifth day of a five-day period where the average temperater is greater than 5\u00B0C to the end point when the average temperature is less than 5\u00B0C'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'wet_count':
                 indicatorLayer.title = 'Wet Count (count of days): days when P >= 0.2 mm'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> total wet days in <b>{Year}</b> when precipitation is greater than or equal to 0.2 mm'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'wet_spell_n':
                 indicatorLayer.title = 'Wet Spell (count of days): max consecutive count P > 0.2 mm'
@@ -358,10 +385,12 @@ require([
             case 'wettestweek_doy':
                 indicatorLayer.title = 'Wettest Week (day of year): mid-week date when maximum 7d value of P occurs'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the maximum seven-day value of precipitation occurs'
+                descriptorDiv.innerHTML = ''
                 break;
             case 'wettestweek_mm':
                 indicatorLayer.title = 'Wettest Week (mm): Maximum amount of P (7 consecutive days)'
                 popupCloneContent = '<b>{Raster.ItemPixelValue}</b> mm of precipitation in <b>{Year}</b> calculated from the maximum amount of precipitation in seven consecutive days'
+                descriptorDiv.innerHTML = ''
                 break;
         };
         popupTemplateClone.content = popupCloneContent;
@@ -384,10 +413,10 @@ require([
         },
         // steps: 119,
         tickConfigs: [{
-            mode: 'position',
-            values: [1970, 1980, 1990, 2000, 2010, 2020, 2030, 2040, 2050, 2060, 2070],
-            // mode: 'count',
-            // values: 119,
+            // mode: 'position',
+            // values: [1970, 1980, 1990, 2000, 2010, 2020, 2030, 2040, 2050, 2060, 2070],
+            mode: 'count',
+            values: 119,
             labelsVisible: false,
         }]
     });
@@ -398,7 +427,12 @@ require([
         updateYearDef(event.value);
     });
 
-    function updateYearDef(value) {
+    // read all other values when year updates
+    function updateYearDef() {
+        //close popupTemplate if open
+        if (view.popup.visible) {
+            view.popup.close()
+        };
         const mosaicRuleClone = indicatorLayer.mosaicRule.clone(); // makes clone of layer's mosaicRule
         const yearVariable = mosaicRuleClone.multidimensionalDefinition[0];
         yearVariable.values = yearSlider.get('values');
@@ -406,17 +440,8 @@ require([
         indicatorLayer.mosaicRule = mosaicRuleClone;
     };
 
-    // set vars for play button 
+    // set var for play button 
     const playButton = document.getElementById('playButton');
-    let animation = null;
-
-    // When user drags the slider:
-    //  - stops the animation
-    //  - set the visualized year to the slider.
-    function inputHandler(event) {
-        stopAnimation();
-        updateYearDef(event.value);
-    };
 
     // Toggle animation on/off when user
     // clicks on the play button
@@ -455,6 +480,18 @@ require([
     };
 
     /******************************
+     * Expand descriptorDiv
+     *******************************/
+    const descriptorDivExpand = new Expand({
+        view: view,
+        content: descriptorDiv,
+        expandIconClass: 'esri-icon-description',
+        group: 'top-left',
+        expanded: true
+    });
+    view.ui.add(descriptorDivExpand, 'bottom-left');
+
+    /******************************
      * Small ui widgets
      *******************************/
 
@@ -471,6 +508,7 @@ require([
     const home = new Home({
         view: view
     });
+
     // add elements in order
     view.ui.add([scaleBar, home], 'bottom-right');
 
