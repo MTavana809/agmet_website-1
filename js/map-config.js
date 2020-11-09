@@ -480,18 +480,6 @@ require([
     };
 
     /******************************
-     * Expand descriptorDiv
-     *******************************/
-    const descriptorDivExpand = new Expand({
-        view: view,
-        content: descriptorDiv,
-        expandIconClass: 'esri-icon-description',
-        group: 'top-left',
-        expanded: true
-    });
-    view.ui.add(descriptorDivExpand, 'bottom-left');
-
-    /******************************
      * Small ui widgets
      *******************************/
 
@@ -522,5 +510,28 @@ require([
     });
     view.ui.add(legend, 'top-right');
 
+    /******************************
+     * Expand descriptorDiv
+     *******************************/
+    const descriptorDivExpand = new Expand({
+        view: view,
+        content: descriptorDiv,
+        expandIconClass: 'esri-icon-description',
+        group: 'top-left',
+        expanded: true
+    });
+    view.ui.add(descriptorDivExpand, 'bottom-left');
+
+    // delay descriptorDiv load 
+    function initialSetup() {
+        if (document.getElementById('descriptorDiv') != null) {
+            setTimeout(function() {
+                document.getElementById('descriptorDiv').style.display = 'block';
+            }, 1000);
+        }
+    };
+    initialSetup();
+
+    //move expand button to more like modal box
 
 });
