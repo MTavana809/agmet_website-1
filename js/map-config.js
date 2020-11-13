@@ -10,6 +10,7 @@ require([
     'esri/widgets/Home',
     'esri/widgets/Legend',
     'esri/widgets/Expand',
+    'esri/widgets/Swipe',
     'esri/layers/ImageryLayer',
     'esri/layers/support/RasterFunction',
     'esri/layers/support/MosaicRule',
@@ -29,6 +30,7 @@ require([
     Home,
     Legend,
     Expand,
+    Swipe,
     ImageryLayer,
     RasterFunction,
     MosaicRule,
@@ -210,16 +212,67 @@ require([
     });
     map.add(indicatorLayer);
 
+    // create and SECOND add imagery layer to view for SWIPE
+    const indicatorLayer2 = new ImageryLayer({
+        title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+        url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/agrometIndicators_esriStats/ImageServer',
+        mosaicRule: {
+            multidimensionalDefinition: [{
+                variableName: 'accumulatedfrost_degreedays',
+                dimensionName: 'Year',
+                values: [1961],
+                isSlice: true
+            }]
+        },
+        renderer: countOfDayRenderer,
+        renderingRule: serviceRasterFunction,
+        popupTemplate: {
+            title: '',
+            content: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C',
+            fieldInfos: [{
+                fieldName: 'Raster.ItemPixelValue',
+                format: {
+                    places: 0,
+                    digitSeparator: true
+                }
+            }]
+        },
+        opacity: 0.8
+    });
+    map.add(indicatorLayer2);
+
+    /******************************
+     * Swipe
+     *******************************/
+    const swipe = new Swipe({
+        view: view,
+        leadingLayers: [indicatorLayer],
+        trailingLayers: [indicatorLayer2],
+        direction: 'horizontal',
+        position: 50
+    });
+    view.ui.add(swipe);
+
     /******************************
      * selectorDiv configs
      * ****************************/
     //listen to change events on indicatorSelect and change multidimensional variable
     const indicatorSelect = document.getElementById('indicatorSelect');
+    const indicatorSelect2 = document.getElementById('indicatorSelect2');
     const descriptorDiv = document.getElementById('descriptorDiv');
 
     indicatorSelect.addEventListener('change', function() {
         const chosenIndicator = indicatorSelect.value;
         changeIndicator(chosenIndicator);
+        changeDescriptors(chosenIndicator);
+        stopAnimation();
+    });
+
+    indicatorSelect2.addEventListener('change', function() {
+        const chosenIndicator = indicatorSelect2.value;
+        changeIndicator(chosenIndicator);
+        changeDescriptors(chosenIndicator);
+        stopAnimation();
     });
 
     function changeIndicator(chosenIndicator) {
@@ -241,9 +294,37 @@ require([
         renderingRuleClone.functionName = chosenIndicator;
         indicatorLayer.renderingRule = renderingRuleClone;
 
-        // change popupTemplate of layer as clone and reassign
-        // change title of layer for Legend display
-        // change description in descriptorDiv
+        //swipe configs
+        swipe.leadingLayers.splice(0, indicatorLayer);
+    };
+
+    function changeIndicator(chosenIndicator) {
+        //close popupTemplate if open
+        if (view.popup.visible) {
+            view.popup.close()
+        };
+
+        // change mosaicRule of layer as clone and reassign
+        const mosaicRuleClone = indicatorLayer2.mosaicRule.clone(); // makes clone of layer's mosaicRule
+        const indicatorVariable = mosaicRuleClone.multidimensionalDefinition[0];
+        indicatorVariable.values = yearSlider.get('values');
+        indicatorVariable.variableName = chosenIndicator;
+        mosaicRuleClone.multidimensionalDefinition = [indicatorVariable];
+        indicatorLayer2.mosaicRule = mosaicRuleClone;
+
+        // change renderingRule (raster function) of layer as clone and reassign 
+        const renderingRuleClone = indicatorLayer2.renderingRule.clone();
+        renderingRuleClone.functionName = chosenIndicator;
+        indicatorLayer2.renderingRule = renderingRuleClone;
+
+        //swipe configs
+        swipe.trailingLayers.splice(0, indicatorLayer2);
+    };
+
+    // change popupTemplate of layer as clone and reassign
+    // change title of layer for Legend display
+    // change description in descriptorDiv
+    function changeDescriptors(chosenIndicator) {
         const popupTemplateClone = indicatorLayer.popupTemplate.clone();
         let popupCloneContent = popupTemplateClone.content;
 
@@ -394,8 +475,8 @@ require([
                 break;
         };
         popupTemplateClone.content = popupCloneContent;
-        indicatorLayer.popupTemplate = popupTemplateClone;
-    };
+        indicatorLayer.popupTemplate = popupTemplateClone;;
+    }
 
     /************************************
      * Year Slider
@@ -423,21 +504,30 @@ require([
 
     // when the user changes the yearSlider's value, change the year to reflect data
     yearSlider.on(['thumb-change', 'thumb-drag'], function(event) {
-        stopAnimation();
-        updateYearDef(event.value);
-    });
-
-    // read all other values when year updates
-    function updateYearDef() {
         //close popupTemplate if open
         if (view.popup.visible) {
             view.popup.close()
         };
+        stopAnimation();
+        updateYearDef(event.value);
+        updateYearDef2(event.value);
+    });
+
+    // read all other values when year updates
+    function updateYearDef() {
         const mosaicRuleClone = indicatorLayer.mosaicRule.clone(); // makes clone of layer's mosaicRule
         const yearVariable = mosaicRuleClone.multidimensionalDefinition[0];
         yearVariable.values = yearSlider.get('values');
         mosaicRuleClone.multidimensionalDefinition = [yearVariable];
         indicatorLayer.mosaicRule = mosaicRuleClone;
+    };
+
+    function updateYearDef2() {
+        const mosaicRuleClone = indicatorLayer2.mosaicRule.clone(); // makes clone of layer's mosaicRule
+        const yearVariable = mosaicRuleClone.multidimensionalDefinition[0];
+        yearVariable.values = yearSlider.get('values');
+        mosaicRuleClone.multidimensionalDefinition = [yearVariable];
+        indicatorLayer2.mosaicRule = mosaicRuleClone;
     };
 
     // set var for play button 
@@ -465,6 +555,7 @@ require([
                 }
                 yearSlider.values = [year];
                 updateYearDef(year);
+                updateYearDef2(year);
             }, 700) // speed of playback, milliseconds
         playButton.classList.add('toggled');
     };
@@ -508,7 +599,18 @@ require([
             title: ['Plant Heat Stress: count of days when Tmax > 25\u00B0C']
         }]
     });
-    view.ui.add(legend, 'top-right');
+
+    // create and add legend to view 
+    const legend2 = new Legend({
+        view: view,
+        layerInfos: [{
+            layer: indicatorLayer2,
+            title: ['Plant Heat Stress: count of days when Tmax > 25\u00B0C']
+        }]
+    });
+
+    view.ui.add(legend, 'top-left');
+    view.ui.add(legend2, 'top-right');
 
     /******************************
      * Expand descriptorDiv
@@ -518,7 +620,7 @@ require([
         content: descriptorDiv,
         expandIconClass: 'esri-icon-description',
         group: 'top-left',
-        expanded: true
+        expanded: false
     });
     view.ui.add(descriptorDivExpand, 'bottom-left');
 
@@ -533,5 +635,6 @@ require([
     initialSetup();
 
     //move expand button to more like modal box
+
 
 });
