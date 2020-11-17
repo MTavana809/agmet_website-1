@@ -635,6 +635,70 @@ require([
     initialSetup();
 
     //move expand button to more like modal box
+    // programmatically make selectors 
+    const selectorExpressions = [
+        ['accumulatedfrost_degreedays', 'Accumulated Frost (degree days)'],
+        ['airfrost_count', 'Air Frost (count of days)'],
+        ['cold_spell_n', 'Cold Spell (count of days)'],
+        ['dry_count', 'Dry Count (count of days)'],
+        ['dry_spell_n', 'Dry Spell (count of days)'],
+        ['end_growingseason', 'End of Growing Season (day of year)'],
+        ['first_airfrost_doy', 'First Airfrost (day of year)'],
+        ['first_grassfrost_doy', 'First Grassfrost (day of year)'],
+        ['grassfrost_count', 'Grassfrost Count (count of days)'],
+        ['growing_degreedays', 'Growing (degree days)'],
+        ['growing_season', 'Growing Season (count of days)'],
+        ['growseason_length', 'Grow Season Length (count of days)'],
+        ['growseason_range', 'Grow Season Range (count of days)'],
+        ['heating_degreedays', 'Heating (degree days)'],
+        ['heatwave_n', 'Heatwave (count of days)'],
+        ['last_airfrost_doy', 'Last Airfrost (day of year)'],
+        ['last_grassfrost_doy', 'Last Grassfrost (day of year)'],
+        ['p_intensity', 'P Intensity (index)'],
+        ['p_seasonality', 'P Seasonality (index)'],
+        ['personheatstress_count', 'Person Heat Stress (count of days)'],
+        ['plantheatstress_count', 'Plant Heat Stress (count of days)'],
+        ['start_fieldops_doy', 'Start FieldOps (day of year)'],
+        ['start_grow_doy', 'Start Grow (day of year)'],
+        ['tempgrowingperiod_length', 'Temp Growing Period (count of days)'],
+        ['thermaltime_sum', 'Thermal Time (degree days)'],
+        ['wet_count', 'Wet Count (count of days)'],
+        ['wet_spell_n', 'Wet Spell (count of days)'],
+        ['wettestweek_doy', 'Wettest Week (day of year)'],
+        ['wettestweek_mm', 'Wettest Week (mm)']
+    ]
 
+    // selectDivs configs
+    const selectDivLeft = document.createElement('selectDivLeft');
+    const selectDivRight = document.createElement('selectDivRight');
 
+    selectDivLeft.setAttribute('style', 'padding: 0 10px 10px 10px;background-color:white;');
+    selectDivLeft.setAttribute('class', 'esri-widget');
+    selectDivLeft.innerHTML = '<p>Select Agrometeorological Indicator on the LEFT:<p>';
+    selectDivRight.setAttribute('style', 'padding: 0 10px 10px 10px;background-color:white;');
+    selectDivRight.setAttribute('class', 'esri-widget');
+    selectDivRight.innerHTML = '<p>Select Agrometeorological Indicator on the RIGHT:<p>';
+
+    const selectFilterLeft = document.createElement('select');
+    selectFilterLeft.setAttribute('class', 'esri-widget');
+
+    const selectFilterRight = document.createElement('select');
+    selectFilterRight.setAttribute('class', 'esri-widget');
+
+    selectDivLeft.appendChild(selectFilterLeft);
+    selectDivRight.appendChild(selectFilterRight);
+
+    selectorExpressions.forEach(function(value) {
+        let option = document.createElement('option');
+        option.value = value[0];
+        option.innerHTML = value[1];
+
+        selectFilterRight.appendChild(option);
+        let optionClone = option.cloneNode(true);
+        selectFilterLeft.appendChild(optionClone);
+
+    });
+
+    view.ui.add(selectDivLeft, 'bottom-left');
+    view.ui.add(selectDivRight, 'bottom-right');
 });
