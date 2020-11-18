@@ -859,7 +859,7 @@ require([
         view: view,
         content: descriptorDiv,
         expandIconClass: 'esri-icon-description',
-        expanded: true
+        expanded: false
     });
     view.ui.add(descriptorDivExpand, 'bottom-left');
 

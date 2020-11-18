@@ -88,7 +88,7 @@ body {
     overflow-y: auto;
     width: 25vw;
     height: auto;
-    max-height: 40vw !important;
+    max-height: 26vw !important;
 }
 
 .esri-slider__label {
