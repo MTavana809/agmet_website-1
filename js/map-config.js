@@ -21,7 +21,7 @@ require([
     'esri/smartMapping/symbology/support/colorRamps',
     'esri/renderers/RasterColormapRenderer',
     'esri/symbols/support/symbolUtils'
-], function(Map,
+], (Map,
     Basemap,
     Point,
     MapView,
@@ -40,7 +40,7 @@ require([
     MultipartColorRamp,
     colorRamps,
     RasterColormapRenderer,
-    symbolUtils) {
+    symbolUtils) => {
 
     // new basemap definition 
     const basemap = new Basemap({
@@ -120,23 +120,6 @@ require([
             colorRamp7, colorRamp8, colorRamp9, colorRamp10
         ]
     });
-    //const colorRamp = colorRamps.byName('Red and Green 9');
-    // const flowerFieldRamp = colorRamps.byName("Flower Field");
-    // console.log(flowerFieldRamp.colors);
-    // returns the colors of the Flower Field color ramp
-    // const colorRamp = colorRamps.byName("Red and Green 9");
-    // console.log(colorRamp.colors);
-
-
-    // const flowerColorRamp = new MultipartColorRamp({
-    //     colorRamps: [flowerFieldRamp.colors[0], flowerFieldRamp.colors[1], flowerFieldRamp.colors[2], flowerFieldRamp.colors[3], flowerFieldRamp.colors[4], flowerFieldRamp.colors[5], flowerFieldRamp.colors[6], flowerFieldRamp.colors[7], flowerFieldRamp.colors[8], flowerFieldRamp.colors[9]]
-    // });
-    // console.log(combineColorRamp);
-    // console.log(flowerColorRamp);
-
-    // const flowerColorRampRenderer = new RasterColormapRenderer({
-    //     colorMapInfos: []
-    // });
 
     const countOfDayRenderer = new RasterStretchRenderer({
         colorRamp: combineColorRamp, //flowerColorRamp
@@ -145,20 +128,6 @@ require([
         //  [1, 60, 5, 5]
         //   ] // min, max, avg, stddev
     });
-
-    // const continuousColors = colorRamp.colors;
-    // const countOfDaysRenderer = new RasterStretchRenderer({
-    //     colorRamp: colorRamps.byName("Red and Green 9"),
-    //     stretchType: 'standard-deviation'
-    // });
-
-    // create renderer for doy
-    // create renderer for degree days
-    // create renderer for mm
-    // create renderer for count 
-    // create renderer for index
-    // create renderer for degrees
-
 
     /******************************
      * Layer rules
@@ -297,30 +266,31 @@ require([
     // selectDivs configs
     const selectDivLeft = document.createElement('div');
     const selectDivRight = document.createElement('div');
+    const selectDivs = [selectDivLeft, selectDivRight]
 
-    selectDivLeft.setAttribute('id', 'selectDivLeft');
-    selectDivLeft.setAttribute('class', 'esri-widget');
-    selectDivLeft.setAttribute('style', 'padding: 0 10px 10px 10px;background-color:white;');
+    selectDivs.forEach(element => {
+        element.setAttribute('id', 'selectDivLeft');
+        element.setAttribute('class', 'esri-widget');
+        element.setAttribute('style', 'padding: 0 10px 10px 10px;background-color:white;');
+    });
+
     selectDivLeft.innerHTML = '<p>Select Agrometeorological Indicator on the LEFT:<p>';
-
-    selectDivRight.setAttribute('id', 'selectDivRight');
-    selectDivRight.setAttribute('class', 'esri-widget');
-    selectDivRight.setAttribute('style', 'padding: 0 10px 10px 10px;background-color:white;');
     selectDivRight.innerHTML = '<p>Select Agrometeorological Indicator on the RIGHT:<p>';
 
     const selectFilterLeft = document.createElement('select');
-    selectFilterLeft.setAttribute('id', 'selectFilterLeft');
-    selectFilterLeft.setAttribute('class', 'esri-widget');
-
     const selectFilterRight = document.createElement('select');
-    selectFilterRight.setAttribute('id', 'selectFilterRight');
-    selectFilterRight.setAttribute('class', 'esri-widget');
+    const selectFilters = [selectFilterLeft, selectFilterRight];
+
+    selectFilters.forEach(element => {
+        element.setAttribute('id', 'selectFilterLeft');
+        element.setAttribute('class', 'esri-widget');
+    })
 
     selectDivLeft.appendChild(selectFilterLeft);
     selectDivRight.appendChild(selectFilterRight);
 
     // make options and add labels for each 
-    selectorExpressions.forEach(function(value) {
+    selectorExpressions.forEach(value => {
         let option = document.createElement('option');
         option.value = value[0];
         option.innerHTML = value[1];
@@ -343,14 +313,14 @@ require([
     //listen to change events on indicatorSelect and change multidimensional variable
     const descriptorDiv = document.getElementById('descriptorDiv');
 
-    selectFilterLeft.addEventListener('change', function() {
+    selectFilterLeft.addEventListener('change', () => {
         const chosenIndicator = selectFilterLeft.value;
         changeIndicatorLeft(chosenIndicator);
         changeDescriptorsLeft(chosenIndicator);
         stopAnimation();
     });
 
-    selectFilterRight.addEventListener('change', function() {
+    selectFilterRight.addEventListener('change', () => {
         const chosenIndicator = selectFilterRight.value;
         changeIndicatorRight(chosenIndicator);
         changeDescriptorsRight(chosenIndicator);
@@ -743,7 +713,7 @@ require([
     });
 
     // when the user changes the yearSlider's value, change the year to reflect data
-    yearSlider.on(['thumb-change', 'thumb-drag'], function(event) {
+    yearSlider.on(['thumb-change', 'thumb-drag'], event => {
         //close popupTemplate if open
         if (view.popup.visible) {
             view.popup.close()
@@ -775,7 +745,7 @@ require([
 
     // Toggle animation on/off when user
     // clicks on the play button
-    playButton.addEventListener('click', function() {
+    playButton.addEventListener('click', () => {
         if (playButton.classList.contains('toggled')) {
             stopAnimation();
         } else {
@@ -859,14 +829,14 @@ require([
         view: view,
         content: descriptorDiv,
         expandIconClass: 'esri-icon-description',
-        expanded: false
+        expanded: true
     });
     view.ui.add(descriptorDivExpand, 'bottom-left');
 
     // delay descriptorDiv load 
     function initialSetup() {
         if (document.getElementById('descriptorDiv') != null) {
-            setTimeout(function() {
+            setTimeout(() => {
                 document.getElementById('descriptorDiv').style.display = 'block';
             }, 1000);
         }
