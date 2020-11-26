@@ -181,6 +181,13 @@ require([
         }
     };
 
+    //function to popupTemplate if open
+    const closePopup = () => {
+        if (view.popup.visible) {
+            view.popup.close()
+        }
+    };
+
     // create and add imagery layer to view
     const indicatorLayer = new ImageryLayer({
         title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
@@ -188,44 +195,34 @@ require([
         mosaicRule: mosaicRuleLeft,
         renderer: countOfDayRenderer,
         renderingRule: serviceRasterFunctionLeft,
-        // popupTemplate: {
-        //     title: '',
-        //     content: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C',
-        //     fieldInfos: [{
-        //         fieldName: 'Raster.ItemPixelValue',
-        //         format: {
-        //             places: 0,
-        //             digitSeparator: true
-        //         }
-        //     }]
-        // },
+        popupTemplate: indicatorLayerPopupTemplate,
         opacity: 0.8
     });
     map.add(indicatorLayer);
 
     // create and SECOND add imagery layer to view for SWIPE
-    const indicatorLayer2 = new ImageryLayer({
-        title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-        url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/agrometIndicators_esriStats/ImageServer',
-        mosaicRule: mosaicRuleRight,
-        renderer: countOfDayRenderer,
-        renderingRule: serviceRasterFunctionRight,
-        // popupTemplate: indicatorLayerPopupTemplate,
-        opacity: 0.8
-    });
-    map.add(indicatorLayer2);
+    // const indicatorLayer2 = new ImageryLayer({
+    //     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    //     url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/agrometIndicators_esriStats/ImageServer',
+    //     mosaicRule: mosaicRuleRight,
+    //     renderer: countOfDayRenderer,
+    //     renderingRule: serviceRasterFunctionRight,
+    //     // popupTemplate: indicatorLayerPopupTemplate,
+    //     opacity: 0.8
+    // });
+    // map.add(indicatorLayer2);
 
     /******************************
      * Swipe
      *******************************/
-    const swipe = new Swipe({
-        view: view,
-        leadingLayers: [indicatorLayer],
-        trailingLayers: [indicatorLayer2],
-        direction: 'horizontal',
-        position: 50
-    });
-    view.ui.add(swipe);
+    // const swipe = new Swipe({
+    //     view: view,
+    //     leadingLayers: [indicatorLayer],
+    //     trailingLayers: [indicatorLayer2],
+    //     direction: 'horizontal',
+    //     position: 50
+    // });
+    // view.ui.add(swipe);
 
 
     /******************************
@@ -265,8 +262,8 @@ require([
 
     // selectDivs configs
     const selectDivLeft = document.createElement('div');
-    const selectDivRight = document.createElement('div');
-    const selectDivs = [selectDivLeft, selectDivRight]
+    // const selectDivRight = document.createElement('div');
+    const selectDivs = [selectDivLeft] //, selectDivRight]
 
     selectDivs.forEach(element => {
         element.setAttribute('id', 'selectDivLeft');
@@ -275,11 +272,11 @@ require([
     });
 
     selectDivLeft.innerHTML = '<p>Select Agrometeorological Indicator on the LEFT:<p>';
-    selectDivRight.innerHTML = '<p>Select Agrometeorological Indicator on the RIGHT:<p>';
+    // selectDivRight.innerHTML = '<p>Select Agrometeorological Indicator on the RIGHT:<p>';
 
     const selectFilterLeft = document.createElement('select');
-    const selectFilterRight = document.createElement('select');
-    const selectFilters = [selectFilterLeft, selectFilterRight];
+    // const selectFilterRight = document.createElement('select');
+    const selectFilters = [selectFilterLeft] //, selectFilterRight];
 
     selectFilters.forEach(element => {
         element.setAttribute('id', 'selectFilterLeft');
@@ -287,7 +284,7 @@ require([
     })
 
     selectDivLeft.appendChild(selectFilterLeft);
-    selectDivRight.appendChild(selectFilterRight);
+    // selectDivRight.appendChild(selectFilterRight);
 
     // make options and add labels for each 
     selectorExpressions.forEach(element => {
@@ -295,9 +292,9 @@ require([
         option.value = element[0];
         option.innerHTML = element[1];
 
-        selectFilterRight.appendChild(option);
-        let optionClone = option.cloneNode(true);
-        selectFilterLeft.appendChild(optionClone);
+        selectFilterLeft.appendChild(option);
+        //let optionClone = option.cloneNode(true);
+        //selectFilterRight.appendChild(optionClone);
     });
 
     // make plantheatstress_count selected 
@@ -305,7 +302,7 @@ require([
 
     // add selectDivs to view
     view.ui.add(selectDivLeft, 'top-left');
-    view.ui.add(selectDivRight, 'top-right');
+    //view.ui.add(selectDivRight, 'top-right');
 
     /******************************
      * selectorDiv configs
@@ -317,21 +314,19 @@ require([
         const chosenIndicator = selectFilterLeft.value;
         changeIndicatorLeft(chosenIndicator);
         changeDescriptorsLeft(chosenIndicator);
+        changePopup(chosenIndicator);
         stopAnimation();
     });
 
-    selectFilterRight.addEventListener('change', () => {
-        const chosenIndicator = selectFilterRight.value;
-        changeIndicatorRight(chosenIndicator);
-        changeDescriptorsRight(chosenIndicator);
-        stopAnimation();
-    });
+    // selectFilterRight.addEventListener('change', () => {
+    //     const chosenIndicator = selectFilterRight.value;
+    //     changeIndicatorRight(chosenIndicator);
+    //     changeDescriptorsRight(chosenIndicator);
+    //     stopAnimation();
+    // });
 
     function changeIndicatorLeft(chosenIndicator) {
-        //close popupTemplate if open
-        if (view.popup.visible) {
-            view.popup.close()
-        };
+        closePopup();
 
         // change mosaicRule of layer as clone and reassign
         const mosaicRuleClone = indicatorLayer.mosaicRule.clone(); // makes clone of layer's mosaicRule
@@ -347,31 +342,27 @@ require([
         indicatorLayer.renderingRule = renderingRuleClone;
 
         //swipe configs
-        swipe.leadingLayers.splice(0, indicatorLayer);
+        // swipe.leadingLayers.splice(0, indicatorLayer);
     };
 
-    function changeIndicatorRight(chosenIndicator) {
-        //close popupTemplate if open
-        if (view.popup.visible) {
-            view.popup.close()
-        };
+    // function changeIndicatorRight(chosenIndicator) {
+    //    closePopup();
+    //     // change mosaicRule of layer as clone and reassign
+    //     const mosaicRuleClone = indicatorLayer2.mosaicRule.clone(); // makes clone of layer's mosaicRule
+    //     const indicatorVariable = mosaicRuleClone.multidimensionalDefinition[0];
+    //     indicatorVariable.values = yearSlider.get('values');
+    //     indicatorVariable.variableName = chosenIndicator;
+    //     mosaicRuleClone.multidimensionalDefinition = [indicatorVariable];
+    //     indicatorLayer2.mosaicRule = mosaicRuleClone;
 
-        // change mosaicRule of layer as clone and reassign
-        const mosaicRuleClone = indicatorLayer2.mosaicRule.clone(); // makes clone of layer's mosaicRule
-        const indicatorVariable = mosaicRuleClone.multidimensionalDefinition[0];
-        indicatorVariable.values = yearSlider.get('values');
-        indicatorVariable.variableName = chosenIndicator;
-        mosaicRuleClone.multidimensionalDefinition = [indicatorVariable];
-        indicatorLayer2.mosaicRule = mosaicRuleClone;
+    //     // change renderingRule (raster function) of layer as clone and reassign 
+    //     const renderingRuleClone = indicatorLayer2.renderingRule.clone();
+    //     renderingRuleClone.functionName = chosenIndicator;
+    //     indicatorLayer2.renderingRule = renderingRuleClone;
 
-        // change renderingRule (raster function) of layer as clone and reassign 
-        const renderingRuleClone = indicatorLayer2.renderingRule.clone();
-        renderingRuleClone.functionName = chosenIndicator;
-        indicatorLayer2.renderingRule = renderingRuleClone;
-
-        //swipe configs
-        swipe.trailingLayers.splice(0, indicatorLayer2);
-    };
+    //     //swipe configs
+    //     swipe.trailingLayers.splice(0, indicatorLayer2);
+    // };
 
     /************************************
      * Year Slider
@@ -399,13 +390,10 @@ require([
 
     // when the user changes the yearSlider's value, change the year to reflect data
     yearSlider.on(['thumb-change', 'thumb-drag'], event => {
-        //close popupTemplate if open
-        if (view.popup.visible) {
-            view.popup.close()
-        };
+        closePopup();
         stopAnimation();
         updateYearDef(event.value);
-        updateYearDef2(event.value);
+        //  updateYearDef2(event.value);
     });
 
     // read all other values when year updates
@@ -417,13 +405,13 @@ require([
         indicatorLayer.mosaicRule = mosaicRuleClone;
     };
 
-    function updateYearDef2() {
-        const mosaicRuleClone = indicatorLayer2.mosaicRule.clone(); // makes clone of layer's mosaicRule
-        const yearVariable = mosaicRuleClone.multidimensionalDefinition[0];
-        yearVariable.values = yearSlider.get('values');
-        mosaicRuleClone.multidimensionalDefinition = [yearVariable];
-        indicatorLayer2.mosaicRule = mosaicRuleClone;
-    };
+    // function updateYearDef2() {
+    //     const mosaicRuleClone = indicatorLayer2.mosaicRule.clone(); // makes clone of layer's mosaicRule
+    //     const yearVariable = mosaicRuleClone.multidimensionalDefinition[0];
+    //     yearVariable.values = yearSlider.get('values');
+    //     mosaicRuleClone.multidimensionalDefinition = [yearVariable];
+    //     indicatorLayer2.mosaicRule = mosaicRuleClone;
+    // };
 
     // set var for play button 
     const playButton = document.getElementById('playButton');
@@ -431,6 +419,7 @@ require([
     // Toggle animation on/off when user
     // clicks on the play button
     playButton.addEventListener('click', () => {
+        closePopup();
         if (playButton.classList.contains('toggled')) {
             stopAnimation();
         } else {
@@ -450,7 +439,7 @@ require([
                 }
                 yearSlider.values = [year];
                 updateYearDef(year);
-                updateYearDef2(year);
+                //   updateYearDef2(year);
             }, 700) // speed of playback, milliseconds
         playButton.classList.add('toggled');
     };
@@ -495,16 +484,16 @@ require([
     });
 
     // create and add SECOND legend to view 
-    const legend2 = new Legend({
-        view: view,
-        layerInfos: [{
-            layer: indicatorLayer2,
-            title: [`Accumulated Frost (degree days): sum of degree days where Tmin < 0\u00B0C`]
-        }]
-    });
+    // const legend2 = new Legend({
+    //     view: view,
+    //     layerInfos: [{
+    //         layer: indicatorLayer2,
+    //         title: [`Accumulated Frost (degree days): sum of degree days where Tmin < 0\u00B0C`]
+    //     }]
+    // });
 
     view.ui.add(legend, 'top-left');
-    view.ui.add(legend2, 'top-right');
+    // view.ui.add(legend2, 'top-right');
 
     /******************************
      * Expand descriptorDiv
@@ -513,7 +502,7 @@ require([
         view: view,
         content: descriptorDiv,
         expandIconClass: 'esri-icon-description',
-        expanded: true
+        expanded: false
     });
     view.ui.add(descriptorDivExpand, 'bottom-left');
 
@@ -656,98 +645,98 @@ require([
     };
 
     // change title of layer for Legend display ON THE RIGHT
-    function changeDescriptorsRight(chosenIndicator) {
-        switch (chosenIndicator) {
-            case 'accumulatedfrost_degreedays':
-                indicatorLayer2.title = accumulatedfrost_legend
-                break;
-            case 'airfrost_count':
-                indicatorLayer2.title = airfrostcount_legend
-                break;
-            case 'cold_spell_n':
-                indicatorLayer2.title = coldspell_legend
-                break;
-            case 'dry_count':
-                indicatorLayer2.title = drycount_legend
-                break;
-            case 'dry_spell_n':
-                indicatorLayer2.title = dryspell_legend
-                break;
-            case 'end_growingseason':
-                indicatorLayer2.title = endgrowing_legend
-                break;
-            case 'first_airfrost_doy':
-                indicatorLayer2.title = firstairfrost_legend
-                break;
-            case 'first_grassfrost_doy':
-                indicatorLayer2.title = firstgrassfrost_legend
-                break;
-            case 'grassfrost_count':
-                indicatorLayer2.title = grassfrostcount_legend
-                break;
-            case 'growing_degreedays':
-                indicatorLayer2.title = growingdd_legend
-                break;
-            case 'growing_season':
-                indicatorLayer2.title = growingseason_legend
-                break;
-            case 'growseason_length':
-                indicatorLayer2.title = growseasonlength_legend
-                break;
-            case 'growseason_range':
-                indicatorLayer2.title = growseasonrange_legend
-                break;
-            case 'heating_degreedays':
-                indicatorLayer2.title = heatingdd_legend
-                break;
-            case 'heatwave_n':
-                indicatorLayer2.title = heatwave_legend
-                break;
-            case 'last_airfrost_doy':
-                indicatorLayer2.title = lastairfrost_legend
-                break;
-            case 'last_grassfrost_doy':
-                indicatorLayer2.title = lastgrassfrost_legend
-                break;
-            case 'p_intensity':
-                indicatorLayer2.title = pintensity_legend
-                break;
-            case 'p_seasonality':
-                indicatorLayer2.title = pseasonality_legend
-                break;
-            case 'personheatstress_count':
-                indicatorLayer2.title = personheatstress_legend
-                break;
-            case 'plantheatstress_count':
-                indicatorLayer2.title = plantheatstress_legend
-                break;
-            case 'start_fieldops_doy':
-                indicatorLayer2.title = startfieldops_legend
-                break;
-            case 'start_grow_doy':
-                indicatorLayer2.title = startgrowdoy_legend
-                break;
-            case 'tempgrowingperiod_length':
-                indicatorLayer2.title = tempgrowingperiod_legend
-                break;
-            case 'thermaltime_sum':
-                indicatorLayer2.title = thermaltime_legend
-                break;
-            case 'wet_count':
-                indicatorLayer2.title = wetcount_legend
-                break;
-            case 'wet_spell_n':
-                indicatorLayer2.title = wetspell_legend
-                break;
-            case 'wettestweek_doy':
-                indicatorLayer2.title = wettestweekdoy_legend
-                break;
-            case 'wettestweek_mm':
-                indicatorLayer2.title = wettestweekmm_legend
-                break;
-        };
+    // function changeDescriptorsRight(chosenIndicator) {
+    //     switch (chosenIndicator) {
+    //         case 'accumulatedfrost_degreedays':
+    //             indicatorLayer2.title = accumulatedfrost_legend
+    //             break;
+    //         case 'airfrost_count':
+    //             indicatorLayer2.title = airfrostcount_legend
+    //             break;
+    //         case 'cold_spell_n':
+    //             indicatorLayer2.title = coldspell_legend
+    //             break;
+    //         case 'dry_count':
+    //             indicatorLayer2.title = drycount_legend
+    //             break;
+    //         case 'dry_spell_n':
+    //             indicatorLayer2.title = dryspell_legend
+    //             break;
+    //         case 'end_growingseason':
+    //             indicatorLayer2.title = endgrowing_legend
+    //             break;
+    //         case 'first_airfrost_doy':
+    //             indicatorLayer2.title = firstairfrost_legend
+    //             break;
+    //         case 'first_grassfrost_doy':
+    //             indicatorLayer2.title = firstgrassfrost_legend
+    //             break;
+    //         case 'grassfrost_count':
+    //             indicatorLayer2.title = grassfrostcount_legend
+    //             break;
+    //         case 'growing_degreedays':
+    //             indicatorLayer2.title = growingdd_legend
+    //             break;
+    //         case 'growing_season':
+    //             indicatorLayer2.title = growingseason_legend
+    //             break;
+    //         case 'growseason_length':
+    //             indicatorLayer2.title = growseasonlength_legend
+    //             break;
+    //         case 'growseason_range':
+    //             indicatorLayer2.title = growseasonrange_legend
+    //             break;
+    //         case 'heating_degreedays':
+    //             indicatorLayer2.title = heatingdd_legend
+    //             break;
+    //         case 'heatwave_n':
+    //             indicatorLayer2.title = heatwave_legend
+    //             break;
+    //         case 'last_airfrost_doy':
+    //             indicatorLayer2.title = lastairfrost_legend
+    //             break;
+    //         case 'last_grassfrost_doy':
+    //             indicatorLayer2.title = lastgrassfrost_legend
+    //             break;
+    //         case 'p_intensity':
+    //             indicatorLayer2.title = pintensity_legend
+    //             break;
+    //         case 'p_seasonality':
+    //             indicatorLayer2.title = pseasonality_legend
+    //             break;
+    //         case 'personheatstress_count':
+    //             indicatorLayer2.title = personheatstress_legend
+    //             break;
+    //         case 'plantheatstress_count':
+    //             indicatorLayer2.title = plantheatstress_legend
+    //             break;
+    //         case 'start_fieldops_doy':
+    //             indicatorLayer2.title = startfieldops_legend
+    //             break;
+    //         case 'start_grow_doy':
+    //             indicatorLayer2.title = startgrowdoy_legend
+    //             break;
+    //         case 'tempgrowingperiod_length':
+    //             indicatorLayer2.title = tempgrowingperiod_legend
+    //             break;
+    //         case 'thermaltime_sum':
+    //             indicatorLayer2.title = thermaltime_legend
+    //             break;
+    //         case 'wet_count':
+    //             indicatorLayer2.title = wetcount_legend
+    //             break;
+    //         case 'wet_spell_n':
+    //             indicatorLayer2.title = wetspell_legend
+    //             break;
+    //         case 'wettestweek_doy':
+    //             indicatorLayer2.title = wettestweekdoy_legend
+    //             break;
+    //         case 'wettestweek_mm':
+    //             indicatorLayer2.title = wettestweekmm_legend
+    //             break;
+    //     };
 
-    };
+    // };
 
     // change popupTemplate of layer as clone and reassign
     function changePopup(chosenIndicator) {
