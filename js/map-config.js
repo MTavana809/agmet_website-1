@@ -59,119 +59,119 @@ require([
     symbolUtils) => {
 
     const accumulatedfrost_legend = `Accumulated Frost (degree days): sum of degree days where Tmin < 0\u00B0C`,
-        accumulatedfrost_desc = `<h2>Accumulated Frost (degree days)</h2><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQXxjIExlTtbSZ1oTG2pOpYswkrrwuAsyFsWg&usqp=CAU"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        accumulatedfrost_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         accumulatedfrost_popup = `<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C`,
 
         airfrostcount_legend = `Air Frost (count of days): count of days when Tmin < 0\u00B0C`,
-        airfrostcount_desc = `<h2>Air Frost (count of days)</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        airfrostcount_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         airfrostcount_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C`,
 
         coldspell_legend = `Cold Spell (count of days): Max count of consecutive days when Tmax < avgTmax (baseline year) - 3\u00B0C (min 6 days)`,
-        coldspell_desc = `<h2>Cold Spell (count of days)</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>        <p>Vestibulum auctor, ipsum vitae fermentum vulputate, mi leo convallis justo, quis elementum sem dui eu nulla. Vestibulum a turpis a sapien facilisis faucibus. In eget nibh luctus, rhoncus lectus et, imperdiet purus. Aliquam sodales sem ut molestieconsequat. In ornare metus porttitor lacinia imperdiet. Donec cursus convallis magna, ut scelerisque magna facilisis eget. Aliquam rutrum, metus ut aliquet vestibulum, lectus lorem gravida nibh, at pulvinar diam risus et sapien. Vivamus necrhoncus erat, a viverra enim. Morbi eu fringilla elit. Nam sed convallis ex, sit amet mattis massa. Ut dui elit, semper id suscipit vitae, rhoncus ac ipsum. Etiam purus risus, vestibulum aliquet ipsum at, interdum consequat risus. Vivamusin quam ut turpis tempor semper. Sed lectus urna, elementum vel sodales a, aliquet eget purus. Suspendisse eget ultrices erat.</p>`,
+        coldspell_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         coldspell_popup = `<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when the maximum temperature is less than the average maximum temperature in a baseline year minus 3\u00B0C`,
 
         drycount_legend = `Dry Count (count of days): count of days when P < 0.2 mm`,
-        drycount_desc = ``,
+        drycount_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         drycount_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when precipitation is less than 0.2 mm `,
 
         dryspell_legend = `Dry Spell (count of days): max consecutive count P < 0.2 mm`,
-        dryspell_desc = ``,
+        dryspell_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         dryspell_popup = `<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when precipitation is less than 0.2 mm`,
 
         endgrowing_legend = `End of Growing Season (day of year): day when 5 consecutive days Tavg < 5.6\u00B0C from 1 July`,
-        endgrowing_desc = ``,
+        endgrowing_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         endgrowing_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July`,
 
         firstairfrost_legend = `First Airfrost (day of year): first day when Tmin < 0\u00B0C from 1 July`,
-        firstairfrost_desc = ``,
+        firstairfrost_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         firstairfrost_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C from 1 July`,
 
         firstgrassfrost_legend = `First Grassfrost (day of year): first day when Tmin < 5\u00B0C from 1 July`,
-        firstgrassfrost_desc = ``,
+        firstgrassfrost_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         firstgrassfrost_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C from 1 July`,
 
         grassfrostcount_legend = `Grassfrost (count of days): count of days when Tmin < 5\u00B0C`,
-        grassfrostcount_desc = ``,
+        grassfrostcount_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         grassfrostcount_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C`,
 
         growingdd_legend = `Growing (degree days): sum Tavg > 5.6\u00B0C`,
-        growingdd_desc = ``,
+        growingdd_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         growingdd_popup = `<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C`,
 
         growingseason_legend = `Growing Season (count of days): beginning when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C`,
-        growingseason_desc = ``,
+        growingseason_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         growingseason_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C`,
 
         growseasonlength_legend = `Grow Season Length (count of days): days when Tavg > 5.6\u00B0C between start and end of growing season`,
-        growseasonlength_desc = ``,
+        growseasonlength_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         growseasonlength_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C between the start and the end of growing season`,
 
         growseasonrange_legend = `Grow Season Range (count of days): days between start and end of growing season`,
-        growseasonrange_desc = ``,
+        growseasonrange_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         growseasonrange_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> calculated from the count of days between the start and end of the growing season`,
 
         heatingdd_legend = `Heating (degree days): Sum of 15.5\u00B0C minus Tavg where Tavg < 15.5\u00B0C`,
-        heatingdd_desc = ``,
+        heatingdd_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         heatingdd_popup = `<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> representing the sum of 15.5\u00B0C minus the average temperature where the average temperature is less than 15.5\u00B0C`,
 
         heatwave_legend = `Heatwave (count of days): Max count of consecutive days when Tmax > avgTmax (baseline year) + 3\u00B0C (min 6 days)`,
-        heatwave_desc = ``,
+        heatwave_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         heatwave_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than the average temperature in a baseline year plus 3\u00B0C`,
 
         lastairfrost_legend = `Last Airfrost (day of year): last day when Tmin < 0\u00B0C before 1 July`,
-        lastairfrost_desc = ``,
+        lastairfrost_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         lastairfrost_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C before 1 July`,
 
         lastgrassfrost_legend = `Last Grassfrost (day of year): last day when Tmin < 5\u00B0C before 1 July`,
-        lastgrassfrost_desc = ``,
+        lastgrassfrost_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         lastgrassfrost_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C before 1 July`,
 
         pintensity_legend = `P Intensity (index): P > 0.2 / count days P > 0.2mm`,
-        pintensity_desc = ``,
+        pintensity_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         pintensity_popup = `<b>{Raster.ItemPixelValue}</b>: index of precipitation intensity in <b>{Year}</b>`,
 
         pseasonality_legend = `P Seasonality (index): S = winter P - summer P / annual total P`,
-        pseasonality_desc = ``,
+        pseasonality_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         pseasonality_popup = `<b>{Raster.ItemPixelValue}</b>: index of precipitation seasonality in <b>{Year}</b>`,
 
         personheatstress_legend = `Person Heat Stress (count of days): count of days when Tmax > 32\u00B0C`,
-        personheatstress_desc = ``,
+        personheatstress_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         personheatstress_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 32\u00B0C`,
 
         plantheatstress_legend = `Plant Heat Stress (count of days): count of days when Tmax > 25\u00B0C`,
-        plantheatstress_desc = `<h2>Plant Heat Stress</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat. Sed    vitae tellus sit amet dui bibendum porta in sed tellus. Nunc porttitor mollis luctus. Duis ut luctus urna. Vivamus at fermentum eros. Nullam a pulvinar tortor, eu bibendum libero. Integer nec consectetur eros, et dapibus lectus. Nulla sem    nulla, auctor eget lobortis feugiat, ornare sit amet nisl. Donec dolor turpis, feugiat sodales tellus a, vulputate ultrices felis. Quisque lobortis eu turpis molestie fermentum.</p><p>Vestibulum auctor, ipsum vitae fermentum vulputate, mi leo convallis justo, quis elementum sem dui eu nulla. Vestibulum a turpis a sapien facilisis faucibus. In eget nibh luctus, rhoncus lectus et, imperdiet purus. Aliquam sodales sem ut molestie    consequat. In ornare metus porttitor lacinia imperdiet. Donec cursus convallis magna, ut scelerisque magna facilisis eget. Aliquam rutrum, metus ut aliquet vestibulum, lectus lorem gravida nibh, at pulvinar diam risus et sapien. Vivamus nec    rhoncus erat, a viverra enim. Morbi eu fringilla elit. Nam sed convallis ex, sit amet mattis massa. Ut dui elit, semper id suscipit vitae, rhoncus ac ipsum. Etiam purus risus, vestibulum aliquet ipsum at, interdum consequat risus. Vivamus    in quam ut turpis tempor semper. Sed lectus urna, elementum vel sodales a, aliquet eget purus. Suspendisse eget ultrices erat.</p><p>Quisque mattis vulputate metus, et mattis eros lacinia at. Aliquam ac viverra mauris. Duis sit amet sollicitudin elit. Aenean pulvinar convallis felis, quis euismod velit cursus suscipit. Pellentesque mattis molestie imperdiet. Vivamus et risus    quis leo interdum euismod. In augue tortor, pretium vel pharetra ut, accumsan non nulla. Proin ac felis molestie, rutrum enim eu, gravida orci. Etiam rhoncus sit amet ligula dapibus fermentum. Vivamus sagittis id purus vitae semper. Curabitur auctor euismod tortor a aliquam. Sed nisi leo, rutrum et dui in, facilisis convallis risus. Duis ut turpis nunc. Donec facilisis hendrerit est, et dictum justo laoreet eu. Aliquam erat volutpat.</p>`,
+        plantheatstress_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         plantheatstress_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 25\u00B0C`,
 
         startfieldops_legend = `Start FieldOps (day of year): day when Tavg from 1 Jan > 200\u00B0C`,
-        startfieldops_desc = ``,
+        startfieldops_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         startfieldops_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the sum of the daily average temperatures from 1 Jan is greater than 200\u00B0C`,
 
         startgrowdoy_legend = `Start Grow (day of year): day when 5 consecutve days Tavg > 5.6\u00B0C`,
-        startgrowdoy_desc = ``,
+        startgrowdoy_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         startgrowdoy_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when five consecutive days have an average temperature greater than 5.6\u00B0C`,
 
         tempgrowingperiod_legend = `Temp Growing Period (count of days): count of days between average 5 day temp > 5\u00B0C and average 5 day temp < 5\u00B0C where average daily temp greater than 5\u00B0C`,
-        tempgrowingperiod_desc = ``,
+        tempgrowingperiod_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         tempgrowingperiod_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> between when the average five-day temperature is greater than 5\u00B0C and when the average five-day temperature is less than 5\u00B0C`,
 
         thermaltime_legend = `Thermal Time (degree days): sum of day degrees for period from 5th of 5 day period where Tavg greater than 5\u00B0C to end point where Tavg less than 5\u00B0C`,
-        thermaltime_desc = ``,
+        thermaltime_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         thermaltime_popup = `<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> for the period from fifth day of a five-day period where the average temperater is greater than 5\u00B0C to the end point when the average temperature is less than 5\u00B0C`,
 
         wetcount_legend = `Wet Count (count of days): days when P >= 0.2 mm`,
-        wetcount_desc = ``,
+        wetcount_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         wetcount_popup = `<b>{Raster.ItemPixelValue}</b> total wet days in <b>{Year}</b> when precipitation is greater than or equal to 0.2 mm`,
 
         wetspell_legend = `Wet Spell (count of days): max consecutive count P > 0.2 mm`,
-        wetspell_desc = ``,
+        wetspell_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         wetspell_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum consecutive count of precipitation is greater than 0.2 mm`,
 
         wettestweekdoy_legend = `Wettest Week (day of year): mid-week date when maximum 7d value of P occurs`,
-        wettestweekdoy_desc = ``,
+        wettestweekdoy_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         wettestweekdoy_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the maximum seven-day value of precipitation occurs`,
 
         wettestweekmm_legend = `Wettest Week (mm): Maximum amount of P (7 consecutive days)`,
-        wettestweekmm_desc = ``,
+        wettestweekmm_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
         wettestweekmm_popup = `<b>{Raster.ItemPixelValue}</b> mm of precipitation in <b>{Year}</b> calculated from the maximum amount of precipitation in seven consecutive days`
 
     // new basemap definition 
@@ -268,9 +268,6 @@ require([
     let serviceRasterFunctionLeft = new RasterFunction({
         functionName: 'plantheatstress_count'
     });
-    let serviceRasterFunctionRight = new RasterFunction({
-        functionName: 'accumulatedfrost_degreedays'
-    });
 
     // set initial variable and dimension on mosaic dataset
     const yearDefinitionLeft = new DimensionalDefinition({
@@ -279,19 +276,10 @@ require([
         values: [1961],
         isSlice: true
     });
-    const yearDefinitionRight = new DimensionalDefinition({
-        variableName: 'accumulatedfrost_degreedays',
-        dimensionName: 'Year',
-        values: [1961],
-        isSlice: true
-    });
 
     // create mosaicRule and set multidimensionalDefinition
     let mosaicRuleLeft = new MosaicRule({
         multidimensionalDefinition: [yearDefinitionLeft]
-    });
-    let mosaicRuleRight = new MosaicRule({
-        multidimensionalDefinition: [yearDefinitionRight]
     });
 
     // Set up popup template
@@ -332,31 +320,6 @@ require([
     });
     map.add(indicatorLayer);
 
-    // create and SECOND add imagery layer to view for SWIPE
-    // const indicatorLayer2 = new ImageryLayer({
-    //     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    //     url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/agrometIndicators_esriStats/ImageServer',
-    //     mosaicRule: mosaicRuleRight,
-    //     renderer: countOfDayRenderer,
-    //     renderingRule: serviceRasterFunctionRight,
-    //     // popupTemplate: indicatorLayerPopupTemplate,
-    //     opacity: 0.8
-    // });
-    // map.add(indicatorLayer2);
-
-    /******************************
-     * Swipe
-     *******************************/
-    // const swipe = new Swipe({
-    //     view: view,
-    //     leadingLayers: [indicatorLayer],
-    //     trailingLayers: [indicatorLayer2],
-    //     direction: 'horizontal',
-    //     position: 50
-    // });
-    // view.ui.add(swipe);
-
-
     /******************************
      * programmatically make selectors 
      *******************************/
@@ -394,7 +357,6 @@ require([
 
     // selectDivs configs
     const selectDivLeft = document.createElement('div');
-    // const selectDivRight = document.createElement('div');
     const selectDivs = [selectDivLeft] //, selectDivRight]
 
     selectDivs.forEach(element => {
@@ -404,10 +366,8 @@ require([
     });
 
     selectDivLeft.innerHTML = '<p>Select Agrometeorological Indicator:<p>';
-    // selectDivRight.innerHTML = '<p>Select Agrometeorological Indicator on the RIGHT:<p>';
 
     const selectFilterLeft = document.createElement('select');
-    // const selectFilterRight = document.createElement('select');
     const selectFilters = [selectFilterLeft] //, selectFilterRight];
 
     selectFilters.forEach(element => {
@@ -416,7 +376,6 @@ require([
     })
 
     selectDivLeft.appendChild(selectFilterLeft);
-    // selectDivRight.appendChild(selectFilterRight);
 
     // make options and add labels for each 
     selectorExpressions.forEach(element => {
@@ -425,8 +384,6 @@ require([
         option.innerHTML = element[1];
 
         selectFilterLeft.appendChild(option);
-        //let optionClone = option.cloneNode(true);
-        //selectFilterRight.appendChild(optionClone);
     });
 
     // make plantheatstress_count selected 
@@ -434,30 +391,19 @@ require([
 
     // add selectDivs to view
     view.ui.add(selectDivLeft, 'top-left');
-    //view.ui.add(selectDivRight, 'top-right');
 
     /******************************
      * selectorDiv configs
      * ****************************/
     //listen to change events on indicatorSelect and change multidimensional variable
-    const descriptorDiv = document.getElementById('descriptorDiv');
-
     selectFilterLeft.addEventListener('change', () => {
         const chosenIndicator = selectFilterLeft.value;
-        changeIndicatorLeft(chosenIndicator);
-        changeDescriptorsLeft(chosenIndicator);
-        changePopup(chosenIndicator);
+        changeIndicator(chosenIndicator);
+        changeDescriptors(chosenIndicator);
         stopAnimation();
     });
 
-    // selectFilterRight.addEventListener('change', () => {
-    //     const chosenIndicator = selectFilterRight.value;
-    //     changeIndicatorRight(chosenIndicator);
-    //     changeDescriptorsRight(chosenIndicator);
-    //     stopAnimation();
-    // });
-
-    function changeIndicatorLeft(chosenIndicator) {
+    function changeIndicator(chosenIndicator) {
         closePopup();
 
         // change mosaicRule of layer as clone and reassign
@@ -472,43 +418,7 @@ require([
         const renderingRuleClone = indicatorLayer.renderingRule.clone();
         renderingRuleClone.functionName = chosenIndicator;
         indicatorLayer.renderingRule = renderingRuleClone;
-
-        //swipe configs
-        // swipe.leadingLayers.splice(0, indicatorLayer);
     };
-
-    // function changeIndicatorRight(chosenIndicator) {
-    //    closePopup();
-    //     // change mosaicRule of layer as clone and reassign
-    //     const mosaicRuleClone = indicatorLayer2.mosaicRule.clone(); // makes clone of layer's mosaicRule
-    //     const indicatorVariable = mosaicRuleClone.multidimensionalDefinition[0];
-    //     indicatorVariable.values = yearSlider.get('values');
-    //     indicatorVariable.variableName = chosenIndicator;
-    //     mosaicRuleClone.multidimensionalDefinition = [indicatorVariable];
-    //     indicatorLayer2.mosaicRule = mosaicRuleClone;
-
-    //     // change renderingRule (raster function) of layer as clone and reassign 
-    //     const renderingRuleClone = indicatorLayer2.renderingRule.clone();
-    //     renderingRuleClone.functionName = chosenIndicator;
-    //     indicatorLayer2.renderingRule = renderingRuleClone;
-
-    //     //swipe configs
-    //     swipe.trailingLayers.splice(0, indicatorLayer2);
-    // };
-    /************************************
-     * 30-year maps
-     *************************************/
-    const overviewMapDiv = document.createElement('div');
-    overviewMapDiv.setAttribute('id', 'overviewMapDiv');
-    overviewMapDiv.setAttribute('class', 'esri-widget');
-    overviewMapDiv.setAttribute('style', 'padding: 10px; background-color:white; max-width:500px; max-height: 49vw; overflow-y: scroll; ');
-
-    overviewMapDiv.innerHTML = `<img src='img/plantheatstress_count_1961-1990_observed_scotland.png'>
-    <img src='img/plantheatstress_count_1991-2017_observed_scotland.png'><br>
-    <img src='img/plantheatstress_count_2018-2050_ensemblemean_scotland.png'>
-    <img src='img/plantheatstress_count_2051-2080_ensemblemean_scotland.png'>` + plantheatstress_desc
-
-    //view.ui.add(overviewMapDiv, 'top-right');
 
     /************************************
      * Year Slider
@@ -539,7 +449,6 @@ require([
         closePopup();
         stopAnimation();
         updateYearDef(event.value);
-        //  updateYearDef2(event.value);
     });
 
     // read all other values when year updates
@@ -550,14 +459,6 @@ require([
         mosaicRuleClone.multidimensionalDefinition = [yearVariable];
         indicatorLayer.mosaicRule = mosaicRuleClone;
     };
-
-    // function updateYearDef2() {
-    //     const mosaicRuleClone = indicatorLayer2.mosaicRule.clone(); // makes clone of layer's mosaicRule
-    //     const yearVariable = mosaicRuleClone.multidimensionalDefinition[0];
-    //     yearVariable.values = yearSlider.get('values');
-    //     mosaicRuleClone.multidimensionalDefinition = [yearVariable];
-    //     indicatorLayer2.mosaicRule = mosaicRuleClone;
-    // };
 
     // set var for play button 
     const playButton = document.getElementById('playButton');
@@ -585,7 +486,6 @@ require([
                 }
                 yearSlider.values = [year];
                 updateYearDef(year);
-                //   updateYearDef2(year);
             }, 700) // speed of playback, milliseconds
         playButton.classList.add('toggled');
     };
@@ -618,7 +518,8 @@ require([
     });
 
     // add elements in order
-    view.ui.add([home, scaleBar], 'bottom-left');
+    view.ui.add(home, 'bottom-left');
+    view.ui.add(scaleBar, 'bottom-right')
 
     // create and add legend to view 
     const legend = new Legend({
@@ -629,357 +530,174 @@ require([
         }]
     });
 
-    // create and add SECOND legend to view 
-    // const legend2 = new Legend({
-    //     view: view,
-    //     layerInfos: [{
-    //         layer: indicatorLayer2,
-    //         title: [`Accumulated Frost (degree days): sum of degree days where Tmin < 0\u00B0C`]
-    //     }]
-    // });
-
     view.ui.add(legend, 'top-left');
-    // view.ui.add(legend2, 'top-right');
-
-    /******************************
-     * Expand descriptorDiv
-     *******************************/
-    // const descriptorDivExpand = new Expand({
-    //     view: view,
-    //     content: descriptorDiv,
-    //     expandIconClass: 'esri-icon-description',
-    //     expanded: false
-    // });
-    // view.ui.add(descriptorDivExpand, 'bottom-left');
-
-    // // delay descriptorDiv load 
-    // function initialSetup() {
-    //     if (document.getElementById('descriptorDiv') != null) {
-    //         setTimeout(() => {
-    //             document.getElementById('descriptorDiv').style.display = 'block';
-    //         }, 1000);
-    //     }
-    // };
-    // initialSetup();
-
-    //move expand button to more like modal box
 
     /******************************
      * Lengthy Configs
      *******************************/
+
     // change title of layer for Legend display
-    // change description in descriptorDiv
-    function changeDescriptorsLeft(chosenIndicator) {
+    // change innerHTML of hideaway div
+    // change popup contents
+    function changeDescriptors(chosenIndicator) {
+        const hideaway = document.getElementById("hideaway");
+
+        const HTML30yrmaps = `<div id='imgGrid'><div><p>1961-1990 Average</p><img src='img/` + chosenIndicator + `_1961-1990_observed_scotland.png'></div>
+        <div><p>1991-2017 Average</p><img src='img/` + chosenIndicator + `_1991-2017_observed_scotland.png'></div>
+        <div><p>2018-2050 Average</p><img src='img/` + chosenIndicator + `_2018-2050_ensemblemean_scotland.png'></div>
+        <div><p>2051-2080 Average</p><img src='img/` + chosenIndicator + `_2051-2080_ensemblemean_scotland.png'></div></div>`
+
+        const popupTemplateClone = indicatorLayer.popupTemplate.clone();
+        let popupCloneContent = popupTemplateClone.content;
+
         switch (chosenIndicator) {
             case 'accumulatedfrost_degreedays':
                 indicatorLayer.title = accumulatedfrost_legend
-                descriptorDiv.innerHTML = accumulatedfrost_desc
-                break;
-            case 'airfrost_count':
-                indicatorLayer.title = airfrostcount_legend
-                descriptorDiv.innerHTML = airfrostcount_desc
-                break;
-            case 'cold_spell_n':
-                indicatorLayer.title = coldspell_legend
-                descriptorDiv.innerHTML = coldspell_desc
-                break;
-            case 'dry_count':
-                indicatorLayer.title = drycount_legend
-                descriptorDiv.innerHTML = drycount_desc
-                break;
-            case 'dry_spell_n':
-                indicatorLayer.title = dryspell_legend
-                descriptorDiv.innerHTML = dryspell_desc
-                break;
-            case 'end_growingseason':
-                indicatorLayer.title = endgrowing_legend
-                descriptorDiv.innerHTML = endgrowing_desc
-                break;
-            case 'first_airfrost_doy':
-                indicatorLayer.title = firstairfrost_legend
-                descriptorDiv.innerHTML = firstairfrost_desc
-                break;
-            case 'first_grassfrost_doy':
-                indicatorLayer.title = firstgrassfrost_legend
-                descriptorDiv.innerHTML = firstgrassfrost_desc
-                break;
-            case 'grassfrost_count':
-                indicatorLayer.title = grassfrostcount_legend
-                descriptorDiv.innerHTML = grassfrostcount_desc
-                break;
-            case 'growing_degreedays':
-                indicatorLayer.title = growingdd_legend
-                descriptorDiv.innerHTML = growingdd_desc
-                break;
-            case 'growing_season':
-                indicatorLayer.title = growingseason_legend
-                descriptorDiv.innerHTML = growingseason_desc
-                break;
-            case 'growseason_length':
-                indicatorLayer.title = growseasonlength_legend
-                descriptorDiv.innerHTML = growseasonlength_desc
-                break;
-            case 'growseason_range':
-                indicatorLayer.title = growseasonrange_legend
-                descriptorDiv.innerHTML = growseasonrange_desc
-                break;
-            case 'heating_degreedays':
-                indicatorLayer.title = heatingdd_legend
-                descriptorDiv.innerHTML = heatingdd_desc
-                break;
-            case 'heatwave_n':
-                indicatorLayer.title = heatwave_legend
-                descriptorDiv.innerHTML = heatwave_desc
-                break;
-            case 'last_airfrost_doy':
-                indicatorLayer.title = lastairfrost_legend
-                descriptorDiv.innerHTML = lastairfrost_desc
-                break;
-            case 'last_grassfrost_doy':
-                indicatorLayer.title = lastgrassfrost_legend
-                descriptorDiv.innerHTML = lastgrassfrost_desc
-                break;
-            case 'p_intensity':
-                indicatorLayer.title = pintensity_legend
-                descriptorDiv.innerHTML = pintensity_desc
-                break;
-            case 'p_seasonality':
-                indicatorLayer.title = pseasonality_legend
-                descriptorDiv.innerHTML = pseasonality_desc
-                break;
-            case 'personheatstress_count':
-                indicatorLayer.title = personheatstress_legend
-                descriptorDiv.innerHTML = personheatstress_desc
-                break;
-            case 'plantheatstress_count':
-                indicatorLayer.title = plantheatstress_legend
-                descriptorDiv.innerHTML = plantheatstress_desc
-                break;
-            case 'start_fieldops_doy':
-                indicatorLayer.title = startfieldops_legend
-                descriptorDiv.innerHTML = startfieldops_desc
-                break;
-            case 'start_grow_doy':
-                indicatorLayer.title = startgrowdoy_legend
-                descriptorDiv.innerHTML = startgrowdoy_desc
-                break;
-            case 'tempgrowingperiod_length':
-                indicatorLayer.title = tempgrowingperiod_legend
-                descriptorDiv.innerHTML = tempgrowingperiod_desc
-                break;
-            case 'thermaltime_sum':
-                indicatorLayer.title = thermaltime_legend
-                descriptorDiv.innerHTML = thermaltime_desc
-                break;
-            case 'wet_count':
-                indicatorLayer.title = wetcount_legend
-                descriptorDiv.innerHTML = wetcount_desc
-                break;
-            case 'wet_spell_n':
-                indicatorLayer.title = wetspell_legend
-                descriptorDiv.innerHTML = wetspell_desc
-                break;
-            case 'wettestweek_doy':
-                indicatorLayer.title = wettestweekdoy_legend
-                descriptorDiv.innerHTML = wettestweekdoy_desc
-                break;
-            case 'wettestweek_mm':
-                indicatorLayer.title = wettestweekmm_legend
-                descriptorDiv.innerHTML = wettestweekmm_desc
-                break;
-        };
-    };
-
-    // change title of layer for Legend display ON THE RIGHT
-    // function changeDescriptorsRight(chosenIndicator) {
-    //     switch (chosenIndicator) {
-    //         case 'accumulatedfrost_degreedays':
-    //             indicatorLayer2.title = accumulatedfrost_legend
-    //             break;
-    //         case 'airfrost_count':
-    //             indicatorLayer2.title = airfrostcount_legend
-    //             break;
-    //         case 'cold_spell_n':
-    //             indicatorLayer2.title = coldspell_legend
-    //             break;
-    //         case 'dry_count':
-    //             indicatorLayer2.title = drycount_legend
-    //             break;
-    //         case 'dry_spell_n':
-    //             indicatorLayer2.title = dryspell_legend
-    //             break;
-    //         case 'end_growingseason':
-    //             indicatorLayer2.title = endgrowing_legend
-    //             break;
-    //         case 'first_airfrost_doy':
-    //             indicatorLayer2.title = firstairfrost_legend
-    //             break;
-    //         case 'first_grassfrost_doy':
-    //             indicatorLayer2.title = firstgrassfrost_legend
-    //             break;
-    //         case 'grassfrost_count':
-    //             indicatorLayer2.title = grassfrostcount_legend
-    //             break;
-    //         case 'growing_degreedays':
-    //             indicatorLayer2.title = growingdd_legend
-    //             break;
-    //         case 'growing_season':
-    //             indicatorLayer2.title = growingseason_legend
-    //             break;
-    //         case 'growseason_length':
-    //             indicatorLayer2.title = growseasonlength_legend
-    //             break;
-    //         case 'growseason_range':
-    //             indicatorLayer2.title = growseasonrange_legend
-    //             break;
-    //         case 'heating_degreedays':
-    //             indicatorLayer2.title = heatingdd_legend
-    //             break;
-    //         case 'heatwave_n':
-    //             indicatorLayer2.title = heatwave_legend
-    //             break;
-    //         case 'last_airfrost_doy':
-    //             indicatorLayer2.title = lastairfrost_legend
-    //             break;
-    //         case 'last_grassfrost_doy':
-    //             indicatorLayer2.title = lastgrassfrost_legend
-    //             break;
-    //         case 'p_intensity':
-    //             indicatorLayer2.title = pintensity_legend
-    //             break;
-    //         case 'p_seasonality':
-    //             indicatorLayer2.title = pseasonality_legend
-    //             break;
-    //         case 'personheatstress_count':
-    //             indicatorLayer2.title = personheatstress_legend
-    //             break;
-    //         case 'plantheatstress_count':
-    //             indicatorLayer2.title = plantheatstress_legend
-    //             break;
-    //         case 'start_fieldops_doy':
-    //             indicatorLayer2.title = startfieldops_legend
-    //             break;
-    //         case 'start_grow_doy':
-    //             indicatorLayer2.title = startgrowdoy_legend
-    //             break;
-    //         case 'tempgrowingperiod_length':
-    //             indicatorLayer2.title = tempgrowingperiod_legend
-    //             break;
-    //         case 'thermaltime_sum':
-    //             indicatorLayer2.title = thermaltime_legend
-    //             break;
-    //         case 'wet_count':
-    //             indicatorLayer2.title = wetcount_legend
-    //             break;
-    //         case 'wet_spell_n':
-    //             indicatorLayer2.title = wetspell_legend
-    //             break;
-    //         case 'wettestweek_doy':
-    //             indicatorLayer2.title = wettestweekdoy_legend
-    //             break;
-    //         case 'wettestweek_mm':
-    //             indicatorLayer2.title = wettestweekmm_legend
-    //             break;
-    //     };
-
-    // };
-
-    // change popupTemplate of layer as clone and reassign
-    function changePopup(chosenIndicator) {
-        const popupTemplateClone = indicatorLayer.popupTemplate.clone();
-        let popupCloneContent = popupTemplateClone.content;
-        switch (chosenIndicator) {
-            case 'accumulatedfrost_degreedays':
+                hideaway.innerHTML = `<h2>` + selectorExpressions[0][1] + `</h2>` + HTML30yrmaps + accumulatedfrost_desc
                 popupCloneContent = accumulatedfrost_popup
                 break;
             case 'airfrost_count':
+                indicatorLayer.title = airfrostcount_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[1][1] + `</h2>` + HTML30yrmaps + airfrostcount_desc
                 popupCloneContent = airfrostcount_popup
                 break;
             case 'cold_spell_n':
+                indicatorLayer.title = coldspell_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[2][1] + `</h2>` + HTML30yrmaps + coldspell_desc
                 popupCloneContent = coldspell_popup
                 break;
             case 'dry_count':
+                indicatorLayer.title = drycount_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[3][1] + `</h2>` + HTML30yrmaps + drycount_desc
                 popupCloneContent = drycount_popup
                 break;
             case 'dry_spell_n':
+                indicatorLayer.title = dryspell_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[4][1] + `</h2>` + HTML30yrmaps + dryspell_desc
                 popupCloneContent = dryspell_popup
                 break;
             case 'end_growingseason':
+                indicatorLayer.title = endgrowing_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[5][1] + `</h2>` + HTML30yrmaps + endgrowing_desc
                 popupCloneContent = endgrowing_popup
                 break;
             case 'first_airfrost_doy':
+                indicatorLayer.title = firstairfrost_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[6][1] + `</h2>` + HTML30yrmaps + firstairfrost_desc
                 popupCloneContent = firstairfrost_popup
                 break;
             case 'first_grassfrost_doy':
+                indicatorLayer.title = firstgrassfrost_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[7][1] + `</h2>` + HTML30yrmaps + firstgrassfrost_desc
                 popupCloneContent = firstgrassfrost_popup
                 break;
             case 'grassfrost_count':
+                indicatorLayer.title = grassfrostcount_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[8][1] + `</h2>` + HTML30yrmaps + grassfrostcount_desc
                 popupCloneContent = grassfrostcount_popup
                 break;
             case 'growing_degreedays':
+                indicatorLayer.title = growingdd_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[9][1] + `</h2>` + HTML30yrmaps + growingdd_desc
                 popupCloneContent = growingdd_popup
                 break;
             case 'growing_season':
+                indicatorLayer.title = growingseason_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[10][1] + `</h2>` + HTML30yrmaps + growingseason_desc
                 popupCloneContent = growingseason_popup
                 break;
             case 'growseason_length':
+                indicatorLayer.title = growseasonlength_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[11][1] + `</h2>` + HTML30yrmaps + growseasonlength_desc
                 popupCloneContent = growseasonlength_popup
                 break;
             case 'growseason_range':
+                indicatorLayer.title = growseasonrange_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[12][1] + `</h2>` + HTML30yrmaps + growseasonrange_desc
                 popupCloneContent = growseasonrange_popup
                 break;
             case 'heating_degreedays':
+                indicatorLayer.title = heatingdd_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[13][1] + `</h2>` + HTML30yrmaps + heatingdd_desc
                 popupCloneContent = heatingdd_popup
                 break;
             case 'heatwave_n':
+                indicatorLayer.title = heatwave_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[14][1] + `</h2>` + HTML30yrmaps + heatwave_desc
                 popupCloneContent = heatwave_popup
                 break;
             case 'last_airfrost_doy':
+                indicatorLayer.title = lastairfrost_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[15][1] + `</h2>` + HTML30yrmaps + lastairfrost_desc
                 popupCloneContent = lastairfrost_popup
                 break;
             case 'last_grassfrost_doy':
+                indicatorLayer.title = lastgrassfrost_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[16][1] + `</h2>` + HTML30yrmaps + lastgrassfrost_desc
                 popupCloneContent = lastgrassfrost_popup
                 break;
             case 'p_intensity':
+                indicatorLayer.title = pintensity_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[17][1] + `</h2>` + HTML30yrmaps + pintensity_desc
                 popupCloneContent = pintensity_popup
                 break;
             case 'p_seasonality':
+                indicatorLayer.title = pseasonality_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[18][1] + `</h2>` + HTML30yrmaps + pseasonality_desc
                 popupCloneContent = pseasonality_popup
                 break;
             case 'personheatstress_count':
+                indicatorLayer.title = personheatstress_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[19][1] + `</h2>` + HTML30yrmaps + personheatstress_desc
                 popupCloneContent = personheatstress_popup
                 break;
             case 'plantheatstress_count':
+                indicatorLayer.title = plantheatstress_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[20][1] + `</h2>` + HTML30yrmaps + plantheatstress_desc
                 popupCloneContent = plantheatstress_popup
                 break;
             case 'start_fieldops_doy':
+                indicatorLayer.title = startfieldops_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[21][1] + `</h2>` + HTML30yrmaps + startfieldops_desc
                 popupCloneContent = startfieldops_popup
                 break;
             case 'start_grow_doy':
+                indicatorLayer.title = startgrowdoy_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[22][1] + `</h2>` + HTML30yrmaps + startgrowdoy_desc
                 popupCloneContent = startgrowdoy_popup
                 break;
             case 'tempgrowingperiod_length':
+                indicatorLayer.title = tempgrowingperiod_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[23][1] + `</h2>` + HTML30yrmaps + tempgrowingperiod_desc
                 popupCloneContent = tempgrowingperiod_popup
                 break;
             case 'thermaltime_sum':
+                indicatorLayer.title = thermaltime_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[24][1] + `</h2>` + HTML30yrmaps + thermaltime_desc
                 popupCloneContent = thermaltime_popup
                 break;
             case 'wet_count':
+                indicatorLayer.title = wetcount_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[25][1] + `</h2>` + HTML30yrmaps + wetcount_desc
                 popupCloneContent = wetcount_popup
                 break;
             case 'wet_spell_n':
+                indicatorLayer.title = wetspell_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[26][1] + `</h2>` + HTML30yrmaps + wetspell_desc
                 popupCloneContent = wetspell_popup
                 break;
             case 'wettestweek_doy':
+                indicatorLayer.title = wettestweekdoy_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[27][1] + `</h2>` + HTML30yrmaps + wettestweekdoy_desc
                 popupCloneContent = wettestweekdoy_popup
                 break;
             case 'wettestweek_mm':
+                indicatorLayer.title = wettestweekmm_legend
+                hideaway.innerHTML = `<h2>` + selectorExpressions[28][1] + `</h2>` + HTML30yrmaps + wettestweekmm_desc
                 popupCloneContent = wettestweekmm_popup
                 break;
         };
         popupTemplateClone.content = popupCloneContent;
         indicatorLayer.popupTemplate = popupTemplateClone;;
     };
-
-
 });
