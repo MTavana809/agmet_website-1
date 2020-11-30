@@ -6,6 +6,14 @@ body {
     height: 100%;
 }
 
+#frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70%;
+    height: 100%;
+}
+
 #mapDiv {
     position: absolute;
     right: 0;
@@ -75,6 +83,78 @@ body {
 #descriptorDiv img {
     max-width: 100%;
     height: auto;
+}
+
+
+/******** Floating Divs on the right ********/
+
+#overviewMapDiv img {
+    max-width: 229px;
+    height: auto;
+}
+
+
+/******** Hideaway on the right ********/
+
+#button {
+    position: absolute;
+    z-index: 9;
+    top: 114px;
+    right: 0;
+    transform: rotate(-90deg) translateY(57px);
+    width: 145px;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border: none;
+    margin-left: 10px;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#hideaway {
+    display: block;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    padding: 10px;
+    overflow-y: scroll;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#hideaway img {
+    height: auto;
+    max-width: 100%;
+}
+
+#hideaway h2 {
+    margin-bottom: 0
+}
+
+#hideaway p {
+    text-align: justify;
+}
+
+#imgGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 15px;
+}
+
+#imgGrid p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    transform: translateY(24px) translateX(10px);
 }
 
 
