@@ -7,12 +7,12 @@ function toggleDescription() {
 
     if (hideaway.style.display === "none") {
         hideaway.style.display = "block";
-        button.innerHTML = "▼ Hide Info";
+        button.innerHTML = "&#x25BC; Hide Info";
         frame.style.width = "70%";
     } else {
         hideaway.style.display = "none";
         frame.style.width = "100%";
-        button.innerHTML = "▲ Show Info";
+        button.innerHTML = "&#x25B2; Show Info";
     }
 };
 
@@ -323,7 +323,7 @@ require([
     /******************************
      * programmatically make selectors 
      *******************************/
-    const selectorExpressions = [
+    const selectorExpression = [
         [`accumulatedfrost_degreedays`, `Accumulated Frost (degree days)`],
         [`airfrost_count`, `Air Frost (count of days)`],
         [`cold_spell_n`, `Cold Spell (count of days)`],
@@ -378,7 +378,7 @@ require([
     selectDivLeft.appendChild(selectFilterLeft);
 
     // make options and add labels for each 
-    selectorExpressions.forEach(element => {
+    selectorExpression.forEach(element => {
         let option = document.createElement('option');
         option.value = element[0];
         option.innerHTML = element[1];
@@ -553,147 +553,147 @@ require([
         switch (chosenIndicator) {
             case 'accumulatedfrost_degreedays':
                 indicatorLayer.title = accumulatedfrost_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[0][1] + `</h2>` + HTML30yrmaps + accumulatedfrost_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[0][1] + `</h2>` + HTML30yrmaps + accumulatedfrost_desc
                 popupCloneContent = accumulatedfrost_popup
                 break;
             case 'airfrost_count':
                 indicatorLayer.title = airfrostcount_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[1][1] + `</h2>` + HTML30yrmaps + airfrostcount_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[1][1] + `</h2>` + HTML30yrmaps + airfrostcount_desc
                 popupCloneContent = airfrostcount_popup
                 break;
             case 'cold_spell_n':
                 indicatorLayer.title = coldspell_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[2][1] + `</h2>` + HTML30yrmaps + coldspell_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[2][1] + `</h2>` + HTML30yrmaps + coldspell_desc
                 popupCloneContent = coldspell_popup
                 break;
             case 'dry_count':
                 indicatorLayer.title = drycount_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[3][1] + `</h2>` + HTML30yrmaps + drycount_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[3][1] + `</h2>` + HTML30yrmaps + drycount_desc
                 popupCloneContent = drycount_popup
                 break;
             case 'dry_spell_n':
                 indicatorLayer.title = dryspell_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[4][1] + `</h2>` + HTML30yrmaps + dryspell_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[4][1] + `</h2>` + HTML30yrmaps + dryspell_desc
                 popupCloneContent = dryspell_popup
                 break;
             case 'end_growingseason':
                 indicatorLayer.title = endgrowing_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[5][1] + `</h2>` + HTML30yrmaps + endgrowing_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[5][1] + `</h2>` + HTML30yrmaps + endgrowing_desc
                 popupCloneContent = endgrowing_popup
                 break;
             case 'first_airfrost_doy':
                 indicatorLayer.title = firstairfrost_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[6][1] + `</h2>` + HTML30yrmaps + firstairfrost_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[6][1] + `</h2>` + HTML30yrmaps + firstairfrost_desc
                 popupCloneContent = firstairfrost_popup
                 break;
             case 'first_grassfrost_doy':
                 indicatorLayer.title = firstgrassfrost_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[7][1] + `</h2>` + HTML30yrmaps + firstgrassfrost_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[7][1] + `</h2>` + HTML30yrmaps + firstgrassfrost_desc
                 popupCloneContent = firstgrassfrost_popup
                 break;
             case 'grassfrost_count':
                 indicatorLayer.title = grassfrostcount_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[8][1] + `</h2>` + HTML30yrmaps + grassfrostcount_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[8][1] + `</h2>` + HTML30yrmaps + grassfrostcount_desc
                 popupCloneContent = grassfrostcount_popup
                 break;
             case 'growing_degreedays':
                 indicatorLayer.title = growingdd_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[9][1] + `</h2>` + HTML30yrmaps + growingdd_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[9][1] + `</h2>` + HTML30yrmaps + growingdd_desc
                 popupCloneContent = growingdd_popup
                 break;
             case 'growing_season':
                 indicatorLayer.title = growingseason_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[10][1] + `</h2>` + HTML30yrmaps + growingseason_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[10][1] + `</h2>` + HTML30yrmaps + growingseason_desc
                 popupCloneContent = growingseason_popup
                 break;
             case 'growseason_length':
                 indicatorLayer.title = growseasonlength_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[11][1] + `</h2>` + HTML30yrmaps + growseasonlength_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[11][1] + `</h2>` + HTML30yrmaps + growseasonlength_desc
                 popupCloneContent = growseasonlength_popup
                 break;
             case 'growseason_range':
                 indicatorLayer.title = growseasonrange_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[12][1] + `</h2>` + HTML30yrmaps + growseasonrange_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[12][1] + `</h2>` + HTML30yrmaps + growseasonrange_desc
                 popupCloneContent = growseasonrange_popup
                 break;
             case 'heating_degreedays':
                 indicatorLayer.title = heatingdd_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[13][1] + `</h2>` + HTML30yrmaps + heatingdd_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[13][1] + `</h2>` + HTML30yrmaps + heatingdd_desc
                 popupCloneContent = heatingdd_popup
                 break;
             case 'heatwave_n':
                 indicatorLayer.title = heatwave_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[14][1] + `</h2>` + HTML30yrmaps + heatwave_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[14][1] + `</h2>` + HTML30yrmaps + heatwave_desc
                 popupCloneContent = heatwave_popup
                 break;
             case 'last_airfrost_doy':
                 indicatorLayer.title = lastairfrost_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[15][1] + `</h2>` + HTML30yrmaps + lastairfrost_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[15][1] + `</h2>` + HTML30yrmaps + lastairfrost_desc
                 popupCloneContent = lastairfrost_popup
                 break;
             case 'last_grassfrost_doy':
                 indicatorLayer.title = lastgrassfrost_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[16][1] + `</h2>` + HTML30yrmaps + lastgrassfrost_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[16][1] + `</h2>` + HTML30yrmaps + lastgrassfrost_desc
                 popupCloneContent = lastgrassfrost_popup
                 break;
             case 'p_intensity':
                 indicatorLayer.title = pintensity_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[17][1] + `</h2>` + HTML30yrmaps + pintensity_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[17][1] + `</h2>` + HTML30yrmaps + pintensity_desc
                 popupCloneContent = pintensity_popup
                 break;
             case 'p_seasonality':
                 indicatorLayer.title = pseasonality_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[18][1] + `</h2>` + HTML30yrmaps + pseasonality_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[18][1] + `</h2>` + HTML30yrmaps + pseasonality_desc
                 popupCloneContent = pseasonality_popup
                 break;
             case 'personheatstress_count':
                 indicatorLayer.title = personheatstress_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[19][1] + `</h2>` + HTML30yrmaps + personheatstress_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[19][1] + `</h2>` + HTML30yrmaps + personheatstress_desc
                 popupCloneContent = personheatstress_popup
                 break;
             case 'plantheatstress_count':
                 indicatorLayer.title = plantheatstress_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[20][1] + `</h2>` + HTML30yrmaps + plantheatstress_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[20][1] + `</h2>` + HTML30yrmaps + plantheatstress_desc
                 popupCloneContent = plantheatstress_popup
                 break;
             case 'start_fieldops_doy':
                 indicatorLayer.title = startfieldops_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[21][1] + `</h2>` + HTML30yrmaps + startfieldops_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[21][1] + `</h2>` + HTML30yrmaps + startfieldops_desc
                 popupCloneContent = startfieldops_popup
                 break;
             case 'start_grow_doy':
                 indicatorLayer.title = startgrowdoy_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[22][1] + `</h2>` + HTML30yrmaps + startgrowdoy_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[22][1] + `</h2>` + HTML30yrmaps + startgrowdoy_desc
                 popupCloneContent = startgrowdoy_popup
                 break;
             case 'tempgrowingperiod_length':
                 indicatorLayer.title = tempgrowingperiod_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[23][1] + `</h2>` + HTML30yrmaps + tempgrowingperiod_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[23][1] + `</h2>` + HTML30yrmaps + tempgrowingperiod_desc
                 popupCloneContent = tempgrowingperiod_popup
                 break;
             case 'thermaltime_sum':
                 indicatorLayer.title = thermaltime_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[24][1] + `</h2>` + HTML30yrmaps + thermaltime_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[24][1] + `</h2>` + HTML30yrmaps + thermaltime_desc
                 popupCloneContent = thermaltime_popup
                 break;
             case 'wet_count':
                 indicatorLayer.title = wetcount_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[25][1] + `</h2>` + HTML30yrmaps + wetcount_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[25][1] + `</h2>` + HTML30yrmaps + wetcount_desc
                 popupCloneContent = wetcount_popup
                 break;
             case 'wet_spell_n':
                 indicatorLayer.title = wetspell_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[26][1] + `</h2>` + HTML30yrmaps + wetspell_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[26][1] + `</h2>` + HTML30yrmaps + wetspell_desc
                 popupCloneContent = wetspell_popup
                 break;
             case 'wettestweek_doy':
                 indicatorLayer.title = wettestweekdoy_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[27][1] + `</h2>` + HTML30yrmaps + wettestweekdoy_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[27][1] + `</h2>` + HTML30yrmaps + wettestweekdoy_desc
                 popupCloneContent = wettestweekdoy_popup
                 break;
             case 'wettestweek_mm':
                 indicatorLayer.title = wettestweekmm_legend
-                hideaway.innerHTML = `<h2>` + selectorExpressions[28][1] + `</h2>` + HTML30yrmaps + wettestweekmm_desc
+                hideaway.innerHTML = `<h2>` + selectorExpression[28][1] + `</h2>` + HTML30yrmaps + wettestweekmm_desc
                 popupCloneContent = wettestweekmm_popup
                 break;
         };
