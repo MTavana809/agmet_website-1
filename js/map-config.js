@@ -363,6 +363,7 @@ require([
         element.setAttribute('id', 'selectDivLeft');
         element.setAttribute('class', 'esri-widget');
         element.setAttribute('style', 'padding: 0 10px 10px 10px;background-color:white;');
+        element.setAttribute('title', `Select Agrometeorological Indicator to display on the map`) // tooltip
     });
 
     selectDivLeft.innerHTML = '<p>Select Agrometeorological Indicator:<p>';

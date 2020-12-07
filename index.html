@@ -17,10 +17,10 @@
         <div id='mapDiv'> </div>
         <!--  -->
 
-        <div id='bottomDiv' class='esri-widget'>
+        <div id='bottomDiv' class='esri-widget' title='Press play to animate the time slider or drag to select a specific year'>
             <p><b>Press Play to animate the time slider or Drag to select the year</b><br> Observed 1961-2017, modelled 2018-2080 (ensemble mean)</p>
             <div id='sliderDiv' class='esri-widget'>
-                <div id='playButton' class='esri-widget esri-widget--button toggle-button'>
+                <div id='playButton' class='esri-widget esri-widget--button toggle-button '>
                     <div>
                         <span class='toggle-button-icon esri-icon-play' aria-label='play icon'></span> Play
                     </div>
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <button id='button' onClick="toggleDescription()">&#x25BC; Hide Info
+        <button id='button' onClick="toggleDescription()" title='Toggle the left panel to see information about the selected agrometeorological indicator'>&#x25BC; Hide Info
     </button>
         <div id='hideaway' class='esri-widget'>
 
