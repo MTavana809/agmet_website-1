@@ -374,6 +374,7 @@ require([
     selectFilters.forEach(element => {
         element.setAttribute('id', 'selectFilterLeft');
         element.setAttribute('class', 'esri-widget');
+        element.setAttribute('style', 'width: 280px;')
     })
 
     selectDivLeft.appendChild(selectFilterLeft);
@@ -528,10 +529,19 @@ require([
         layerInfos: [{
             layer: indicatorLayer,
             title: [`Plant Heat Stress: count of days when Tmax > 25\u00B0C`]
-        }]
+        }],
+        title: 'Click anywhere on the map to find out the data value for that pixel'
     });
 
     view.ui.add(legend, 'top-left');
+
+    //add tooltip to legend
+    let legendTooltip = () => {
+        let legendClass = document.getElementsByClassName('esri-legend')[0];
+        legendClass.setAttribute('title', `Click anywhere on the map to get the data's pixel value`)
+        console.log(legendClass);
+    };
+    setTimeout(legendTooltip, 1000);
 
     /******************************
      * Lengthy Configs
