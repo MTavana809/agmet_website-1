@@ -482,7 +482,9 @@ require([
         stopAnimation();
         timerId = setInterval(() => {
                 let year = yearSlider.values[0];
-                year += 1;
+                if (indicatorLayer.mosaicRule.multidimensionalDefinition[0].values[0] == year) {
+                    year += 1;
+                } // check if year has loaded on map
                 if (year > yearSlider.max) {
                     year = yearSlider.min;
                 }
@@ -539,7 +541,6 @@ require([
     let legendTooltip = () => {
         let legendClass = document.getElementsByClassName('esri-legend')[0];
         legendClass.setAttribute('title', `Click anywhere on the map to get the data's pixel value`)
-        console.log(legendClass);
     };
     setTimeout(legendTooltip, 1000);
 
