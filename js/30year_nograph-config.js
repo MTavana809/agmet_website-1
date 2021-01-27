@@ -477,31 +477,19 @@ require([
     });
     let timerId = 0;
 
-    //listen for map load 
-    view.when(function() {
-        indicatorLayer.load().then(function() {
-            return true
-        });
-    });
-
     // Starts the animation that cycle through the years
     function startAnimation() {
         stopAnimation();
         timerId = setInterval(() => {
                 let year = yearSlider.values[0];
-                // check if year has loaded on map
-                if (indicatorLayer.mosaicRule.multidimensionalDefinition[0].values[0] == year && indicatorLayer.load().then(function() {
-                        return true
-                    })) {
+                if (indicatorLayer.mosaicRule.multidimensionalDefinition[0].values[0] == year) {
                     year += 1;
-                    if (year > yearSlider.max) {
-                        year = yearSlider.min;
-                    }
-                    yearSlider.values = [year];
-                    updateYearDef(year);
-
+                } // check if year has loaded on map
+                if (year > yearSlider.max) {
+                    year = yearSlider.min;
                 }
-
+                yearSlider.values = [year];
+                updateYearDef(year);
             }, 700) // speed of playback, milliseconds
         playButton.classList.add('toggled');
     };
