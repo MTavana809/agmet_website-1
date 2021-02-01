@@ -477,13 +477,6 @@ require([
     });
     let timerId = 0;
 
-    //listen for map load 
-    view.when(function() {
-        indicatorLayer.load().then(function() {
-            return true
-        });
-    });
-
     // Starts the animation that cycle through the years
     function startAnimation() {
         stopAnimation();
@@ -499,7 +492,6 @@ require([
                     }
                     yearSlider.values = [year];
                     updateYearDef(year);
-
                 }
 
             }, 700) // speed of playback, milliseconds
