@@ -8,13 +8,22 @@
     <link rel='stylesheet' href='css/map-style.css'>
 
     <!-- JS Libraries-->
+    <!-- <script src='https://d3js.org/d3.v3.js' charset='utf-8'></script> -->
     <script src='https://js.arcgis.com/4.18/'></script>
-    <script src="https://d3js.org/d3.v4.js" charset="utf-8"></script>
+
 
     <!-- local JS configs-->
+    <!-- <script src='js/d3chart-config.js'></script> -->
     <script src='js/map-config.js'></script>
     <script src='js/hideaway-config.js'></script>
-    <script src='js/d3chart-config.js'></script>
+    <script>
+        document.onreadystatechange = () => {
+            if (document.readyState === 'complete') { // could put OR if play is play
+                console.log('Dom is ready')
+                console.log(document.getElementById('yearSlider-label-0').innerHTML)
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -22,7 +31,7 @@
     <div id='frame'>
 
         <div id='mapDiv'> </div>
-        <div id='chartDiv'></div>
+        <iframe id='iframe' src='test2.html'></iframe>
 
         <div id='bottomDiv' class='esri-widget' title='Press play to animate the time slider or drag to select a specific year'>
             <p><b>Press Play to animate the time slider or Drag to select the year</b><br> Observed 1961-2018, modelled 2019-2080 (ensemble mean)</p>
@@ -39,7 +48,7 @@
             </div>
         </div>
 
-        <button id='button' onClick="toggleDescription()" title='Toggle the left panel to see information about the selected agrometeorological indicator'>&#x25BC; Hide Info</button>
+        <button id='button' onClick='toggleDescription()' title='Toggle the left panel to see information about the selected agrometeorological indicator'>&#x25BC; Hide Info</button>
 
         <div id='hideaway' class='esri-widget'>
             <h2>Plant Heat Stress</h2>

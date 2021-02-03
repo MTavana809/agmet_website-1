@@ -25,10 +25,16 @@ body {
 
 /******** chartDiv ********/
 
-#chartDiv {
+iframe {
+    overflow: hidden;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    height: 220px;
+    width: 408px;
+    left: 15;
+    top: 40%;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -121,6 +127,7 @@ body {
 #hideaway img {
     height: auto;
     max-width: 100%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 #hideaway h2 {

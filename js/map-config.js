@@ -250,12 +250,12 @@ require([
      * Layer rules
      * ****************************/
     // create server-defined raster function
-    let serviceRasterFunctionLeft = new RasterFunction({
+    let serviceRasterFunction = new RasterFunction({
         functionName: 'plantheatstress_count'
     });
 
     // set initial variable and dimension on mosaic dataset
-    const yearDefinitionLeft = new DimensionalDefinition({
+    const yearDefinition = new DimensionalDefinition({
         variableName: 'plantheatstress_count',
         dimensionName: 'Year',
         values: [1961],
@@ -263,8 +263,8 @@ require([
     });
 
     // create mosaicRule and set multidimensionalDefinition
-    let mosaicRuleLeft = new MosaicRule({
-        multidimensionalDefinition: [yearDefinitionLeft]
+    let mosaicRule = new MosaicRule({
+        multidimensionalDefinition: [yearDefinition]
     });
 
     // Set up popup template
@@ -297,9 +297,9 @@ require([
     const indicatorLayer = new ImageryLayer({
         title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
         url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/agrometIndicators/ImageServer',
-        mosaicRule: mosaicRuleLeft,
+        mosaicRule: mosaicRule,
         renderer: countOfDayRenderer,
-        renderingRule: serviceRasterFunctionLeft,
+        renderingRule: serviceRasterFunction,
         popupTemplate: indicatorLayerPopupTemplate,
         opacity: 0.9
     });
@@ -341,28 +341,28 @@ require([
     ]
 
     // selectDivs configs
-    const selectDivLeft = document.createElement('div');
-    const selectDivs = [selectDivLeft] //, selectDivRight]
+    const selectDiv = document.createElement('div');
+    const selectDivs = [selectDiv] //, selectDivRight]
 
     selectDivs.forEach(element => {
-        element.setAttribute('id', 'selectDivLeft');
+        element.setAttribute('id', 'selectDiv');
         element.setAttribute('class', 'esri-widget');
         element.setAttribute('style', 'padding: 0 10px 10px 10px;background-color:white;');
         element.setAttribute('title', `Select Agrometeorological Indicator to display on the map`) // tooltip
     });
 
-    selectDivLeft.innerHTML = '<p>Select Agrometeorological Indicator:<p>';
+    selectDiv.innerHTML = '<p>Select Agrometeorological Indicator:<p>';
 
-    const selectFilterLeft = document.createElement('select');
-    const selectFilters = [selectFilterLeft] //, selectFilterRight];
+    const selectFilter = document.createElement('select');
+    const selectFilters = [selectFilter] //, selectFilterRight];
 
     selectFilters.forEach(element => {
-        element.setAttribute('id', 'selectFilterLeft');
+        element.setAttribute('id', 'selectFilter');
         element.setAttribute('class', 'esri-widget');
         element.setAttribute('style', 'width: 280px;')
     })
 
-    selectDivLeft.appendChild(selectFilterLeft);
+    selectDiv.appendChild(selectFilter);
 
     // make options and add labels for each 
     selectorExpression.forEach(element => {
@@ -370,21 +370,21 @@ require([
         option.value = element[0];
         option.innerHTML = element[1];
 
-        selectFilterLeft.appendChild(option);
+        selectFilter.appendChild(option);
     });
 
     // make plantheatstress_count selected 
-    selectFilterLeft.value = 'plantheatstress_count';
+    selectFilter.value = 'plantheatstress_count';
 
     // add selectDivs to view
-    view.ui.add(selectDivLeft, 'top-left');
+    view.ui.add(selectDiv, 'top-left');
 
     /******************************
      * selectorDiv configs
      * ****************************/
     //listen to change events on indicatorSelect and change multidimensional variable
-    selectFilterLeft.addEventListener('change', () => {
-        const chosenIndicator = selectFilterLeft.value;
+    selectFilter.addEventListener('change', () => {
+        const chosenIndicator = selectFilter.value;
         changeIndicator(chosenIndicator);
         changeDescriptors(chosenIndicator);
         stopAnimation();
