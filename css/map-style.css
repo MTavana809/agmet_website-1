@@ -22,7 +22,10 @@ body {
     bottom: 150px;
 }
 
-#boxplotDiv {
+
+/******** chartDiv ********/
+
+#chartDiv {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -76,27 +79,6 @@ body {
 
 .toggle-button.toggled> :nth-child(2) {
     display: block;
-}
-
-
-/******** Floating Divs on the left ********/
-
-#descriptorDiv {
-    padding: 10;
-    display: none;
-}
-
-#descriptorDiv img {
-    max-width: 100%;
-    height: auto;
-}
-
-
-/******** Floating Divs on the right ********/
-
-#overviewMapDiv img {
-    max-width: 229px;
-    height: auto;
 }
 
 
