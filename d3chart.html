@@ -13,7 +13,6 @@
 
     <script>
         //const d3 = require("d3@6");
-
         // set the dimensions and margins of the graph
         const margin = {
                 top: 10,
@@ -34,7 +33,9 @@
                 "translate(" + margin.left + "," + margin.top + ")");
 
         // get the data
-        d3.csv("https://raw.githubusercontent.com/HuttonLandSystems/agmet_website/master/data/plantheatstress_count_1964.csv", function(data) {
+        d3.csv("https://raw.githubusercontent.com/HuttonLandSystems/agmet_website/master/data/plantheatstress_count_2018.csv", function(data) {
+
+            //let max = d3.max(data);
 
             // X axis: scale and draw:
             const x = d3.scaleLinear()
@@ -64,8 +65,10 @@
             // svg.append("g") // remove y axis labels
             //.call(d3.axisLeft(y));
 
-            // append the bar rectangles to the svg element
-            svg.selectAll("rect")
+            //declare color dividers 
+            let c1 =
+                // append the bar rectangles to the svg element
+                svg.selectAll("rect")
                 .data(bins)
                 .enter()
                 .append("rect")
@@ -79,7 +82,13 @@
                 .attr("height", function(d) {
                     return height - y(d.length);
                 })
-                .style("fill", "#2f845c")
+                .style("fill", function(d) {
+                    if (d.x0 < (120 / 10)) {
+                        return "#006837"
+                    } else {
+                        return "#1A9850"
+                    }
+                })
 
         });
     </script>

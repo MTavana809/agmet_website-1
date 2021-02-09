@@ -1,4 +1,4 @@
-<html lang='en-GB'>
+<html lang='en-GB' charset='utf-8'>
 
 <head>
     <title>Agrometeorological Indicators</title>
@@ -8,30 +8,39 @@
     <link rel='stylesheet' href='css/map-style.css'>
 
     <!-- JS Libraries-->
-    <!-- <script src='https://d3js.org/d3.v3.js' charset='utf-8'></script> -->
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src='https://js.arcgis.com/4.18/'></script>
 
 
     <!-- local JS configs-->
-    <!-- <script src='js/d3chart-config.js'></script> -->
     <script src='js/map-config.js'></script>
+    <script src='js/d3chart-config.js'></script>
+
+
+
     <script src='js/hideaway-config.js'></script>
-    <script>
+    <!-- <script>
         document.onreadystatechange = () => {
             if (document.readyState === 'complete') { // could put OR if play is play
-                console.log('Dom is ready')
-                console.log(document.getElementById('yearSlider-label-0').innerHTML)
+                console.log(document.getElementById('yearSlider-label-0').innerHTML);
+
+                const ifrm = document.getElementById('iframe');
+
+                console.log(ifrm.contentDocument ?
+                    ifrm.contentDocument : ifrm.contentWindow.document);
             }
         }
-    </script>
+    </script> -->
 </head>
 
 <body>
 
     <div id='frame'>
+        <div id="chartDiv"></div>
+        <div id='mapDiv' name='mapDiv'> </div>
 
-        <div id='mapDiv'> </div>
-        <iframe id='iframe' src='test2.html'></iframe>
+        <!-- <iframe id='iframe' name='iframe' src='d3chart.html'></iframe> -->
 
         <div id='bottomDiv' class='esri-widget' title='Press play to animate the time slider or drag to select a specific year'>
             <p><b>Press Play to animate the time slider or Drag to select the year</b><br> Observed 1961-2018, modelled 2019-2080 (ensemble mean)</p>

@@ -183,53 +183,53 @@ require([
     // create renderer for countOfDay
     const colorRamp1 = new AlgorithmicColorRamp({
         algorithm: 'lab-lch',
-        fromColor: [0, 104, 55, 1],
-        toColor: [26, 152, 80, 1]
+        fromColor: '#006837',
+        toColor: '#1A9850'
     });
     const colorRamp2 = new AlgorithmicColorRamp({
         algorithm: 'lab-lch',
-        fromColor: [26, 152, 80, 1],
-        toColor: [102, 189, 99, 1]
+        fromColor: '#1A9850',
+        toColor: '#66BD63'
     });
     const colorRamp3 = new AlgorithmicColorRamp({
         algorithm: 'lab-lch',
-        fromColor: [102, 189, 99, 1],
-        toColor: [166, 217, 106, 1]
+        fromColor: '#66BD63',
+        toColor: '#A6D96A'
     });
     const colorRamp4 = new AlgorithmicColorRamp({
         algorithm: 'lab-lch',
-        fromColor: [166, 217, 106, 1],
-        toColor: [217, 239, 139, 1]
+        fromColor: '#A6D96A',
+        toColor: '#D9EF8B'
     });
     const colorRamp5 = new AlgorithmicColorRamp({
         algorithm: 'lab-lch',
-        fromColor: [217, 239, 139, 1],
-        toColor: [255, 255, 191, 1]
+        fromColor: '#D9EF8B',
+        toColor: '#FFFFBF'
     });
     const colorRamp6 = new AlgorithmicColorRamp({
         algorithm: 'lab-lch',
-        fromColor: [255, 255, 191, 1],
-        toColor: [254, 224, 139, 1]
+        fromColor: '#FFFFBF',
+        toColor: '#FEE08B'
     });
     const colorRamp7 = new AlgorithmicColorRamp({
         algorithm: 'lab-lch',
-        fromColor: [254, 224, 139, 1],
-        toColor: [253, 174, 97, 1]
+        fromColor: '#FEE08B',
+        toColor: '#FDAE61'
     });
     const colorRamp8 = new AlgorithmicColorRamp({
         algorithm: 'lab-lch',
-        fromColor: [253, 174, 97, 1],
-        toColor: [244, 109, 67, 1]
+        fromColor: '#FDAE61',
+        toColor: '#F46D43'
     });
     const colorRamp9 = new AlgorithmicColorRamp({
         algorithm: 'lab-lch',
-        fromColor: [244, 109, 67, 1],
-        toColor: [215, 48, 39, 1]
+        fromColor: '#F46D43',
+        toColor: '#D73027'
     });
     const colorRamp10 = new AlgorithmicColorRamp({
         algorithm: 'lab-lch',
-        fromColor: [215, 48, 39, 1],
-        toColor: [165, 0, 38, 1]
+        fromColor: '#D73027',
+        toColor: '#A50026'
     });
 
     const combineColorRamp = new MultipartColorRamp({
