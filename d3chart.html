@@ -6,6 +6,7 @@
 <body>
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
     <!-- Create a div where the graph will take place -->
     <div id="chartDiv"></div>
@@ -61,6 +62,8 @@
             }
         };
 
+        let min = 0;
+        let max = 70
 
         // get the data
         const updateChart = () => {
@@ -68,7 +71,7 @@
 
                 // X axis: scale and draw:
                 const x = d3.scaleLinear()
-                    .domain([0, 122]) // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
+                    .domain([min, max])
                     .range([0, width]);
                 svg.append("g")
                     .attr("transform", "translate(0," + height + ")")
@@ -80,7 +83,7 @@
                         return d.indicator;
                     })
                     .domain(x.domain()) // then the domain of the graphic
-                    .thresholds(x.ticks(70)); // then the numbers of bins
+                    .thresholds(x.ticks(40)); // then the numbers of bins
 
                 // And apply this function to data to get the bins
                 const bins = histogram(data);
@@ -94,7 +97,16 @@
                 // svg.append("g")
                 //     .call(d3.axisLeft(y));
 
-                // append the bar rectangles to the svg element
+                //make custom colors
+                //let colorscale = colorbrewer['RdYlGn']['11'].reverse();
+                var color = d3.scaleQuantize()
+                    .domain([0, 70])
+                    .range(d3.schemeRdYlGn['11'].reverse());
+
+                color.range().forEach(function(d) {
+                        console.log(color.invertExtent(d))
+                    })
+                    // append the bar rectangles to the svg element
                 svg.selectAll("rect")
                     .data(bins)
                     .enter()
@@ -109,7 +121,9 @@
                     .attr("height", function(d) {
                         return height - y(d.length);
                     })
-                    .style("fill", "#69b3a2")
+                    .style("fill", function(d) {
+                        return color.invertExtent(d)
+                    })
 
                 // add average line on graph
                 const dataSum = d3.sum(data, function(d) {
@@ -123,7 +137,7 @@
                     .style("stroke", "black")
             });
         }
-        updateChart()
+        updateChart();
     </script>
 
 
