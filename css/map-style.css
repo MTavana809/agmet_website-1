@@ -177,3 +177,12 @@ iframe {
 .esri-view .esri-view-surface:focus {
     outline: -webkit-focus-ring-color none !important;
 }
+
+.esri-view .esri-view-surface--inset-outline:focus::after {
+    outline: 0 !important;
+}
+
+
+/* .esri-ui .esri-attribution {
+    display: none;
+} */

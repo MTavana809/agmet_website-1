@@ -7,6 +7,7 @@
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <!-- see https://stackoverflow.com/questions/43196546/d3-legend-for-a-color-scale -->
 
     <!-- Create a div where the graph will take place -->
     <div id="chartDiv"></div>
@@ -93,14 +94,14 @@
                     .range([height, 0]);
                 y.domain([0, d3.max(bins, function(d) {
                     return d.length;
-                })]); // d3.hist has to be called before the Y axis obviously
+                })]); // d3.hist has to be called before the Y axis 
                 // svg.append("g")
                 //     .call(d3.axisLeft(y));
 
                 //make custom colors
                 //let colorscale = colorbrewer['RdYlGn']['11'].reverse();
                 var color = d3.scaleQuantize()
-                    .domain([0, 70])
+                    //  .domain([0, 70])
                     .range(d3.schemeRdYlGn['11'].reverse());
 
                 color.range().forEach(function(d) {
