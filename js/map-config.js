@@ -351,10 +351,11 @@ require([
         stopAnimation();
         timerId = setInterval(() => {
                 let year = yearSlider.values[0];
+
                 // check if year has loaded on map
-                if (indicatorLayer.mosaicRule.multidimensionalDefinition[0].values[0] == year && indicatorLayer.load().then(function() {
-                        return true
-                    })) {
+                if (indicatorLayer.mosaicRule.multidimensionalDefinition[0].values[0] == year && indicatorLayer.loaded
+                    // && indicatorLayer.load().then(function() {return true})
+                ) {
                     year += 1;
                     if (year > yearSlider.max) {
                         year = yearSlider.min;
@@ -421,7 +422,6 @@ require([
     /******************************
      * Lengthy Configs
      *******************************/
-
     // change title of layer for Legend display
     // change innerHTML of hideaway div
     // change popup contents
