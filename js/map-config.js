@@ -10,18 +10,13 @@ require([
     'esri/widgets/Slider',
     'esri/widgets/Home',
     'esri/widgets/Legend',
-    'esri/widgets/Expand',
-    'esri/widgets/Swipe',
     'esri/layers/ImageryLayer',
     'esri/layers/support/RasterFunction',
     'esri/layers/support/MosaicRule',
     'esri/layers/support/DimensionalDefinition',
     'esri/renderers/RasterStretchRenderer',
     'esri/tasks/support/AlgorithmicColorRamp',
-    'esri/tasks/support/MultipartColorRamp',
-    'esri/smartMapping/symbology/support/colorRamps',
-    'esri/renderers/RasterColormapRenderer',
-    'esri/symbols/support/symbolUtils'
+    'esri/tasks/support/MultipartColorRamp'
 ], (Map,
     Basemap,
     Point,
@@ -30,18 +25,13 @@ require([
     Slider,
     Home,
     Legend,
-    Expand,
-    Swipe,
     ImageryLayer,
     RasterFunction,
     MosaicRule,
     DimensionalDefinition,
     RasterStretchRenderer,
     AlgorithmicColorRamp,
-    MultipartColorRamp,
-    colorRamps,
-    RasterColormapRenderer,
-    symbolUtils) => {
+    MultipartColorRamp) => {
 
     // new basemap definition 
     const basemap = new Basemap({
