@@ -14,9 +14,11 @@ require([
     'esri/layers/support/RasterFunction',
     'esri/layers/support/MosaicRule',
     'esri/layers/support/DimensionalDefinition',
+    'esri/layers/FeatureLayer',
     'esri/renderers/RasterStretchRenderer',
     'esri/tasks/support/AlgorithmicColorRamp',
-    'esri/tasks/support/MultipartColorRamp'
+    'esri/tasks/support/MultipartColorRamp',
+    'esri/popup/content/LineChartMediaInfo'
 ], (Map,
     Basemap,
     Point,
@@ -29,9 +31,11 @@ require([
     RasterFunction,
     MosaicRule,
     DimensionalDefinition,
+    FeatureLayer,
     RasterStretchRenderer,
     AlgorithmicColorRamp,
-    MultipartColorRamp) => {
+    MultipartColorRamp,
+    LineChartMediaInfo) => {
 
     // new basemap definition 
     const basemap = new Basemap({
@@ -120,6 +124,14 @@ require([
         //   ] // min, max, avg, stddev
     });
 
+    const idLayerRenderer = {
+        type: 'simple',
+        outline: {
+            width: 0.5,
+            color: 'black'
+        }
+    };
+
     /******************************
      * Layer rules
      * ****************************/
@@ -153,6 +165,30 @@ require([
             }
         }]
     };
+
+    let idLayerPopupTemplate = {
+        title: 'this is a test',
+        content: [{
+            type: 'fields',
+            fieldInfos: [{
+                    fieldName: 'id_1km',
+                    label: '1km ID'
+                },
+                {
+                    fieldName: 'year',
+                    label: 'Year'
+                },
+                {
+                    fieldName: 'plantheatstress_count',
+                    label: 'Plant Heat Stress Count',
+                    format: {
+                        digitSeparator: true,
+                        places: 0
+                    }
+                }
+            ]
+        }]
+    };
     // remove dockability
     view.popup = {
         dockOptions: {
@@ -167,6 +203,16 @@ require([
         }
     };
 
+    // create and add feature layer to view 
+    const idLayer = new FeatureLayer({
+        url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/joined_indicators_1km/MapServer',
+        popupEnabled: true,
+        popupTemplate: idLayerPopupTemplate,
+        renderer: idLayerRenderer
+            //objectIdField: "OBJECTID",
+    });
+    map.add(idLayer);
+
     // create and add imagery layer to view
     const indicatorLayer = new ImageryLayer({
         title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
@@ -174,10 +220,11 @@ require([
         mosaicRule: mosaicRule,
         renderer: countOfDayRenderer,
         renderingRule: serviceRasterFunction,
-        popupTemplate: indicatorLayerPopupTemplate,
+        //popupTemplate: indicatorLayerPopupTemplate,
         opacity: 0.9
     });
     map.add(indicatorLayer);
+
 
     /******************************
      * programmatically make selectors 
