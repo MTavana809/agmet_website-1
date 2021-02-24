@@ -275,7 +275,7 @@ require([
     selectDiv.innerHTML = '<p>Select Agrometeorological Indicator:<p>';
 
     const selectFilter = document.createElement('select');
-    const selectFilters = [selectFilter] //, selectFilterRight];
+    const selectFilters = [selectFilter]
 
     selectFilters.forEach(element => {
         element.setAttribute('id', 'selectFilter');
