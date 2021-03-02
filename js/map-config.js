@@ -14,7 +14,7 @@ require([
     'esri/layers/support/RasterFunction',
     'esri/layers/support/MosaicRule',
     'esri/layers/support/DimensionalDefinition',
-    'esri/layers/FeatureLayer',
+    'esri/layers/MapImageLayer',
     'esri/renderers/RasterStretchRenderer',
     'esri/tasks/support/AlgorithmicColorRamp',
     'esri/tasks/support/MultipartColorRamp',
@@ -31,7 +31,7 @@ require([
     RasterFunction,
     MosaicRule,
     DimensionalDefinition,
-    FeatureLayer,
+    MapImageLayer,
     RasterStretchRenderer,
     AlgorithmicColorRamp,
     MultipartColorRamp,
@@ -204,12 +204,90 @@ require([
     };
 
     // create and add feature layer to view 
-    const idLayer = new FeatureLayer({
-        url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/joined_indicators_1km/MapServer',
-        popupEnabled: true,
-        popupTemplate: idLayerPopupTemplate,
-        renderer: idLayerRenderer
-            //objectIdField: "OBJECTID",
+    // const idLayer = new FeatureLayer({
+    //     url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/indicators_and_cells_notJoined/MapServer/0',
+    //     popupEnabled: true,
+    //     popupTemplate: idLayerPopupTemplate
+    //         //renderer: idLayerRenderer
+    //         //objectIdField: "OBJECTID",
+    // });
+    // map.add(idLayer);
+
+    // create and add MapImageLayer
+    const idLayer = new MapImageLayer({
+        url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/indicators_and_cells_notJoined/MapServer',
+        title: 'Indicators by year per 1km square',
+        sublayers: [{
+            title: '1km hadmo cells of Scotland',
+            id: 0,
+            source: {
+                //indicates the source of the sublayer is a dynamic data layer
+                type: 'data-layer',
+                //this object defines the data source of the layer 
+                //in this case it's a joined table
+                dataSource: {
+                    type: 'join-table',
+                    //for joined tables you need to define a left table source 
+                    //and a right table source. in this case, the left table
+                    //is the map layer containing feature geometries. The ID
+                    //is the layer ID of the sublayer in the service.
+                    leftTableSource: {
+                        type: 'map-layer',
+                        mapLayerId: 0
+                    },
+                    //the right table source is another data layer object
+                    //in this case it is a plain table that resides in the 
+                    //workspace. simply indicate the id of the workspace and 
+                    //the name of the table
+                    rightTableSouce: {
+                        type: 'data-layer',
+                        mapLayerId: 1,
+                        dataSource: {
+                            type: 'table',
+                            workspaceID: 'indicatorsTable',
+                            dataSourceName: 'indicators'
+                        }
+                    },
+                    //for the joint to be complete, you must indicate the 
+                    //primary key and the foreign key to match the table 
+                    //records from each respective source. in this case
+                    //we weill match table records with the id name
+                    //so we much indicate the field in ach table containing the id
+                    leftTableKey: 'id_1km',
+                    rightTableKey: 'id',
+                    //indicates the join type. in this case all the recrods from 
+                    // the map layer are retained even if they dont all 
+                    //have matching records in teh ancestry table
+                    joinType: 'left-outer-join'
+                }
+            },
+            popupTemplate: {
+                //autocast as new PopupTemplate()
+                title: 'this should be the selected indicator',
+                content: [{
+                    type: 'fields',
+                    fieldInfos: [{
+                            fieldName: 'indicators.plantheatstress_count',
+                            label: 'plantheatstress_count',
+                            // visible: true,
+                            format: {
+                                digitSeparator: true,
+                                places: 2
+                            }
+                        },
+                        {
+                            fieldName: 'cells_1km_hadmo_scotland.id_1km',
+                            label: 'ID',
+                            //    visible: true,
+                            format: {
+                                digitSeparator: false,
+                                places: 0
+                            }
+                        }
+                    ]
+                }]
+            }
+        }]
     });
     map.add(idLayer);
 
@@ -220,7 +298,7 @@ require([
         mosaicRule: mosaicRule,
         renderer: countOfDayRenderer,
         renderingRule: serviceRasterFunction,
-        //popupTemplate: indicatorLayerPopupTemplate,
+        popupTemplate: indicatorLayerPopupTemplate,
         opacity: 0.9
     });
     map.add(indicatorLayer);
