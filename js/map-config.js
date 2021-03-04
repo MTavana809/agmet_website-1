@@ -166,29 +166,6 @@ require([
         }]
     };
 
-    let idLayerPopupTemplate = {
-        title: 'this is a test',
-        content: [{
-            type: 'fields',
-            fieldInfos: [{
-                    fieldName: 'id_1km',
-                    label: '1km ID'
-                },
-                {
-                    fieldName: 'year',
-                    label: 'Year'
-                },
-                {
-                    fieldName: 'plantheatstress_count',
-                    label: 'Plant Heat Stress Count',
-                    format: {
-                        digitSeparator: true,
-                        places: 0
-                    }
-                }
-            ]
-        }]
-    };
     // remove dockability
     view.popup = {
         dockOptions: {
@@ -203,24 +180,13 @@ require([
         }
     };
 
-    // create and add feature layer to view 
-    // const idLayer = new FeatureLayer({
-    //     url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/indicators_and_cells_notJoined/MapServer/0',
-    //     popupEnabled: true,
-    //     popupTemplate: idLayerPopupTemplate
-    //         //renderer: idLayerRenderer
-    //         //objectIdField: "OBJECTID",
-    // });
-    // map.add(idLayer);
-
     // create and add id layer to view 
     // create and add MapImageLayer
     const idLayer = new MapImageLayer({
         url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/indicators_and_cells_notJoined/MapServer',
         title: 'Indicators by year per 1km square',
         sublayers: [{
-            id: 0,
-            title: '1km hadmo cells of Scotland',
+            id: 2,
             source: {
                 type: 'data-layer',
                 dataSource: {
@@ -229,11 +195,11 @@ require([
                         type: 'map-layer',
                         mapLayerId: 0
                     },
-                    rightTableSouce: {
+                    rightTableSource: {
                         type: 'data-layer',
                         dataSource: {
                             type: 'table',
-                            workspaceID: 'indicatorsTable',
+                            workspaceId: 'indicatorsTable',
                             dataSourceName: 'indicators'
                         }
                     },
@@ -243,13 +209,12 @@ require([
                 }
             },
             popupTemplate: {
-                title: 'this should be the selected indicator',
+                title: 'Line chart of indicator',
                 content: [{
                     type: 'fields',
                     fieldInfos: [{
-                            fieldName: 'indicators.plantheatstress_count',
-                            label: 'plantheatstress_count',
-                            visible: true,
+                            fieldName: 'indicators.accumulatedfrost_degreedays',
+                            label: 'accumulatedfrost_degreedays',
                             format: {
                                 digitSeparator: true,
                                 places: 2
@@ -258,11 +223,20 @@ require([
                         {
                             fieldName: 'cells_1km_hadmo_scotland.id_1km',
                             label: 'ID',
-                            visible: true,
                             format: {
                                 digitSeparator: false,
                                 places: 0
                             }
+                        },
+                        {
+                            type: 'media',
+                            mediaInfos: [{
+                                title: 'line chart title',
+                                type: 'line-chart',
+                                value: {
+                                    //values!
+                                }
+                            }]
                         }
                     ]
                 }]
@@ -271,17 +245,10 @@ require([
     });
     map.add(idLayer);
 
-    function hasDynamicDataLayer(layer) {
-        if (layer.sublayers && layer.sublayers.sublayers) {
-            return layer.sublayers.sublayers.some(function(sublayer) {
-                return sublayer.source.type === "data-layer";
-            });
-        } else {
-            console.log("layer does not have sublayers or nested sublayers");
-            return false;
-        }
-    };
-    console.log(hasDynamicDataLayer(idLayer));
+    //check idLayer is loaded and then log json
+    idLayer.watch('loaded', function() {
+        console.log(idLayer)
+    });
 
     // create and add imagery layer to view
     const indicatorLayer = new ImageryLayer({
@@ -293,7 +260,7 @@ require([
         popupTemplate: indicatorLayerPopupTemplate,
         opacity: 0.9
     });
-    map.add(indicatorLayer);
+    //map.add(indicatorLayer);
 
 
     /******************************
