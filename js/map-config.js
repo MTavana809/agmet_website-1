@@ -186,15 +186,11 @@ require([
         url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/indicators_and_cells_notJoined/MapServer',
         title: 'Indicators by year per 1km square',
         sublayers: [{
-            id: 2,
+            id: 0,
             source: {
                 type: 'data-layer',
                 dataSource: {
                     type: 'join-table',
-                    leftTableSource: {
-                        type: 'map-layer',
-                        mapLayerId: 0
-                    },
                     rightTableSource: {
                         type: 'data-layer',
                         dataSource: {
@@ -203,43 +199,42 @@ require([
                             dataSourceName: 'indicators'
                         }
                     },
-                    leftTableKey: 'id_1km',
+                    leftTableSource: {
+                        type: 'map-layer',
+                        mapLayerId: 0
+                    },
                     rightTableKey: 'id',
+                    leftTableKey: 'id_1km',
                     joinType: 'left-outer-join'
                 }
             },
             popupTemplate: {
                 title: 'Line chart of indicator',
-                content: [{
-                    type: 'fields',
-                    fieldInfos: [{
-                            fieldName: 'indicators.accumulatedfrost_degreedays',
-                            label: 'accumulatedfrost_degreedays',
-                            format: {
-                                digitSeparator: true,
-                                places: 2
+                content: [
+                    // {
+                    //     type: 'fields',
+                    //     fieldInfos: [{
+                    //             fieldName: 'indicators.accumulatedfrost_degreedays',
+                    //             label: 'accumulatedfrost_degreedays',
+                    //             format: {
+                    //                 digitSeparator: true,
+                    //                 places: 2
+                    //             }
+                    //         },
+                    {
+                        type: 'media',
+                        mediaInfos: [{
+                            title: 'line chart title',
+                            type: 'line-chart',
+                            value: {
+                                fields: ['indicators.year', 'indicators.accumulatedfrost_degreedays', 'indicators.plantheatstress_count'],
+                                normalizeField: null,
+                                tooltipField: 'indicators.plantheatstress_count'
                             }
-                        },
-                        {
-                            fieldName: 'cells_1km_hadmo_scotland.id_1km',
-                            label: 'ID',
-                            format: {
-                                digitSeparator: false,
-                                places: 0
-                            }
-                        },
-                        {
-                            type: 'media',
-                            mediaInfos: [{
-                                title: 'line chart title',
-                                type: 'line-chart',
-                                value: {
-                                    //values!
-                                }
-                            }]
-                        }
-                    ]
-                }]
+                        }]
+                    }
+
+                ]
             }
         }]
     });
@@ -247,7 +242,7 @@ require([
 
     //check idLayer is loaded and then log json
     idLayer.watch('loaded', function() {
-        console.log(idLayer)
+        console.log(idLayer.sublayers.items)
     });
 
     // create and add imagery layer to view
@@ -261,7 +256,6 @@ require([
         opacity: 0.9
     });
     //map.add(indicatorLayer);
-
 
     /******************************
      * programmatically make selectors 
