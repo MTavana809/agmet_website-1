@@ -238,7 +238,7 @@ require([
             }
         }]
     });
-    map.add(idLayer);
+    //map.add(idLayer);
 
     //check idLayer is loaded and then log json
     idLayer.watch('loaded', function() {
@@ -255,7 +255,7 @@ require([
         popupTemplate: indicatorLayerPopupTemplate,
         opacity: 0.9
     });
-    //map.add(indicatorLayer);
+    map.add(indicatorLayer);
 
     /******************************
      * programmatically make selectors 

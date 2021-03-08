@@ -5,7 +5,7 @@
 
 <body>
     <!-- Load d3.js -->
-    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3.v6.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <!-- see https://stackoverflow.com/questions/43196546/d3-legend-for-a-color-scale -->
 
@@ -68,6 +68,7 @@
         var color = d3.scaleQuantize()
             .domain([0, 70])
             .range(d3.schemeRdYlGn['11'].reverse());
+
         // set inital vals                    
         let min = 0;
         let max = 70
@@ -83,7 +84,7 @@
 
         // set the parameters for the histogram
         const histogram = d3.histogram()
-            .value(function(d) {
+            .value(d => {
                 return d.indicator;
             })
             .domain(x.domain()) // then the domain of the graphic
@@ -91,7 +92,7 @@
 
         // get the data
         const updateChart = () => {
-            d3.csv(csvPath, (data) => {
+            d3.csv(csvPath, data => {
 
                 // And apply this function to data to get the bins
                 const bins = histogram(data);
@@ -99,7 +100,8 @@
                 // Y axis: scale and draw:
                 const y = d3.scaleLinear()
                     .range([height, 0]);
-                y.domain([0, d3.max(bins, function(d) {
+
+                y.domain([0, d3.max(bins, d => {
                     return d.length;
                 })]); // d3.hist has to be called before the Y axis 
                 // svg.append("g")
@@ -108,15 +110,14 @@
                 // append the bar rectangles to the svg element
                 svg.selectAll("rect")
                     .data(bins)
-                    .enter()
-                    .append("rect") // .attr("x", 1)
-                    .attr("transform", function(d) {
+                    .join("rect") // .attr("x", 1)
+                    .attr("transform", d => {
                         return "translate(" + x(d.x0) + "," + y(d.length) + ")";
                     })
-                    .attr("width", function(d) {
-                        return x(d.x1) - x(d.x0); // ended in -1 here
+                    .attr("width", d => {
+                        return x(d.x1) - x(d.x0);
                     })
-                    .attr("height", function(d) {
+                    .attr("height", d => {
                         return height - y(d.length);
                     })
                     .style("fill", d => {
@@ -147,15 +148,16 @@
                     })
 
                 // add average line on graph
-                const dataSum = d3.sum(data, function(d) {
-                    return d.indicator;
-                });
-                svg.append("line")
-                    .attr("y1", 0) // x1 and y1 are first endpoint
-                    .attr("y2", height)
-                    .attr("x1", x(dataSum / data.length)) //x2 and y2 are second endpoint
-                    .attr("x2", x(dataSum / data.length))
-                    .style("stroke", "black")
+                // const dataSum = d3.sum(data, function(d) {
+                //     return d.indicator;
+                // });
+                // svg.append("line")
+                //     .attr("y1", 0) // x1 and y1 are first endpoint
+                //     .attr("y2", height)
+                //     .attr("x1", x(dataSum / data.length)) //x2 and y2 are second endpoint
+                //     .attr("x2", x(dataSum / data.length))
+                //     .style("stroke", "black")
+
             });
         }
         updateChart();
