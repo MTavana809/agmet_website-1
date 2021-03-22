@@ -18,6 +18,7 @@ require([
     'esri/renderers/RasterStretchRenderer',
     'esri/tasks/support/AlgorithmicColorRamp',
     'esri/tasks/support/MultipartColorRamp',
+    'esri/tasks/support/ImageHistogramParameters',
     'esri/popup/content/LineChartMediaInfo'
 ], (Map,
     Basemap,
@@ -35,6 +36,7 @@ require([
     RasterStretchRenderer,
     AlgorithmicColorRamp,
     MultipartColorRamp,
+    ImageHistogramParameters,
     LineChartMediaInfo) => {
 
     // new basemap definition 
@@ -210,24 +212,33 @@ require([
             },
             popupTemplate: {
                 title: 'Line chart of indicator',
-                content: [
-                    // {
-                    //     type: 'fields',
-                    //     fieldInfos: [{
-                    //             fieldName: 'indicators.accumulatedfrost_degreedays',
-                    //             label: 'accumulatedfrost_degreedays',
-                    //             format: {
-                    //                 digitSeparator: true,
-                    //                 places: 2
-                    //             }
-                    //         },
+                content: [{
+                        type: 'fields',
+                        fieldInfos: [{
+                                fieldName: ['indicators.accumulatedfrost_degreedays'],
+                                label: 'accumulatedfrost_degreedays',
+                                format: {
+                                    digitSeparator: true,
+                                    places: 2
+                                }
+                            },
+                            {
+                                fieldName: 'indicators.year',
+                                label: 'year',
+                                format: {
+                                    digitSeparator: false,
+                                    places: 0
+                                }
+                            }
+                        ]
+                    },
                     {
                         type: 'media',
                         mediaInfos: [{
                             title: 'line chart title',
                             type: 'line-chart',
                             value: {
-                                fields: ['indicators.year', 'indicators.accumulatedfrost_degreedays', 'indicators.plantheatstress_count'],
+                                fields: ['indicators.accumulatedfrost_degreedays'],
                                 normalizeField: null,
                                 tooltipField: 'indicators.plantheatstress_count'
                             }
@@ -238,12 +249,19 @@ require([
             }
         }]
     });
-    //map.add(idLayer);
+    map.add(idLayer);
+
 
     //check idLayer is loaded and then log json
     idLayer.watch('loaded', function() {
         console.log(idLayer.sublayers.items)
     });
+
+    // // set the histogram parameters to request
+    // // data for the current view extent and resolution
+    // var params = new ImageHistogramParameters({
+    //     geometry: view.extent
+    // });
 
     // create and add imagery layer to view
     const indicatorLayer = new ImageryLayer({
@@ -252,10 +270,29 @@ require([
         mosaicRule: mosaicRule,
         renderer: countOfDayRenderer,
         renderingRule: serviceRasterFunction,
-        popupTemplate: indicatorLayerPopupTemplate,
         opacity: 0.9
+            // popupTemplate: indicatorLayerPopupTemplate,
+
     });
     map.add(indicatorLayer);
+
+    // // request for histograms for the specified parameters
+    // indicatorLayer.computeHistograms(params).then(function(results) {
+    //         // results are returned and process it as needed.
+    //         console.log("histograms and stats", results);
+    //     })
+    //     .catch(function(err) {
+    //         console.log("err", err)
+    //     });
+
+    // // request for histograms and statistics for the specified parameters
+    // indicatorLayer.computeStatisticsHistograms(params).then(function(results) {
+    //         // results are returned and process it as needed.
+    //         console.log("histograms and stats", results);
+    //     })
+    //     .catch(function(err) {
+    //         console.log("err", err)
+    //     });
 
     /******************************
      * programmatically make selectors 

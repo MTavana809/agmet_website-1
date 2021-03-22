@@ -5,7 +5,7 @@
 
 <body>
     <!-- Load d3.js -->
-    <script src="https://d3js.org/d3.v6.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <!-- see https://stackoverflow.com/questions/43196546/d3-legend-for-a-color-scale -->
 
@@ -110,6 +110,8 @@
                 // append the bar rectangles to the svg element
                 svg.selectAll("rect")
                     .data(bins)
+                    //.enter()
+                    //.append("rect")
                     .join("rect") // .attr("x", 1)
                     .attr("transform", d => {
                         return "translate(" + x(d.x0) + "," + y(d.length) + ")";
