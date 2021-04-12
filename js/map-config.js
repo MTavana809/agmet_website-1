@@ -1,6 +1,5 @@
 'use strict'; // https://javascript.info/strict-mode for explanation
 
-
 require([
     'esri/Map',
     'esri/Basemap',
@@ -49,7 +48,7 @@ require([
     // create map
     const map = new Map({
         basemap: basemap,
-        layers: []
+        layers: [] // add layers later
     });
 
     // create 2D view for the Map
@@ -59,6 +58,10 @@ require([
         center: new Point({ x: 200000, y: 785000, spatialReference: 27700 }), // reprojected to allow OS basemap
         zoom: 8
     });
+
+/******************************
+ * Renderers for Layers -- aka symbology
+ * ****************************/
 
     // create renderer for countOfDay
     const colorRamp1 = new AlgorithmicColorRamp({
@@ -114,16 +117,12 @@ require([
 
     const combineColorRamp = new MultipartColorRamp({
         colorRamps: [colorRamp1, colorRamp2, colorRamp3, colorRamp4, colorRamp5, colorRamp6,
-            colorRamp7, colorRamp8, colorRamp9, colorRamp10
-        ]
+            colorRamp7, colorRamp8, colorRamp9, colorRamp10]
     });
 
     const countOfDayRenderer = new RasterStretchRenderer({
-        colorRamp: combineColorRamp, //flowerColorRamp
-        stretchType: 'min-max',
-        //statistics: [
-        //  [1, 60, 5, 5]
-        //   ] // min, max, avg, stddev
+        colorRamp: combineColorRamp, 
+        stretchType: 'min-max'
     });
 
     const idLayerRenderer = {
@@ -134,9 +133,9 @@ require([
         }
     };
 
-    /******************************
-     * Layer rules
-     * ****************************/
+/******************************
+ * Layer rules
+ * ****************************/
     // create server-defined raster function
     let serviceRasterFunction = new RasterFunction({
         functionName: 'plantheatstress_count'
@@ -146,7 +145,7 @@ require([
     const yearDefinition = new DimensionalDefinition({
         variableName: 'plantheatstress_count',
         dimensionName: 'Year',
-        values: [1961],
+        values: [1961], // yearSlider start
         isSlice: true
     });
 
@@ -175,7 +174,7 @@ require([
         }
     };
 
-    //function to popupTemplate if open
+    //function to close popupTemplate if open
     const closePopup = () => {
         if (view.popup.visible) {
             view.popup.close()
@@ -270,9 +269,8 @@ require([
         mosaicRule: mosaicRule,
         renderer: countOfDayRenderer,
         renderingRule: serviceRasterFunction,
-        opacity: 0.9
-            // popupTemplate: indicatorLayerPopupTemplate,
-
+        opacity: 0.9,
+        popupTemplate: indicatorLayerPopupTemplate
     });
     map.add(indicatorLayer);
 
@@ -331,7 +329,7 @@ require([
 
     // selectDivs configs
     const selectDiv = document.createElement('div');
-    const selectDivs = [selectDiv] //, selectDivRight]
+    const selectDivs = [selectDiv];
 
     selectDivs.forEach(element => {
         element.setAttribute('id', 'selectDiv');
@@ -343,7 +341,7 @@ require([
     selectDiv.innerHTML = '<p>Select Agrometeorological Indicator:<p>';
 
     const selectFilter = document.createElement('select');
-    const selectFilters = [selectFilter]
+    const selectFilters = [selectFilter];
 
     selectFilters.forEach(element => {
         element.setAttribute('id', 'selectFilter');
@@ -373,20 +371,21 @@ require([
      * ****************************/
     //listen to change events on indicatorSelect and change multidimensional variable
     selectFilter.addEventListener('change', () => {
-        const chosenIndicator = selectFilter.value;
+        let chosenIndicator = selectFilter.value;
         changeIndicator(chosenIndicator);
         changeDescriptors(chosenIndicator);
         stopAnimation();
+        closePopup();
     });
 
     function changeIndicator(chosenIndicator) {
-        closePopup();
-
         // change mosaicRule of layer as clone and reassign
         const mosaicRuleClone = indicatorLayer.mosaicRule.clone(); // makes clone of layer's mosaicRule
         const indicatorVariable = mosaicRuleClone.multidimensionalDefinition[0];
+
         indicatorVariable.values = yearSlider.get('values');
         indicatorVariable.variableName = chosenIndicator;
+        
         mosaicRuleClone.multidimensionalDefinition = [indicatorVariable];
         indicatorLayer.mosaicRule = mosaicRuleClone;
 
@@ -422,9 +421,9 @@ require([
 
     // when the user changes the yearSlider's value, change the year to reflect data
     yearSlider.on(['thumb-change', 'thumb-drag'], event => {
-        closePopup();
-        stopAnimation();
         updateYearDef(event.value);
+        stopAnimation();
+        closePopup();
     });
 
     // read all other values when year updates
