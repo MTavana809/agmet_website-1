@@ -530,16 +530,19 @@ require([
     // change innerHTML of hideaway div
     // change popup contents
     function changeDescriptors(chosenIndicator) {
-        const hideaway = document.getElementById("hideaway");
-
+        const hideaway = document.getElementById('hideaway');
         const HTML30yrmaps = `
-        <div id='imgGrid'><div><p>1961-1990 Average</p><img src='img/${chosenIndicator}_1961-1990_observed_scotland.png'></div>
-        <div><p>1991-2018 Average</p><img src='img/${chosenIndicator}_1991-2018_observed_scotland.png'></div>
-        <div><p>2019-2050 Average</p><img src='img/${chosenIndicator}_2019-2050_ensemblemean_scotland.png'></div>
-        <div><p>2051-2080 Average</p><img src='img/${chosenIndicator}_2051-2080_ensemblemean_scotland.png'></div></div>`
+        <div id='imgGrid'><div><p>1961-1990 Average</p><img src='img/${chosenIndicator}_1961-1990_observed_scotland.png' alt=''></div>
+        <div><p>1991-2018 Average</p><img src='img/${chosenIndicator}_1991-2018_observed_scotland.png' alt=''></div>
+        <div><p>2019-2050 Average</p><img src='img/${chosenIndicator}_2019-2050_ensemblemean_scotland.png' alt=''></div>
+        <div><p>2051-2080 Average</p><img src='img/${chosenIndicator}_2051-2080_ensemblemean_scotland.png' alt=''></div></div>`
 
         const popupTemplateClone = indicatorLayer.popupTemplate.clone();
         let popupCloneContent = popupTemplateClone.content;
+
+        for (let i = 0; i < selectorExpression.length; i++) {
+            hideaway.innerHTML = `<h2>${selectorExpression[i][1]}</h2>`
+        }
 
         switch (chosenIndicator) {
             case 'accumulatedfrost_degreedays':
