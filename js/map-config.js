@@ -540,10 +540,6 @@ require([
         const popupTemplateClone = indicatorLayer.popupTemplate.clone();
         let popupCloneContent = popupTemplateClone.content;
 
-        for (let i = 0; i < selectorExpression.length; i++) {
-            hideaway.innerHTML = `<h2>${selectorExpression[i][1]}</h2>`
-        }
-
         switch (chosenIndicator) {
             case 'accumulatedfrost_degreedays':
                 indicatorLayer.title = accumulatedfrost_legend
