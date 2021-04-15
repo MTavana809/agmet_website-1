@@ -58,7 +58,7 @@ require([
         center: new Point({ x: 200000, y: 785000, spatialReference: 27700 }), // reprojected to allow OS basemap
         zoom: 8
     });
-
+    
 /******************************
  * Renderers for Layers -- aka symbology
  * ****************************/
