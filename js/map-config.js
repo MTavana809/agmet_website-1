@@ -693,19 +693,19 @@ require([
 
 
     const accumulatedfrost_legend = `Accumulated Frost (degree days): sum of degree days where Tmin < 0\u00B0C`,
-        accumulatedfrost_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        accumulatedfrost_desc = `<p>Accumulated Frost in degree days</p><p>reduced amount of accumulated frost with a continued reduction in the future</p>`,
         accumulatedfrost_popup = `<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C`,
 
         airfrostcount_legend = `Air Frost (count of days): count of days when Tmin < 0\u00B0C`,
-        airfrostcount_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        airfrostcount_desc = `<p>Air Frost Days</p><p>Fewer air frost days in each year with a further reduction in air frost days (c. 12-15 in coastal, 30-40 in lowland and 40-50 in mountain areas).</p>`,
         airfrostcount_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C`,
 
         coldspell_legend = `Cold Spell (count of days): Max count of consecutive days when Tmax < avgTmax (baseline year) - 3\u00B0C (min 6 days)`,
-        coldspell_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        coldspell_desc = `<p>Reduction in the number of days when the minimum temperature is below the average minimum temperature (1961-1990 period) and less an additional -3\u00B0C for at least 6 consecutive days.</p><p>Reduction continues into the future and become geographically more uniform. Scotland show less change than the rest of the UK.</p>`,
         coldspell_popup = `<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when the maximum temperature is less than the average maximum temperature in a baseline year minus 3\u00B0C`,
 
         drycount_legend = `Dry Count (count of days): count of days when P < 0.2 mm`,
-        drycount_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        drycount_desc = `<p>Dry Days</p><p>Increaseing number of dry days.</p><p>Continued large increase in number of dry days, particularly in the west.</p>`,
         drycount_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when precipitation is less than 0.2 mm `,
 
         dryspell_legend = `Dry Spell (count of days): max consecutive count P < 0.2 mm`,
@@ -713,15 +713,15 @@ require([
         dryspell_popup = `<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when precipitation is less than 0.2 mm`,
 
         endgrowing_legend = `End of Growing Season (day of year): day when 5 consecutive days Tavg < 5.6\u00B0C from 1 July`,
-        endgrowing_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        endgrowing_desc = `<p>End of Growing Season (date)</p><p>Shift towards lated in the year.</p><p>Continues to occur later and more uniform spatial distribution of when in lowlands.</p>`,
         endgrowing_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July`,
 
         firstairfrost_legend = `First Airfrost (day of year): first day when Tmin < 0\u00B0C from 1 July`,
-        firstairfrost_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        firstairfrost_desc = `<p>First Air Frost day of the year (date, autumn)</p><p>Shifted to occuring later in the year, reduced areas of early autumn frost.</p><p>Continuted shift towards occurring later in the year, largest changes in the upland areas.</p>`,
         firstairfrost_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C from 1 July`,
 
         firstgrassfrost_legend = `First Grassfrost (day of year): first day when Tmin < 5\u00B0C from 1 July`,
-        firstgrassfrost_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        firstgrassfrost_desc = `<p>First Grass Frost day of the year (date, autumn)</p><p>First frost has shifted to later in the year.</p><p>Much reduced area of early frost and continuted shift to later in the year.</p>`,
         firstgrassfrost_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C from 1 July`,
 
         grassfrostcount_legend = `Grassfrost (count of days): count of days when Tmin < 5\u00B0C`,
@@ -729,7 +729,7 @@ require([
         grassfrostcount_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C`,
 
         growingdd_legend = `Growing (degree days): sum Tavg > 5.6\u00B0C`,
-        growingdd_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        growingdd_desc = `<p>Growing Degree Days</p><p>Slight increase in Scotland, large increase in lowland England.</p><p>Continued increase, particularly in lowland areas and southern UK.</p>`,
         growingdd_popup = `<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C`,
 
         growingseason_legend = `Growing Season (count of days): beginning when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C`,
@@ -737,35 +737,35 @@ require([
         growingseason_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C`,
 
         growseasonlength_legend = `Grow Season Length (count of days): days when Tavg > 5.6\u00B0C between start and end of growing season`,
-        growseasonlength_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        growseasonlength_desc = `<p>Growing Season Length (number of days)</p><p>Slight shift to increased length.</p><p>Increase in growing season length, by 30+ days from 1960 to 1990 period.</p>`,
         growseasonlength_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C between the start and the end of growing season`,
 
         growseasonrange_legend = `Grow Season Range (count of days): days between start and end of growing season`,
-        growseasonrange_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        growseasonrange_desc = `<p>Growing Season Range (number of days)</p><p>Slight shift to longer growing season.</p><p>Continues to increase in length, most particularly for locations normally (in 1960 to 1990 period) with a shorter range.</p>`,
         growseasonrange_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> calculated from the count of days between the start and end of the growing season`,
 
         heatingdd_legend = `Heating (degree days): Sum of 15.5\u00B0C minus Tavg where Tavg < 15.5\u00B0C`,
-        heatingdd_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        heatingdd_desc = `<p>Heating Degree Days (number of days)</p><p>Reduction, with associated building heating requirments.</p><p>Further reduction, particularly in upland areas.</p>`,
         heatingdd_popup = `<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> representing the sum of 15.5\u00B0C minus the average temperature where the average temperature is less than 15.5\u00B0C`,
 
         heatwave_legend = `Heatwave (count of days): Max count of consecutive days when Tmax > avgTmax (baseline year) + 3\u00B0C (min 6 days)`,
-        heatwave_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        heatwave_desc = `<p>Heat Wave (number of days)</p><p>Increasing number of heat wave days, particularly in southern UK.</p><p>Continued increase, particularly in lowland and coastal locations. Less change in Scotland than the rest of the UK.</p>`,
         heatwave_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than the average temperature in a baseline year plus 3\u00B0C`,
 
         lastairfrost_legend = `Last Airfrost (day of year): last day when Tmin < 0\u00B0C before 1 July`,
-        lastairfrost_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        lastairfrost_desc = `<p>Last Air Frost day of the year (date, spring)</p><p>Shifted to occurring earlier in the year for most lowland areas.</p><p>Large shift to earlier in the year in coastal and lowland Scotland.</p>`,
         lastairfrost_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C before 1 July`,
 
         lastgrassfrost_legend = `Last Grassfrost (day of year): last day when Tmin < 5\u00B0C before 1 July`,
-        lastgrassfrost_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        lastgrassfrost_desc = `<p>Last Grass Frost day of the year (date, spring)</p><p>Shifted to occurring earlier in the year for most lowland areas.</p><p>Large shift to earlier in the year in coastal and lowland Scotland.</p>`,
         lastgrassfrost_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C before 1 July`,
 
         pintensity_legend = `P Intensity (index): P > 0.2 / count days P > 0.2mm`,
-        pintensity_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        pintensity_desc = `p>Precipitation heterogeneity? (Index, no units)</p><p>Slight increase in values (rainfall erosivity) in upland areas.</p><p>Intensifes particularly in northwest Scotland, but some areas see a reduction.</p>`,
         pintensity_popup = `<b>{Raster.ItemPixelValue}</b>: index of precipitation intensity in <b>{Year}</b>`,
 
         pseasonality_legend = `P Seasonality (index): S = winter P - summer P / annual total P`,
-        pseasonality_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        pseasonality_desc = `<p>Precipitation Seasonality (Index, no units)</p><p>Some areas shifted to have more rain in the summer than the winter.</p><p>Whole UK except northern Scotland projected to have more in the summer than the winter.</p>`,
         pseasonality_popup = `<b>{Raster.ItemPixelValue}</b>: index of precipitation seasonality in <b>{Year}</b>`,
 
         personheatstress_legend = `Person Heat Stress (count of days): count of days when Tmax > 32\u00B0C`,
@@ -773,15 +773,15 @@ require([
         personheatstress_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 32\u00B0C`,
 
         plantheatstress_legend = `Plant Heat Stress (count of days): count of days when Tmax > 25\u00B0C`,
-        plantheatstress_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        plantheatstress_desc = `<p>Plant Heat Stess (count of days)</p><p>Slight increase in southern Scotland, large increase in south east England.</p><p>Further slight increase in northern UK, continued large increase (20 days +) in southern England.</p>`,
         plantheatstress_popup = `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 25\u00B0C`,
 
         startfieldops_legend = `Start FieldOps (day of year): day when Tavg from 1 Jan > 200\u00B0C`,
-        startfieldops_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        startfieldops_desc = `<p>Start of Field Operations (date)</p><p>Shifted to occur earlier in the year.</p><p>Continues to occur earlier and more uniform spatial distriction of when in lowlands.</p>`,
         startfieldops_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the sum of the daily average temperatures from 1 Jan is greater than 200\u00B0C`,
 
         startgrowdoy_legend = `Start Grow (day of year): day when 5 consecutve days Tavg > 5.6\u00B0C`,
-        startgrowdoy_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        startgrowdoy_desc = `<p>Start of Growing Season (date)</p><p>Shifted to occurring earlier in the year.</p><p>Continues to occur earlier, most particularly for location normally (in 1961-1990 period) with a later start date.</p>`,
         startgrowdoy_popup = `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when five consecutive days have an average temperature greater than 5.6\u00B0C`,
 
         tempgrowingperiod_legend = `Temp Growing Period (count of days): count of days between average 5 day temp > 5\u00B0C and average 5 day temp < 5\u00B0C where average daily temp greater than 5\u00B0C`,
@@ -793,7 +793,7 @@ require([
         thermaltime_popup = `<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> for the period from fifth day of a five-day period where the average temperater is greater than 5\u00B0C to the end point when the average temperature is less than 5\u00B0C`,
 
         wetcount_legend = `Wet Count (count of days): days when P >= 0.2 mm`,
-        wetcount_desc = `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
+        wetcount_desc = `<p>Wet Days</p><p>Reduction in the number of wet days.</p><p>Extenuation of rain shadow effect, with further reduction in wet days, particularly in the west?</p>`,
         wetcount_popup = `<b>{Raster.ItemPixelValue}</b> total wet days in <b>{Year}</b> when precipitation is greater than or equal to 0.2 mm`,
 
         wetspell_legend = `Wet Spell (count of days): max consecutive count P > 0.2 mm`,
