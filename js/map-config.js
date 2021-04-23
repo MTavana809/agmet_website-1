@@ -295,183 +295,183 @@ require([
     /******************************
      * programmatically make selectors 
      *******************************/
-    const indicators = {
+     const indicators = {
         'accumulatedfrost_degreedays': {
             desc: 'Accumulated Frost (degree days)',
-            html: '<p>Accumulated Frost in degree days</p><p>reduced amount of accumulated frost with a continued reduction in the future</p>',
+            html: '<p>Sum of degree days in a year when the minimum temperature is less than 0\u00B0C</p><p>Reduced amount of accumulated frost with a continued reduction in the future</p>',
             legend: 'Accumulated Frost (degree days): sum of degree days where Tmin < 0\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C'
         },
         'airfrost_count': {
             desc: 'Air Frost (count of days)',
-            html: `<p>Air Frost Days</p><p>Fewer air frost days in each year with a further reduction in air frost days (c. 12-15 in coastal, 30-40 in lowland and 40-50 in mountain areas).</p>`,
-            legend: `Air Frost (count of days): count of days when Tmin < 0\u00B0C`,
-            popup: `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C`
+            html: '<p>Number of days in a year when the minimum temperature is less than 0\u00B0C</p><p>Fewer air frost days in each year with a further reduction in air frost days (c. 12-15 in coastal, 30-40 in lowland and 40-50 in mountain areas).</p>',
+            legend: 'Air Frost (count of days): count of days when Tmin < 0\u00B0C',
+            popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C'
         },
         'cold_spell_n': {
             desc: 'Cold Spell (count of days)',
-            html: `<p>Reduction in the number of days when the minimum temperature is below the average minimum temperature (1961-1990 period) and less an additional -3\u00B0C for at least 6 consecutive days.</p><p>Reduction continues into the future and become geographically more uniform. Scotland show less change than the rest of the UK.</p>`,
-            legend: `Cold Spell (count of days): Max count of consecutive days when Tmax < avgTmax (baseline year) - 3\u00B0C (min 6 days)`,
-            popup: `<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when the maximum temperature is less than the average maximum temperature in a baseline year minus 3\u00B0C`
+            html: '<p>Consecutive days in a year when the maximum temperature is less than the average maximum temperature in a baseline year minus 3\u00B0C (where the minimum is not less than 6 days) </p><p>Reduction in the number of days when the minimum temperature is below the average minimum temperature (1961-1990 period) and less an additional -3\u00B0C for at least 6 consecutive days.</p><p>Reduction continues into the future and become geographically more uniform. Scotland show less change than the rest of the UK.</p>',
+            legend: 'Cold Spell (count of days): Max count of consecutive days when Tmax < avgTmax (baseline year) - 3\u00B0C (min 6 days)',
+            popup: '<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when the maximum temperature is less than the average maximum temperature in a baseline year minus 3\u00B0C'
         },
         'dry_count': {
             desc: 'Dry Count (count of days)',
-            html: `<p>Dry Days</p><p>Increaseing number of dry days.</p><p>Continued large increase in number of dry days, particularly in the west.</p>`,
-            legend: `Dry Count (count of days): count of days when P < 0.2 mm`,
-            popup: `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when precipitation is less than 0.2 mm `
+            html: '<p>Number of days in a year when precipitation is less than 0.2 mm</p><p>Increasing number of dry days.</p><p>Continued large increase in number of dry days, particularly in the west.</p>',
+            legend: 'Dry Count (count of days): count of days when P < 0.2 mm',
+            popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when precipitation is less than 0.2 mm '
         },
         'dry_spell_n': {
             desc: 'Dry Spell (count of days)',
-            html: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna.</p>`,
-            legend: `Dry Spell (count of days): max consecutive count P < 0.2 mm`,
-            popup: `<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when precipitation is less than 0.2 mm`
+            html: '<p>Number of consecutive days in a year when precipitation is less 0.2 mm</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna.</p>',
+            legend: 'Dry Spell (count of days): max consecutive count P < 0.2 mm',
+            popup: '<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when precipitation is less than 0.2 mm'
         },
         'end_growingseason': {
             desc: 'End of Growing Season (day of year)',
-            html: `<p>End of Growing Season (date)</p><p>Shift towards lated in the year.</p><p>Continues to occur later and more uniform spatial distribution of when in lowlands.</p>`,
-            legend: `End of Growing Season (day of year): day when 5 consecutive days Tavg < 5.6\u00B0C from 1 July`,
-            popup: `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July`
+            html: '<p>Day of the year (out of 365) when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July</p><p>Shift towards lated in the year.</p><p>Continues to occur later and more uniform spatial distribution of when in lowlands.</p>',
+            legend: 'End of Growing Season (day of year): day when 5 consecutive days Tavg < 5.6\u00B0C from 1 July',
+            popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July'
         },
         'first_airfrost_doy': {
             desc: 'First Airfrost (day of year)',
-            html: `<p>First Air Frost day of the year (date, autumn)</p><p>Shifted to occuring later in the year, reduced areas of early autumn frost.</p><p>Continuted shift towards occurring later in the year, largest changes in the upland areas.</p>`,
-            legend: `First Airfrost (day of year): first day when Tmin < 0\u00B0C from 1 July`,
-            popup: `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C from 1 July`
+            html: '<p>Day of the year (out of 365) when the minimum temperature is less than 0\u00B0C from 1 July</p><p>Shifted to occuring later in the year, reduced areas of early autumn frost.</p><p>Continuted shift towards occurring later in the year, largest changes in the upland areas.</p>',
+            legend: 'First Airfrost (day of year): first day when Tmin < 0\u00B0C from 1 July',
+            popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C from 1 July'
         },
         'first_grassfrost_doy': {
             desc: 'First Grassfrost (day of year)',
-            html: `<p>First Grass Frost day of the year (date, autumn)</p><p>First frost has shifted to later in the year.</p><p>Much reduced area of early frost and continuted shift to later in the year.</p>`,
-            legend: `First Grassfrost (day of year): first day when Tmin < 5\u00B0C from 1 July`,
-            popup: `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C from 1 July`
+            html: '<p>Day of the year (out of 365) when the minimum temperature is less than 5\u00B0C from 1 July</p><p>First frost has shifted to later in the year.</p><p>Much reduced area of early frost and continuted shift to later in the year.</p>',
+            legend: 'First Grassfrost (day of year): first day when Tmin < 5\u00B0C from 1 July',
+            popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C from 1 July'
         },
         'grassfrost_count': {
             desc: 'Grassfrost Count (count of days)',
-            html: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
-            legend: `Grassfrost (count of days): count of days when Tmin < 5\u00B0C`,
-            popup: `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C`
+            html: '<p>Number of days in a year when the minimum temperature is less than 5\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+            legend: 'Grassfrost (count of days): count of days when Tmin < 5\u00B0C',
+            popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C'
         },
         'growing_degreedays': {
             desc: 'Growing (degree days)',
-            html: `<p>Growing Degree Days</p><p>Slight increase in Scotland, large increase in lowland England.</p><p>Continued increase, particularly in lowland areas and southern UK.</p>`,
-            legend: `Growing (degree days): sum Tavg > 5.6\u00B0C`,
-            popup: `<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C`
+            html: '<p>Sum of degree days in a year when the average temperature is greater than 5.6\u00B0C</p><p>Slight increase in Scotland, large increase in lowland England.</p><p>Continued increase, particularly in lowland areas and southern UK.</p>',
+            legend: 'Growing (degree days): sum Tavg > 5.6\u00B0C',
+            popup: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C'
         },
         'growing_season': {
             desc: 'Growing Season (count of days)',
-            html: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
-            legend: `Growing Season (count of days): beginning when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C`,
-            popup: `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C`
+            html: '<p>Number of days in a year when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+            legend: 'Growing Season (count of days): beginning when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C',
+            popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C'
         },
         'growseason_length': {
             desc: 'Grow Season Length (count of days)',
-            html: `<p>Growing Season Length (number of days)</p><p>Slight shift to increased length.</p><p>Increase in growing season length, by 30+ days from 1960 to 1990 period.</p>`,
-            legend: `Grow Season Length (count of days): days when Tavg > 5.6\u00B0C between start and end of growing season`,
-            popup: `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C between the start and the end of growing season`
+            html: '<p>Number of days in a year when the average temperature is greater than 5.6\u00B0C between the start and the end of growing season</p><p>Slight shift to increased length.</p><p>Increase in growing season length, by 30+ days from 1960 to 1990 period.</p>',
+            legend: 'Grow Season Length (count of days): days when Tavg > 5.6\u00B0C between start and end of growing season',
+            popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C between the start and the end of growing season'
         },
         'growseason_range': {
             desc: 'Grow Season Range (count of days)',
-            html: `<p>Growing Season Range (number of days)</p><p>Slight shift to longer growing season.</p><p>Continues to increase in length, most particularly for locations normally (in 1960 to 1990 period) with a shorter range.</p>`,
-            legend: `Grow Season Range (count of days): days between start and end of growing season`,
-            popup: `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> calculated from the count of days between the start and end of the growing season`
+            html: '<p>Number of days in a year between the start and the end of the growing season</p><p>Slight shift to longer growing season.</p><p>Continues to increase in length, most particularly for locations normally (in 1960 to 1990 period) with a shorter range.</p>',
+            legend: 'Grow Season Range (count of days): days between start and end of growing season',
+            popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> calculated from the count of days between the start and end of the growing season'
         },
         'heating_degreedays': {
             desc: 'Heating (degree days)',
-            html: `<p>Heating Degree Days (number of days)</p><p>Reduction, with associated building heating requirments.</p><p>Further reduction, particularly in upland areas.</p>`,
-            legend: `Heating (degree days): Sum of 15.5\u00B0C minus Tavg where Tavg < 15.5\u00B0C`,
-            popup: `<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> representing the sum of 15.5\u00B0C minus the average temperature where the average temperature is less than 15.5\u00B0C`
+            html: '<p>Degree days in a year representing the sum of 15.5\u00B0C minus the average temperature where the average temperature is less than 15.5\u00B0C</p><p>Reduction, with associated building heating requirments.</p><p>Further reduction, particularly in upland areas.</p>',
+            legend: 'Heating (degree days): Sum of 15.5\u00B0C minus Tavg where Tavg < 15.5\u00B0C',
+            popup: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> representing the sum of 15.5\u00B0C minus the average temperature where the average temperature is less than 15.5\u00B0C'
         },
         'heatwave_n': {
             desc: 'Heatwave (count of days)',
-            html: `<p>Heat Wave (number of days)</p><p>Increasing number of heat wave days, particularly in southern UK.</p><p>Continued increase, particularly in lowland and coastal locations. Less change in Scotland than the rest of the UK.</p>`,
-            legend: `Heatwave (count of days): Max count of consecutive days when Tmax > avgTmax (baseline year) + 3\u00B0C (min 6 days)`,
-            popup: `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than the average temperature in a baseline year plus 3\u00B0C`
+            html: '<p>Number of days in a year when the maximum temperature is greater than the average temperature in a baseline year plus 3\u00B0C</p><p>Increasing number of heat wave days, particularly in southern UK.</p><p>Continued increase, particularly in lowland and coastal locations. Less change in Scotland than the rest of the UK.</p>',
+            legend: 'Heatwave (count of days): Max count of consecutive days when Tmax > avgTmax (baseline year) + 3\u00B0C (min 6 days)',
+            popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than the average temperature in a baseline year plus 3\u00B0C'
         },
         'last_airfrost_doy': {
             desc: 'Last Airfrost (day of year)',
-            html: `<p>Last Air Frost day of the year (date, spring)</p><p>Shifted to occurring earlier in the year for most lowland areas.</p><p>Large shift to earlier in the year in coastal and lowland Scotland.</p>`,
-            legend: `Last Airfrost (day of year): last day when Tmin < 0\u00B0C before 1 July`,
-            popup: `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C before 1 July`
+            html: '<p>Last day of the year (out of 365) when the minimum temperature is less than 0\u00B0C before 1 July</p><p>Shifted to occurring earlier in the year for most lowland areas.</p><p>Large shift to earlier in the year in coastal and lowland Scotland.</p>',
+            legend: 'Last Airfrost (day of year): last day when Tmin < 0\u00B0C before 1 July',
+            popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C before 1 July'
         },
         'last_grassfrost_doy': {
             desc: 'Last Grassfrost (day of year)',
-            html: `<p>Last Grass Frost day of the year (date, spring)</p><p>Shifted to occurring earlier in the year for most lowland areas.</p><p>Large shift to earlier in the year in coastal and lowland Scotland.</p>`,
-            legend: `Last Grassfrost (day of year): last day when Tmin < 5\u00B0C before 1 July`,
-            popup: `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C before 1 July`
+            html: '<p>Last day of the year (out of 365) when the minimum temperature is less than 5\u00B0C before 1 July</p><p>Shifted to occurring earlier in the year for most lowland areas.</p><p>Large shift to earlier in the year in coastal and lowland Scotland.</p>',
+            legend: 'Last Grassfrost (day of year): last day when Tmin < 5\u00B0C before 1 July',
+            popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C before 1 July'
         },
         'p_intensity': {
             desc: 'P Intensity (index)',
-            html: `<p>Precipitation heterogeneity? (Index, no units)</p><p>Slight increase in values (rainfall erosivity) in upland areas.</p><p>Intensifes particularly in northwest Scotland, but some areas see a reduction.</p>`,
-            legend: `P Intensity (index): P > 0.2 / count days P > 0.2mm`,
-            popup: `<b>{Raster.ItemPixelValue}</b>: index of precipitation intensity in <b>{Year}</b>`
+            html: '<p>Precipitation heterogeneity? Index of precipitation intensity in a year</p><p>Slight increase in values (rainfall erosivity) in upland areas.</p><p>Intensifes particularly in northwest Scotland, but some areas see a reduction.</p>',
+            legend: 'P Intensity (index): P > 0.2 / count days P > 0.2mm',
+            popup: '<b>{Raster.ItemPixelValue}</b>: index of precipitation intensity in <b>{Year}</b>'
         },
         'p_seasonality': {
             desc: 'P Seasonality (index)',
-            html: `<p>Precipitation Seasonality (Index, no units)</p><p>Some areas shifted to have more rain in the summer than the winter.</p><p>Whole UK except northern Scotland projected to have more in the summer than the winter.</p>`,
-            legend: `P Seasonality (index): S = winter P - summer P / annual total P`,
-            popup: `<b>{Raster.ItemPixelValue}</b>: index of precipitation seasonality in <b>{Year}</b>`
+            html: '<p>Precipitation Seasonality. Index of precipitation seasonality in a year</p><p>Some areas shifted to have more rain in the summer than the winter.</p><p>Whole UK except northern Scotland projected to have more in the summer than the winter.</p>',
+            legend: 'P Seasonality (index): S = winter P - summer P / annual total P',
+            popup: '<b>{Raster.ItemPixelValue}</b>: index of precipitation seasonality in <b>{Year}</b>'
         },
         'personheatstress_count': {
             desc: 'Person Heat Stress (count of days)',
-            html: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
-            legend: `Person Heat Stress (count of days): count of days when Tmax > 32\u00B0C`,
-            popup: `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 32\u00B0C`
+            html: '<p>Number of days in a year when the maximum temperature is greater than 32\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+            legend: 'Person Heat Stress (count of days): count of days when Tmax > 32\u00B0C',
+            popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 32\u00B0C'
         },
         'plantheatstress_count': {
             desc: 'Plant Heat Stress (count of days)',
-            html: `<p>Plant Heat Stess (count of days)</p><p>Slight increase in southern Scotland, large increase in south east England.</p><p>Further slight increase in northern UK, continued large increase (20 days +) in southern England.</p>`,
-            legend: `Plant Heat Stress (count of days): count of days when Tmax > 25\u00B0C`,
-            popup: `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 25\u00B0C`
+            html: '<p>Number of days in a year when the maximum temperature is greater than 25\u00B0C</p><p>Slight increase in southern Scotland, large increase in south east England.</p><p>Further slight increase in northern UK, continued large increase (20 days +) in southern England.</p>',
+            legend: 'Plant Heat Stress (count of days): count of days when Tmax > 25\u00B0C',
+            popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 25\u00B0C'
         },
         'start_fieldops_doy': {
             desc: 'Start FieldOps (day of year)',
-            html: `<p>Start of Field Operations (date)</p><p>Shifted to occur earlier in the year.</p><p>Continues to occur earlier and more uniform spatial distriction of when in lowlands.</p>`,
-            legend: `Start FieldOps (day of year): day when Tavg from 1 Jan > 200\u00B0C`,
-            popup: `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the sum of the daily average temperatures from 1 Jan is greater than 200\u00B0C`
+            html: '<p>Day of the year (out of 365) when the sum of the daily average temperatures from 1 Jan is greater than 200\u00B0C, indicating the start of Field Operations</p><p>Shifted to occur earlier in the year.</p><p>Continues to occur earlier and more uniform spatial distriction of when in lowlands.</p>',
+            legend: 'Start FieldOps (day of year): day when Tavg from 1 Jan > 200\u00B0C',
+            popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the sum of the daily average temperatures from 1 Jan is greater than 200\u00B0C'
         },
         'start_grow_doy': {
             desc: 'Start Grow (day of year)',
-            html: `<p>Start of Growing Season (date)</p><p>Shifted to occurring earlier in the year.</p><p>Continues to occur earlier, most particularly for location normally (in 1961-1990 period) with a later start date.</p>`,
-            legend: `Start Grow (day of year): day when 5 consecutve days Tavg > 5.6\u00B0C`,
-            popup: `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when five consecutive days have an average temperature greater than 5.6\u00B0C`
+            html: '<p>Day of the year (out of 365) when five consecutive days have an average temperature greater than 5.6\u00B0C</p><p>Shifted to occurring earlier in the year.</p><p>Continues to occur earlier, most particularly for location normally (in 1961-1990 period) with a later start date.</p>',
+            legend: 'Start Grow (day of year): day when 5 consecutve days Tavg > 5.6\u00B0C',
+            popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when five consecutive days have an average temperature greater than 5.6\u00B0C'
         },
         'tempgrowingperiod_length': {
             desc: 'Temp Growing Period (count of days)',
-            html: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
-            legend: `Temp Growing Period (count of days): count of days between average 5 day temp > 5\u00B0C and average 5 day temp < 5\u00B0C where average daily temp greater than 5\u00B0C`,
-            popup: `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> between when the average five-day temperature is greater than 5\u00B0C and when the average five-day temperature is less than 5\u00B0C`
+            html: '<p>Number of days in a year between the average five-day temperature being greater than 5\u00B0C and the average five-day temperature being less than 5\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+            legend: 'Temp Growing Period (count of days): count of days between average 5 day temp > 5\u00B0C and average 5 day temp < 5\u00B0C where average daily temp greater than 5\u00B0C',
+            popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> between when the average five-day temperature is greater than 5\u00B0C and when the average five-day temperature is less than 5\u00B0C'
         },
         'thermaltime_sum': {
             desc: 'Thermal Time (degree days)',
-            html: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
-            legend: `Thermal Time (degree days): sum of day degrees for period from 5th of 5 day period where Tavg greater than 5\u00B0C to end point where Tavg less than 5\u00B0C`,
-            popup: `<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> for the period from fifth day of a five-day period where the average temperater is greater than 5\u00B0C to the end point when the average temperature is less than 5\u00B0C`
+            html: '<p></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+            legend: 'Thermal Time (degree days): sum of day degrees for period from 5th of 5 day period where Tavg greater than 5\u00B0C to end point where Tavg less than 5\u00B0C',
+            popup: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> for the period from fifth day of a five-day period where the average temperater is greater than 5\u00B0C to the end point when the average temperature is less than 5\u00B0C'
         },
         'wet_count': {
             desc: 'Wet Count (count of days)',
-            html: `<p>Wet Days</p><p>Reduction in the number of wet days.</p><p>Extenuation of rain shadow effect, with further reduction in wet days, particularly in the west?</p>`,
-            legend: `Wet Count (count of days): days when P >= 0.2 mm`,
-            popup: `<b>{Raster.ItemPixelValue}</b> total wet days in <b>{Year}</b> when precipitation is greater than or equal to 0.2 mm`
+            html: '<p>Wet Days</p><p>Reduction in the number of wet days.</p><p>Extenuation of rain shadow effect, with further reduction in wet days, particularly in the west?</p>',
+            legend: 'Wet Count (count of days): days when P >= 0.2 mm',
+            popup: '<b>{Raster.ItemPixelValue}</b> total wet days in <b>{Year}</b> when precipitation is greater than or equal to 0.2 mm'
         },
         'wet_spell_n': {
             desc: 'Wet Spell (count of days)',
-            html: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
-            legend: `Wet Spell (count of days): max consecutive count P > 0.2 mm`,
-            popup: `<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum consecutive count of precipitation is greater than 0.2 mm`
+            html: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+            legend: 'Wet Spell (count of days): max consecutive count P > 0.2 mm',
+            popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum consecutive count of precipitation is greater than 0.2 mm'
         },
         'wettestweek_doy': {
             desc: 'Wettest Week (day of year)',
-            html: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
-            legend: `Wettest Week (day of year): mid-week date when maximum 7d value of P occurs`,
-            popup: `<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the maximum seven-day value of precipitation occurs`
+            html: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+            legend: 'Wettest Week (day of year): mid-week date when maximum 7d value of P occurs',
+            popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the maximum seven-day value of precipitation occurs'
         },
         'wettestweek_mm': {
             desc: 'Wettest Week (mm)',
-            html: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>`,
-            legend: `Wettest Week (mm): Maximum amount of P (7 consecutive days)`,
-            popup: `<b>{Raster.ItemPixelValue}</b> mm of precipitation in <b>{Year}</b> calculated from the maximum amount of precipitation in seven consecutive days`
+            html: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+            legend: 'Wettest Week (mm): Maximum amount of P (7 consecutive days)',
+            popup: '<b>{Raster.ItemPixelValue}</b> mm of precipitation in <b>{Year}</b> calculated from the maximum amount of precipitation in seven consecutive days'
         }
     };
-
+    
     const selectorExpression = [
         [`accumulatedfrost_degreedays`, indicators.accumulatedfrost_degreedays.desc],
         [`airfrost_count`, indicators.airfrost_count.desc],

@@ -158,7 +158,7 @@ iframe {
 /******** Misc ********/
 
 .esri-popup__footer {
-    display: none;
+    /* display: none; */
 }
 
 .esri-expand__content--expanded {
