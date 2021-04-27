@@ -145,7 +145,7 @@ require([
     const yearDefinition = new DimensionalDefinition({
         variableName: 'plantheatstress_count',
         dimensionName: 'Year',
-        values: [1961], // yearSlider start
+        values: [2021], // yearSlider start
         isSlice: true
     });
 
@@ -352,7 +352,7 @@ require([
         },
         'growing_degreedays': {
             desc: 'Growing (degree days)',
-            html: '<p>Sum of degree days in a year when the average temperature is greater than 5.6\u00B0C</p><p>Slight increase in Scotland, large increase in lowland England.</p><p>Continued increase, particularly in lowland areas and southern UK.</p>',
+            html: '<p>This is an accumulated sum for mean temperature <i>above</i> a threshold assumed to represent the temperature above which plants are photosynthetically active. A threshold of 5.6\u00B0C is used and the calculation is very similar to that of Heating Degree Days. For example, if the mean temperature for a day is 7.6\u00B0C this equates to 2.0 Growing Degree Days (GDD). Typical values in the early 1960\'s were approximately 950 GDD per annum in North Scotland, 1000 GDD per annum in East Scotland and 1150 GDD per annum in West Scotland. (<a href="https://www.sniffer.org.uk/Handlers/Download.ashx?IDMF=51c75256-1dbe-4086-9cb0-6f37999463a7#page=24" target="_blank" >source</a>)</a></p><p>Sum of degree days in a year when the average temperature is greater than 5.6\u00B0C</p><p>Slight increase in Scotland, large increase in lowland England.</p><p>Continued increase, particularly in lowland areas and southern UK.</p>',
             legend: 'Growing (degree days): sum Tavg > 5.6\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C'
         },
@@ -364,7 +364,7 @@ require([
         },
         'growseason_length': {
             desc: 'Grow Season Length (count of days)',
-            html: '<p>Number of days in a year when the average temperature is greater than 5.6\u00B0C between the start and the end of growing season</p><p>Slight shift to increased length.</p><p>Increase in growing season length, by 30+ days from 1960 to 1990 period.</p>',
+            html: '<p>This is the number of days between the start and end of the growing season. Growing Start is calculated  as Julian days where the growing season is assumed to start on the 5th consecutive day with a mean temperature of 5\u00B0C or greater. Growing Season End is calculated in Julian days where the growing season is assumed to end ont the 5th consecutive day with a mean temperature of 5\u00B0C or less. (<a href="https://www.sniffer.org.uk/Handlers/Download.ashx?IDMF=51c75256-1dbe-4086-9cb0-6f37999463a7#page=25" target="_blank" >source</a>)</a></p><p>In the early 1960\'s typical values were a growing season of approximately 213 days in East Scotland, 217 days in North Scotland and 237 days in the West.</p><p>Number of days in a year when the average temperature is greater than 5.6\u00B0C between the start and the end of growing season</p><p>Slight shift to increased length.</p><p>Increase in growing season length, by 30+ days from 1960 to 1990 period.</p>',
             legend: 'Grow Season Length (count of days): days when Tavg > 5.6\u00B0C between start and end of growing season',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C between the start and the end of growing season'
         },
@@ -376,7 +376,7 @@ require([
         },
         'heating_degreedays': {
             desc: 'Heating (degree days)',
-            html: '<p>Degree days in a year representing the sum of 15.5\u00B0C minus the average temperature where the average temperature is less than 15.5\u00B0C</p><p>Reduction, with associated building heating requirments.</p><p>Further reduction, particularly in upland areas.</p>',
+            html: '<p>This is an indicator of household consumption of heat energy. The base temperature for calculation of a heating degree day is 15.5\u00B0C, such that if the mean temperature were <i>below</i> 15.5\u00B0C then the value of the Heating Degree Day (HDD) for that individual day would be 15.5\u00B0C minus the mean temperature. For example, if a day has a mean temperature of 13.5\u00B0C this is equivalent to 2.0 heating degree days. Typical figures at the start of the 1961 to 2018 period were approximately 3200 HDD per annum for North and East Scotland, and 2900 HDD per annum for West Scotland. (<a href="https://www.sniffer.org.uk/Handlers/Download.ashx?IDMF=51c75256-1dbe-4086-9cb0-6f37999463a7#page=24" target="_blank" >source</a>)</a></p><p>Degree days in a year representing the sum of 15.5\u00B0C minus the average temperature where the average temperature is less than 15.5\u00B0C</p><p>Reduction, with associated building heating requirments.</p><p>Further reduction, particularly in upland areas.</p>',
             legend: 'Heating (degree days): Sum of 15.5\u00B0C minus Tavg where Tavg < 15.5\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> representing the sum of 15.5\u00B0C minus the average temperature where the average temperature is less than 15.5\u00B0C'
         },
@@ -602,7 +602,7 @@ require([
         container: 'yearSlider',
         min: 1961,
         max: 2080,
-        values: [1961],
+        values: [2021],
         precision: 0,
         snapOnClickEnabled: true,
         visibleElements: {
