@@ -239,7 +239,7 @@ require([
                         value: {
                             fields: ['indicators.accumulatedfrost_degreedays'],
                             normalizeField: null,
-                            tooltipField: 'indicators.plantheatstress_count'
+                            tooltipField: 'indicators.accumulatedfrost_degreedays'
                         }
                     }]
                 }
@@ -310,13 +310,13 @@ require([
         },
         'cold_spell_n': {
             desc: 'Cold Spell (count of days)',
-            html: '<p>Consecutive days in a year when the maximum temperature is less than the average maximum temperature in a baseline year minus 3\u00B0C (where the minimum is not less than 6 days) </p><p>Reduction in the number of days when the minimum temperature is below the average minimum temperature (1961-1990 period) and less an additional -3\u00B0C for at least 6 consecutive days.</p><p>Reduction continues into the future and become geographically more uniform. Scotland show less change than the rest of the UK.</p>',
+            html: '<p>Consecutive days in a year when the maximum temperature is less than the average maximum temperature in a baseline year minus 3\u00B0C (where the minimum is not less than 6 days) </p><p>Reduction in the number of days when the minimum temperature is below the average minimum temperature (1961-1990 period) and less an additional -3\u00B0C for at least 6 consecutive days.</p><p>Reduction continues into the future and becomes geographically more uniform. </p>',
             legend: 'Cold Spell (count of days): Max count of consecutive days when Tmax < avgTmax (baseline year) - 3\u00B0C (min 6 days)',
             popup: '<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when the maximum temperature is less than the average maximum temperature in a baseline year minus 3\u00B0C'
         },
         'dry_count': {
             desc: 'Dry Count (count of days)',
-            html: '<p>Number of days in a year when precipitation is less than 0.2 mm</p><p>Increasing number of dry days.</p><p>Continued large increase in number of dry days, particularly in the west.</p>',
+            html: '<p>Number of days in a year when precipitation is less than 0.2 mm</p><p>Increasing number of dry days.</p><p>Continued large increase in number of dry days, particularly in the east.</p>',
             legend: 'Dry Count (count of days): count of days when P < 0.2 mm',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when precipitation is less than 0.2 mm '
         },
@@ -328,7 +328,7 @@ require([
         },
         'end_growingseason': {
             desc: 'End of Growing Season (day of year)',
-            html: '<p>Day of the year (out of 365) when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July</p><p>Shift towards lated in the year.</p><p>Continues to occur later and more uniform spatial distribution of when in lowlands.</p>',
+            html: '<p>Day of the year (out of 365) when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July</p><p>Shift towards later in the year.</p><p>Continues to occur later and more uniform spatial distribution of when in lowlands.</p>',
             legend: 'End of Growing Season (day of year): day when 5 consecutive days Tavg < 5.6\u00B0C from 1 July',
             popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July'
         },
@@ -463,13 +463,13 @@ require([
             html: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
             legend: 'Wettest Week (day of year): mid-week date when maximum 7d value of P occurs',
             popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the maximum seven-day value of precipitation occurs'
-        },
-        'wettestweek_mm': {
-            desc: 'Wettest Week (mm)',
-            html: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
-            legend: 'Wettest Week (mm): Maximum amount of P (7 consecutive days)',
-            popup: '<b>{Raster.ItemPixelValue}</b> mm of precipitation in <b>{Year}</b> calculated from the maximum amount of precipitation in seven consecutive days'
-        }
+        }//,
+        // 'wettestweek_mm': {
+        //     desc: 'Wettest Week (mm)',
+        //     html: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+        //     legend: 'Wettest Week (mm): Maximum amount of P (7 consecutive days)',
+        //     popup: '<b>{Raster.ItemPixelValue}</b> mm of precipitation in <b>{Year}</b> calculated from the maximum amount of precipitation in seven consecutive days'
+        // }
     };
     
     const selectorExpression = [
@@ -500,8 +500,8 @@ require([
         [`thermaltime_sum`, indicators.thermaltime_sum.desc],
         [`wet_count`, indicators.wet_count.desc],
         [`wet_spell_n`, indicators.wet_spell_n.desc],
-        [`wettestweek_doy`, indicators.wettestweek_doy.desc],
-        [`wettestweek_mm`, indicators.wettestweek_mm.desc]
+        [`wettestweek_doy`, indicators.wettestweek_doy.desc]//,
+        // [`wettestweek_mm`, indicators.wettestweek_mm.desc]
     ];
 
     // selectDivs configs
@@ -723,3 +723,18 @@ require([
     };
     setTimeout(legendTooltip, 1000);
 });
+
+//! https://ekenes.github.io/covid19viz/
+//change slider to time-window and back again
+// checkbox.addEventListener( "input", (event) => {
+//     if(checkbox.checked){
+//       updateSlider({ mode: "time-window" });
+//     } else {
+//       updateSlider({ mode: "instant" });
+//     }
+//   });
+
+//   interface UpdateSliderParams {
+//     mode?: "time-window" | "instant",
+//     filter?: string
+//   }
