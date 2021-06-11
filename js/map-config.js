@@ -270,6 +270,7 @@ require([
         renderer: countOfDayRenderer,
         renderingRule: serviceRasterFunction,
         opacity: 0.9,
+        //blendMode: "multiply", https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
         popupTemplate: indicatorLayerPopupTemplate
     });
     map.add(indicatorLayer);
