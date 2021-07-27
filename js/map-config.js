@@ -248,7 +248,7 @@ require([
             }
         }]
     });
-    map.add(idLayer);
+    //map.add(idLayer);
 
 
     //check idLayer is loaded and then log json
@@ -432,7 +432,7 @@ require([
         'start_grow_doy': {
             desc: 'Start Grow (day of year)',
             html: '<p>Day of the year (out of 365) when five consecutive days have an average temperature greater than 5.6\u00B0C</p><p>Shifted to occurring earlier in the year.</p><p>Continues to occur earlier, most particularly for location normally (in 1961-1990 period) with a later start date.</p>',
-            legend: 'Start Grow (day of year): day when 5 consecutve days Tavg > 5.6\u00B0C',
+            legend: 'Start Grow (day of year): day when 5 consecutive days Tavg > 5.6\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when five consecutive days have an average temperature greater than 5.6\u00B0C'
         },
         'tempgrowingperiod_length': {
