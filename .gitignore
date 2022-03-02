@@ -1,5 +1,3 @@
+*.csv
+data/*.csv
 
-data/start_grow_doy_allyears.csv
-airfrost_count_allyears.csv
-*.csv
-*.csv
