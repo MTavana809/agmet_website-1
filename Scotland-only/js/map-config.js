@@ -55,10 +55,8 @@ require([
     const view = new MapView({
         container: 'mapDiv',
         map: map,
-        //extent: new Extent({xmin: -500, ymin: 7500, xmax: 656500, ymax: 1218500, spatialReference: 2770}) //,
-        center: new Point({ x: 200000, y: 600000, spatialReference: 27700 }), // reprojected to allow OS basemap
-        scale: 5500000
-        //zoom: 6.5
+        center: new Point({ x: 200000, y: 785000, spatialReference: 27700 }), // reprojected to allow OS basemap
+        zoom: 8
     });
 
     /******************************
@@ -267,7 +265,7 @@ require([
     // create and add imagery layer to view
     const indicatorLayer = new ImageryLayer({
         title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-        url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/UKagmets_priority/ImageServer',
+        url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/agrometIndicators/ImageServer',
         mosaicRule: mosaicRule,
         renderer: countOfDayRenderer,
         renderingRule: serviceRasterFunction,
@@ -299,7 +297,7 @@ require([
      * programmatically make selectors 
      *******************************/
      const indicators = {
-       /* 'accumulatedfrost_degreedays': {
+        'accumulatedfrost_degreedays': {
             desc: 'Accumulated Frost (degree days)',
             html: '', // '<p>Sum of degree days in a year when the minimum temperature is less than 0\u00B0C</p><p>Reduced amount of accumulated frost with a continued reduction in the future</p>',
             legend: 'Accumulated Frost (degree days): sum of degree days where Tmin < 0\u00B0C',
@@ -352,14 +350,14 @@ require([
              html: '', //  '<p>Number of days in a year when the minimum temperature is less than 5\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
             legend: 'Grassfrost (count of days): count of days when Tmin < 5\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C'
-        }, */
+        },
         'growing_degreedays': {
             desc: 'Growing (degree days)',
              html: '', //  '<p>This is an accumulated sum for mean temperature <i>above</i> a threshold assumed to represent the temperature above which plants are photosynthetically active. A threshold of 5.6\u00B0C is used and the calculation is very similar to that of Heating Degree Days. For example, if the mean temperature for a day is 7.6\u00B0C this equates to 2.0 Growing Degree Days (GDD). Typical values in the early 1960\'s were approximately 950 GDD per annum in North Scotland, 1000 GDD per annum in East Scotland and 1150 GDD per annum in West Scotland. (<a href="https://www.sniffer.org.uk/Handlers/Download.ashx?IDMF=51c75256-1dbe-4086-9cb0-6f37999463a7#page=24" target="_blank" >source</a>)</a></p><p>Sum of degree days in a year when the average temperature is greater than 5.6\u00B0C</p><p>Slight increase in Scotland, large increase in lowland England.</p><p>Continued increase, particularly in lowland areas and southern UK.</p>',
             legend: 'Growing (degree days): sum Tavg > 5.6\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C'
         },
-     /*   'growing_season': {
+        'growing_season': {
             desc: 'Growing Season (count of days)',
              html: '', //  '<p>Number of days in a year when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
             legend: 'Growing Season (count of days): beginning when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C',
@@ -418,25 +416,19 @@ require([
              html: '', //  '<p>Number of days in a year when the maximum temperature is greater than 32\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
             legend: 'Person Heat Stress (count of days): count of days when Tmax > 32\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 32\u00B0C'
-        }, */
+        },
         'plantheatstress_count': {
             desc: 'Plant Heat Stress (count of days)',
              html: '', //  '<p>Number of days in a year when the maximum temperature is greater than 25\u00B0C</p><p>Slight increase in southern Scotland, large increase in south east England.</p><p>Further slight increase in northern UK, continued large increase (20 days +) in southern England.</p>',
             legend: 'Plant Heat Stress (count of days): count of days when Tmax > 25\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 25\u00B0C'
         },
-        'rfall_maytotal': {
-            desc: 'Rainfall Total in May (mm)',
-            html: '', //  '',
-            legend: 'Rainfall Total in May (mm): sum of rainfall in May',
-            popup: ''
-        } /*,
         'rfall_annualtotal': {
             desc: 'Rainfall Annual Total (mm)',
              html: '', //  '',
             legend: 'Rainfall Annual Total (mm): sum of rainfall per year',
             popup: ''
-        } ,
+        },
         'start_fieldops_doy': {
             desc: 'Start FieldOps (day of year)',
              html: '', //  '<p>Day of the year (out of 365) when the sum of the daily average temperatures from 1 Jan is greater than 200\u00B0C, indicating the start of Field Operations</p><p>Shifted to occur earlier in the year.</p><p>Continues to occur earlier and more uniform spatial distriction of when in lowlands.</p>',
@@ -484,40 +476,39 @@ require([
         //     html: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
         //     legend: 'Wettest Week (mm): Maximum amount of P (7 consecutive days)',
         //     popup: '<b>{Raster.ItemPixelValue}</b> mm of precipitation in <b>{Year}</b> calculated from the maximum amount of precipitation in seven consecutive days'
-        // }*/
+        // }
     };
     
     const selectorExpression = [
-        // [`accumulatedfrost_degreedays`, indicators.accumulatedfrost_degreedays.desc],
-        // [`airfrost_count`, indicators.airfrost_count.desc],
-        // [`cold_spell_n`, indicators.cold_spell_n.desc],
-        // [`dry_count`, indicators.dry_count.desc],
-        // [`dry_spell_n`, indicators.dry_spell_n.desc],
-        // [`end_growingseason`, indicators.end_growingseason.desc],
-        // [`first_airfrost_doy`, indicators.first_airfrost_doy.desc],
-        // [`first_grassfrost_doy`, indicators.first_grassfrost_doy.desc],
-        // [`grassfrost_count`, indicators.grassfrost_count.desc],
+        [`accumulatedfrost_degreedays`, indicators.accumulatedfrost_degreedays.desc],
+        [`airfrost_count`, indicators.airfrost_count.desc],
+        [`cold_spell_n`, indicators.cold_spell_n.desc],
+        [`dry_count`, indicators.dry_count.desc],
+        [`dry_spell_n`, indicators.dry_spell_n.desc],
+        [`end_growingseason`, indicators.end_growingseason.desc],
+        [`first_airfrost_doy`, indicators.first_airfrost_doy.desc],
+        [`first_grassfrost_doy`, indicators.first_grassfrost_doy.desc],
+        [`grassfrost_count`, indicators.grassfrost_count.desc],
         [`growing_degreedays`, indicators.growing_degreedays.desc],
-        // [`growing_season`, indicators.growing_season.desc],
-        // [`growseason_length`, indicators.growseason_length.desc],
-        // [`growseason_range`, indicators.growseason_range.desc],
-        // [`heating_degreedays`, indicators.heating_degreedays.desc],
-        // [`heatwave_n`, indicators.heatwave_n.desc],
-        // [`last_airfrost_doy`, indicators.last_airfrost_doy.desc],
-        // [`last_grassfrost_doy`, indicators.last_grassfrost_doy.desc],
-        // [`p_intensity`, indicators.p_intensity.desc],
-        // [`p_seasonality`, indicators.p_seasonality.desc],
-        // [`personheatstress_count`, indicators.personheatstress_count.desc],
+        [`growing_season`, indicators.growing_season.desc],
+        [`growseason_length`, indicators.growseason_length.desc],
+        [`growseason_range`, indicators.growseason_range.desc],
+        [`heating_degreedays`, indicators.heating_degreedays.desc],
+        [`heatwave_n`, indicators.heatwave_n.desc],
+        [`last_airfrost_doy`, indicators.last_airfrost_doy.desc],
+        [`last_grassfrost_doy`, indicators.last_grassfrost_doy.desc],
+        [`p_intensity`, indicators.p_intensity.desc],
+        [`p_seasonality`, indicators.p_seasonality.desc],
+        [`personheatstress_count`, indicators.personheatstress_count.desc],
         [`plantheatstress_count`, indicators.plantheatstress_count.desc],
-        ['rfall_maytotal', indicators.rfall_maytotal.desc] //,
-        // ['rfall_annualtotal', indicators.rfall_annualtotal.desc],
-        // [`start_fieldops_doy`, indicators.start_fieldops_doy.desc],
-        // [`start_grow_doy`, indicators.start_grow_doy.desc],
-        // [`tempgrowingperiod_length`, indicators.tempgrowingperiod_length.desc],
-        // [`thermaltime_sum`, indicators.thermaltime_sum.desc],
-        // [`wet_count`, indicators.wet_count.desc],
-        // [`wet_spell_n`, indicators.wet_spell_n.desc],
-        // [`wettestweek_doy`, indicators.wettestweek_doy.desc]//,
+        ['rfall_annualtotal', indicators.rfall_annualtotal.desc],
+        [`start_fieldops_doy`, indicators.start_fieldops_doy.desc],
+        [`start_grow_doy`, indicators.start_grow_doy.desc],
+        [`tempgrowingperiod_length`, indicators.tempgrowingperiod_length.desc],
+        [`thermaltime_sum`, indicators.thermaltime_sum.desc],
+        [`wet_count`, indicators.wet_count.desc],
+        [`wet_spell_n`, indicators.wet_spell_n.desc],
+        [`wettestweek_doy`, indicators.wettestweek_doy.desc]//,
         // [`wettestweek_mm`, indicators.wettestweek_mm.desc]
     ];
 
@@ -619,7 +610,7 @@ require([
         container: 'yearSlider',
         min: 1961,
         max: 2080,
-        values: [2022],
+        values: [2021],
         precision: 0,
         snapOnClickEnabled: true,
         visibleElements: {
