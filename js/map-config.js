@@ -598,10 +598,10 @@ require([
         const hideaway = document.getElementById('hideaway');
         const HTML30yrmaps = `
         <div id='imgGrid'>
-            <div><p>1961-1990 Average</p><img src='img/${chosenIndicator}_1961-1990_observed_scotland.png' alt=''></div>
-            <div><p>1991-2018 Average</p><img src='img/${chosenIndicator}_1991-2018_observed_scotland.png' alt=''></div>
-            <div><p>2019-2050 Average</p><img src='img/${chosenIndicator}_2019-2050_ensemblemean_scotland.png' alt=''></div>
-            <div><p>2051-2080 Average</p><img src='img/${chosenIndicator}_2051-2080_ensemblemean_scotland.png' alt=''></div>
+            <div><p>1961-1990 Average</p><img src='img/${chosenIndicator}_avg1961_1990.png' alt=''></div>
+            <div><p>1991-2018 Average</p><img src='img/${chosenIndicator}_avg1991_2020.png' alt=''></div>
+            <div><p>2019-2050 Average</p><img src='img/${chosenIndicator}_avg2021_2050.png' alt=''></div>
+            <div><p>2051-2080 Average</p><img src='img/${chosenIndicator}_avg2051_2080.png' alt=''></div>
         </div>`
         const htmlContent = HTML30yrmaps + indicators[chosenIndicator].html;
         hideaway.innerHTML = `<h2>${indicators[chosenIndicator].desc}</h2>${htmlContent}`

@@ -10,7 +10,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;  /* set back to 70% for hideaway */
+    width: 70%; 
     height: 100%;
 }
 
@@ -91,7 +91,6 @@ iframe {
 /******** Hideaway on the right ********/
 
 #button {
-    display:none; /*change when hideaway comes back */
     position: absolute;
     z-index: 9;
     top: 114px;
@@ -113,7 +112,7 @@ iframe {
 }
 
 #hideaway {
-    display: none;
+    display: block;
     position: fixed;
     z-index: 10;
     /* resize: horizontal; */
