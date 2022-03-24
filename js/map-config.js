@@ -38,7 +38,7 @@ require([
     ImageHistogramParameters,
     LineChartMediaInfo) => {
 
-    // new basemap definition 
+    // new basemap definition
     const basemap = new Basemap({
         portalItem: {
             id: '54140d826fe34135abb3b60c157170dc' // os_open_greyscale_no_labels
@@ -183,7 +183,7 @@ require([
         }
     };
 
-    // create and add id layer to view 
+    // create and add id layer to view
     // create and add MapImageLayer
     const idLayer = new MapImageLayer({
         url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/indicators_and_cells_notJoined/MapServer',
@@ -296,7 +296,7 @@ require([
     //     });
 
     /******************************
-     * programmatically make selectors 
+     * programmatically make selectors
      *******************************/
      const indicators = {
         // 'accumulatedfrost_degreedays': {
@@ -304,7 +304,7 @@ require([
         //     html: '', // '<p>Sum of degree days in a year when the minimum temperature is less than 0\u00B0C</p><p>Reduced amount of accumulated frost with a continued reduction in the future</p>',
         //     legend: 'Accumulated Frost (degree days): sum of degree days where Tmin < 0\u00B0C',
         //     popup: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C'
-        // }, 
+        // },
         'airfrost_count': {
             desc: 'Air Frost (count of days)',
             html: '', // '<p>Number of days in a year when the minimum temperature is less than 0\u00B0C</p><p>Fewer air frost days in each year with a further reduction in air frost days (c. 12-15 in coastal, 30-40 in lowland and 40-50 in mountain areas).</p>',
@@ -352,7 +352,7 @@ require([
              html: '', //  '<p>Number of days in a year when the minimum temperature is less than 5\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
             legend: 'Grassfrost (count of days): count of days when Tmin < 5\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C'
-        }, 
+        },
         'growing_degreedays': {
             desc: 'Growing (degree days)',
              html: '', //  '<p>This is an accumulated sum for mean temperature <i>above</i> a threshold assumed to represent the temperature above which plants are photosynthetically active. A threshold of 5.6\u00B0C is used and the calculation is very similar to that of Heating Degree Days. For example, if the mean temperature for a day is 7.6\u00B0C this equates to 2.0 Growing Degree Days (GDD). Typical values in the early 1960\'s were approximately 950 GDD per annum in North Scotland, 1000 GDD per annum in East Scotland and 1150 GDD per annum in West Scotland. (<a href="https://www.sniffer.org.uk/Handlers/Download.ashx?IDMF=51c75256-1dbe-4086-9cb0-6f37999463a7#page=24" target="_blank" >source</a>)</a></p><p>Sum of degree days in a year when the average temperature is greater than 5.6\u00B0C</p><p>Slight increase in Scotland, large increase in lowland England.</p><p>Continued increase, particularly in lowland areas and southern UK.</p>',
@@ -388,7 +388,7 @@ require([
     //          html: '', //  '<p>Number of days in a year when the maximum temperature is greater than the average temperature in a baseline year plus 3\u00B0C</p><p>Increasing number of heat wave days, particularly in southern UK.</p><p>Continued increase, particularly in lowland and coastal locations. Less change in Scotland than the rest of the UK.</p>',
     //         legend: 'Heatwave (count of days): Max count of consecutive days when Tmax > avgTmax (baseline year) + 3\u00B0C (min 6 days)',
     //         popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than the average temperature in a baseline year plus 3\u00B0C'
-    //     }, 
+    //     },
         'last_airfrost_doy': {
             desc: 'Last Airfrost (day of year)',
              html: '', //  '<p>Last day of the year (out of 365) when the minimum temperature is less than 0\u00B0C before 1 July</p><p>Shifted to occurring earlier in the year for most lowland areas.</p><p>Large shift to earlier in the year in coastal and lowland Scotland.</p>',
@@ -424,7 +424,7 @@ require([
              html: '', //  '<p>Number of days in a year when the maximum temperature is greater than 32\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
             legend: 'Person Heat Stress (count of days): count of days when Tmax > 32\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 32\u00B0C'
-        }, 
+        },
         'plantheatstress_count': {
             desc: 'Plant Heat Stress (count of days)',
              html: '', //  '<p>Number of days in a year when the maximum temperature is greater than 25\u00B0C</p><p>Slight increase in southern Scotland, large increase in south east England.</p><p>Further slight increase in northern UK, continued large increase (20 days +) in southern England.</p>',
@@ -492,7 +492,7 @@ require([
         //     popup: '<b>{Raster.ItemPixelValue}</b> mm of precipitation in <b>{Year}</b> calculated from the maximum amount of precipitation in seven consecutive days'
         // }
     };
-    
+
     const selectorExpression = [
         // [`accumulatedfrost_degreedays`, indicators.accumulatedfrost_degreedays.desc],
         [`airfrost_count`, indicators.airfrost_count.desc],
@@ -552,7 +552,7 @@ require([
 
     selectDiv.appendChild(selectFilter);
 
-    // make options and add labels for each 
+    // make options and add labels for each
     selectorExpression.forEach(element => {
         let option = document.createElement('option');
         option.value = element[0];
@@ -561,7 +561,7 @@ require([
         selectFilter.appendChild(option);
     });
 
-    // make plantheatstress_count selected 
+    // make plantheatstress_count selected
     selectFilter.value = 'plantheatstress_count';
 
     // add selectDivs to view
@@ -591,7 +591,7 @@ require([
         mosaicRuleClone.multidimensionalDefinition = [indicatorVariable];
         indicatorLayer.mosaicRule = mosaicRuleClone;
 
-        // change renderingRule (raster function) of layer as clone and reassign 
+        // change renderingRule (raster function) of layer as clone and reassign
         const renderingRuleClone = indicatorLayer.renderingRule.clone();
         renderingRuleClone.functionName = chosenIndicator;
         indicatorLayer.renderingRule = renderingRuleClone;
@@ -659,7 +659,7 @@ require([
         indicatorLayer.mosaicRule = mosaicRuleClone;
     };
 
-    // set var for play button 
+    // set var for play button
     const playButton = document.getElementById('playButton');
 
     // Toggle animation on/off when user
@@ -680,17 +680,17 @@ require([
         timerId = setInterval(() => {
             let year = yearSlider.values[0];
 
-            // check if year has loaded on map
-            if (indicatorLayer.mosaicRule.multidimensionalDefinition[0].values[0] == year && indicatorLayer.loaded
-                // && indicatorLayer.load().then(function() {return true})
-            ) {
+            // // check if year has loaded on map
+            // if (indicatorLayer.mosaicRule.multidimensionalDefinition[0].values[0] == year && indicatorLayer.loaded
+            //     // && indicatorLayer.load().then(function() {return true})
+            // ) {
                 year += 1;
                 if (year > yearSlider.max) {
                     year = yearSlider.min;
                 }
                 yearSlider.values = [year];
                 updateYearDef(year);
-            }
+            // }
 
         }, 700) // speed of playback, milliseconds
         playButton.classList.add('toggled');
@@ -719,7 +719,7 @@ require([
         unit: 'dual' // The scale bar displays both metric and non-metric units.
     });
 
-    // create and add home button to view 
+    // create and add home button to view
     const home = new Home({
         view: view
     });
@@ -728,7 +728,7 @@ require([
     view.ui.add(home, 'bottom-left');
     view.ui.add(scaleBar, 'bottom-right')
 
-    // create and add legend to view 
+    // create and add legend to view
     const legend = new Legend({
         view: view,
         layerInfos: [{
