@@ -416,66 +416,77 @@ require([
         },
         'max_febtemp': {
             desc: '&nbsp;&nbsp;-- max temp in February',
+            hideaway: 'Maximum Temperature in February (\u00B0C)',
             html: '',
             legend: 'Maximum Temperature in February (\u00B0C): highest temperature in February per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in February in <b>{Year}</b>'
         },
         'max_martemp': {
             desc: '&nbsp;&nbsp;-- max temp in March',
+            hideaway: 'Maximum Temperature in March (\u00B0C)',
             html: '',
             legend: 'Maximum Temperature in March (\u00B0C): highest temperature in March per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in March in <b>{Year}</b>'
         },
         'max_aprtemp': {
             desc: '&nbsp;&nbsp;-- max temp in April',
+            hideaway: 'Maximum Temperature in April (\u00B0C)',
             html: '',
             legend: 'Maximum Temperature in April (\u00B0C): highest temperature in April per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in April in <b>{Year}</b>'
         },
         'max_maytemp': {
             desc: '&nbsp;&nbsp;-- max temp in May',
+            hideaway: 'Maximum Temperature in May (\u00B0C)',
             html: '',
             legend: 'Maximum Temperature in May (\u00B0C): highest temperature in May per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in May in <b>{Year}</b>'
         },
         'max_juntemp': {
             desc: '&nbsp;&nbsp;-- max temp in June',
+            hideaway: 'Maximum Temperature in June (\u00B0C)',
             html: '',
             legend: 'Maximum Temperature in June (\u00B0C): highest temperature in June per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in June in <b>{Year}</b>'
         },
         'max_jultemp': {
             desc: '&nbsp;&nbsp;-- max temp in July',
+            hideaway: 'Maximum Temperature in July (\u00B0C)',
             html: '',
             legend: 'Maximum Temperature in July (\u00B0C): highest temperature in July per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in July in <b>{Year}</b>'
         },
         'max_augtemp': {
             desc: '&nbsp;&nbsp;-- max temp in August',
+            hideaway: 'Maximum Temperature in August (\u00B0C)',
             html: '',
             legend: 'Maximum Temperature in August (\u00B0C): highest temperature in August per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in August in <b>{Year}</b>'
         },
         'max_septemp': {
             desc: '&nbsp;&nbsp;-- max temp in September',
+            hideaway: 'Maximum Temperature in September (\u00B0C)',
             html: '',
             legend: 'Maximum Temperature in September (\u00B0C): highest temperature in September per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in September in <b>{Year}</b>'
         },
         'max_octtemp': {
             desc: '&nbsp;&nbsp;-- max temp in October',
+            hideaway: 'Maximum Temperature in October (\u00B0C)',
             html: '',
             legend: 'Maximum Temperature in October (\u00B0C): highest temperature in October per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in October in <b>{Year}</b>'
         },
         'max_novtemp': {
             desc: '&nbsp;&nbsp;-- max temp in November',
+            hideaway: 'Maximum Temperature in November (\u00B0C)',
             html: '',
             legend: 'Maximum Temperature in November (\u00B0C): highest temperature in November per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in November in <b>{Year}</b>'
         },
         'max_dectemp': {
             desc: '&nbsp;&nbsp;-- max temp in December',
+            hideaway: 'Maximum Temperature in December (\u00B0C)',
             html: '',
             legend: 'Maximum Temperature in December (\u00B0C): highest temperature in December per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in December in <b>{Year}</b>'
@@ -488,72 +499,84 @@ require([
         },
         'min_jantemp': {
             desc: '&nbsp;&nbsp;-- min temp in January',
+            hideaway: 'Minimum Temperature in January (\u00B0C)',
             html: '',
             legend: 'Minimum Temperature in January (\u00B0C): lowest temperature in January per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in January in <b>{Year}</b>'
         },
         'min_febtemp': {
             desc: '&nbsp;&nbsp;-- min temp in February',
+            hideaway: 'Minimum Temperature in February (\u00B0C)',
             html: '',
             legend: 'Minimum Temperature in February (\u00B0C): lowest temperature in February per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in February in <b>{Year}</b>'
         },
         'min_martemp': {
             desc: '&nbsp;&nbsp;-- min temp in March',
+            hideaway: 'Minimum Temperature in March (\u00B0C)',
             html: '',
             legend: 'Minimum Temperature in March (\u00B0C): lowest temperature in March per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in March in <b>{Year}</b>'
         },
         'min_aprtemp': {
             desc: '&nbsp;&nbsp;-- min temp in April',
+            hideaway: 'Minimum Temperature in April (\u00B0C)',
             html: '',
             legend: 'Minimum Temperature in April (\u00B0C): lowest temperature in April per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in April in <b>{Year}</b>'
         },
         'min_maytemp': {
             desc: '&nbsp;&nbsp;-- min temp in May',
+            hideaway: 'Minimum Temperature in May (\u00B0C)',
             html: '',
             legend: 'Minimum Temperature in May (\u00B0C): lowest temperature in May per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in May in <b>{Year}</b>'
         },
         'min_juntemp': {
             desc: '&nbsp;&nbsp;-- min temp in June',
+            hideaway: 'Minimum Temperature in June (\u00B0C)',
             html: '',
             legend: 'Minimum Temperature in June (\u00B0C): lowest temperature in June per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in June in <b>{Year}</b>'
         },
         'min_jultemp': {
             desc: '&nbsp;&nbsp;-- min temp in July',
+            hideaway: 'Minimum Temperature in July (\u00B0C)',
             html: '',
             legend: 'Minimum Temperature in July (\u00B0C): lowest temperature in July per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in July in <b>{Year}</b>'
         },
         'min_augtemp': {
             desc: '&nbsp;&nbsp;-- min temp in August',
+            hideaway: 'Minimum Temperature in August (\u00B0C)',
             html: '',
             legend: 'Minimum Temperature in August (\u00B0C): lowest temperature in August per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in August in <b>{Year}</b>'
         },
         'min_septemp': {
             desc: '&nbsp;&nbsp;-- min temp in September',
+            hideaway: 'Minimum Temperature in September (\u00B0C)',
             html: '',
             legend: 'Minimum Temperature in September (\u00B0C): lowest temperature in September per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in September in <b>{Year}</b>'
         },
         'min_octtemp': {
             desc: '&nbsp;&nbsp;-- min temp in October',
+            hideaway: 'Minimum Temperature in October (\u00B0C)',
             html: '',
             legend: 'Minimum Temperature in October (\u00B0C): lowest temperature in October per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in October in <b>{Year}</b>'
         },
         'min_novtemp': {
             desc: '&nbsp;&nbsp;-- min temp in November',
+            hideaway: 'Minimum Temperature in November (\u00B0C)',
             html: '',
             legend: 'Minimum Temperature in November (\u00B0C): lowest temperature in November per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in November in <b>{Year}</b>'
         },
         'min_dectemp': {
             desc: '&nbsp;&nbsp;-- min temp in December',
+            hideaway: 'Minimum Temperature in December (\u00B0C)',
             html: '',
             legend: 'Minimum Temperature in December (\u00B0C): lowest temperature in December per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in December in <b>{Year}</b>'
@@ -620,72 +643,84 @@ require([
         },
         'rfall_jantotal': {
             desc: '&nbsp;&nbsp;-- rainfall in January',
+            hideaway: 'Rainfall Total in January (mm)',
             html: '', 
             legend: 'Rainfall Total in January (mm): sum of rainfall in January',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in January in <b>{Year}</b>'
         },
         'rfall_febtotal': {
             desc: '&nbsp;&nbsp;-- rainfall in February',
+            hideaway: 'Rainfall Total in February (mm)',
             html: '', 
             legend: 'Rainfall Total in February (mm): sum of rainfall in February',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in February in <b>{Year}</b>'
         },
         'rfall_martotal': {
             desc: '&nbsp;&nbsp;-- rainfall in March',
+            hideaway: 'Rainfall Total in March (mm)',
             html: '', 
             legend: 'Rainfall Total in March (mm): sum of rainfall in March',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in March in <b>{Year}</b>'
         },
         'rfall_aprtotal': {
             desc: '&nbsp;&nbsp;-- rainfall in April',
+            hideaway: 'Rainfall Total in April (mm)',
             html: '', 
             legend: 'Rainfall Total in April (mm): sum of rainfall in April',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in April in <b>{Year}</b>'
         },
         'rfall_maytotal': {
             desc: '&nbsp;&nbsp;-- rainfall in May',
+            hideaway: 'Rainfall Total in May (mm)',
             html: '', 
             legend: 'Rainfall Total in May (mm): sum of rainfall in May',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in May in <b>{Year}</b>'
         },
         'rfall_juntotal': {
             desc: '&nbsp;&nbsp;-- rainfall in June',
+            hideaway: 'Rainfall Total in June (mm)',
             html: '', 
             legend: 'Rainfall Total in June (mm): sum of rainfall in June',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in June in <b>{Year}</b>'
         },
         'rfall_jultotal': {
             desc: '&nbsp;&nbsp;-- rainfall in July',
+            hideaway: 'Rainfall Total in July (mm)',
             html: '', 
             legend: 'Rainfall Total in July (mm): sum of rainfall in July',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in July in <b>{Year}</b>'
         },
         'rfall_augtotal': {
             desc: '&nbsp;&nbsp;-- rainfall in August',
+            hideaway: 'Rainfall Total in August (mm)',
             html: '', 
             legend: 'Rainfall Total in August (mm): sum of rainfall in August',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in August in <b>{Year}</b>'
         },
         'rfall_septotal': {
             desc: '&nbsp;&nbsp;-- rainfall in September',
+            hideaway: 'Rainfall Total in September (mm)',
             html: '', 
             legend: 'Rainfall Total in September (mm): sum of rainfall in September',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in September in <b>{Year}</b>'
         },
         'rfall_octtotal': {
             desc: '&nbsp;&nbsp;-- rainfall in October',
+            hideaway: 'Rainfall Total in October (mm)',
             html: '', 
             legend: 'Rainfall Total in October (mm): sum of rainfall in October',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in October in <b>{Year}</b>'
         },
         'rfall_novtotal': {
             desc: '&nbsp;&nbsp;-- rainfall in November',
+            hideaway: 'Rainfall Total in November (mm)',
             html: '', 
             legend: 'Rainfall Total in November (mm): sum of rainfall in November',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in November in <b>{Year}</b>'
         },
         'rfall_dectotal': {
             desc: '&nbsp;&nbsp;-- rainfall in December',
+            hideaway: 'Rainfall Total in December (mm)',
             html: '', 
             legend: 'Rainfall Total in December (mm): sum of rainfall in December',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in December in <b>{Year}</b>'
@@ -899,8 +934,11 @@ require([
             <div><p>2051-2080 Average</p><img src='img/${chosenIndicator}_avg2051_2080.png' alt=''></div>
         </div>`
         const htmlContent = HTML30yrmaps + indicators[chosenIndicator].html;
-        hideaway.innerHTML = `<h2>${indicators[chosenIndicator].desc}</h2>${htmlContent}`
 
+        if (indicators[chosenIndicator].desc.includes('--')) {
+            hideaway.innerHTML = `<h2>${indicators[chosenIndicator].hideaway}</h2>${htmlContent}`
+        } else {hideaway.innerHTML = `<h2>${indicators[chosenIndicator].desc}</h2>${htmlContent}`}
+    
         // change popup contents
         const popupTemplateClone = indicatorLayer.popupTemplate.clone();
         popupTemplateClone.content = indicators[chosenIndicator].popup;
