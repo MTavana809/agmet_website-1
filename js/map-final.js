@@ -127,6 +127,73 @@ require([
         stretchType: 'min-max'
     });
 
+    //color ramps - Blue and Green
+    const colors = ["#fffcd4", "#b1cdc2", "#629eb0", "#38627a", "#0d2644"];
+
+    const colorRamp11 = new AlgorithmicColorRamp({
+    algorithm: 'lab-lch',
+    fromColor: "#fffcd4",
+    toColor:  "#b1cdc2"
+    });
+    const colorRamp12 = new AlgorithmicColorRamp({
+    algorithm: 'lab-lch',
+    fromColor:  "#b1cdc2",
+    toColor: "#629eb0"
+    });
+    const colorRamp13 = new AlgorithmicColorRamp({
+    algorithm: 'lab-lch',
+    fromColor: "#629eb0",
+    toColor:   "#38627a"
+    });
+    const colorRamp14 = new AlgorithmicColorRamp({
+    algorithm: 'lab-lch',
+    fromColor:  "#38627a",
+    toColor:  "#0d2644"
+    });
+
+    const colorBlue = new MultipartColorRamp({
+    colorRamps: [colorRamp11, colorRamp12, colorRamp13, colorRamp14]
+    });
+
+    const countOfDayRenderer2 = new RasterStretchRenderer({
+    colorRamp: colorBlue,
+    stretchType: 'min-max'
+    });
+
+    // Esri color ramps - Blue and Red 
+       
+    const colors3 = ["#ca0020", "#f4a582", "#f7f7f7", "#92c5de", "#0571b0"];
+
+    const colorRamp21 = new AlgorithmicColorRamp({
+        algorithm: 'lab-lch',
+        fromColor: "#ca0020",
+        toColor:  "#f4a582"
+        });
+        const colorRamp22 = new AlgorithmicColorRamp({
+        algorithm: 'lab-lch',
+        fromColor:  "#f4a582",
+        toColor: "#f7f7f7"
+        });
+        const colorRamp23 = new AlgorithmicColorRamp({
+        algorithm: 'lab-lch',
+        fromColor: "#f7f7f7",
+        toColor:  "#92c5de"
+        });
+        const colorRamp24= new AlgorithmicColorRamp({
+        algorithm: 'lab-lch',
+        fromColor:  "#92c5de",
+        toColor: "#0571b0"
+        });
+            
+        const colorRed = new MultipartColorRamp({
+        colorRamps: [colorRamp21, colorRamp22, colorRamp23, colorRamp24]
+        });
+    
+        const countOfDayRenderer3 = new RasterStretchRenderer({
+        colorRamp: colorRed,
+        stretchType: 'min-max'
+        });
+
     const idLayerRenderer = {
         type: 'simple',
         outline: {
@@ -142,7 +209,7 @@ require([
     let serviceRasterFunction = new RasterFunction({
         functionName: 'plantheatstress_count'
     });
-
+    
     // set initial variable and dimension on mosaic dataset
     const yearDefinition = new DimensionalDefinition({
         variableName: 'plantheatstress_count',
@@ -186,7 +253,7 @@ require([
     // create and add id layer to view
     // create and add MapImageLayer
     const idLayer = new MapImageLayer({
-        url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/indicators_and_cells_notJoined/MapServer',
+        url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/UKagmets/ImageServer',
         title: 'Indicators by year per 1km square',
         sublayers: [{
             id: 0,
@@ -265,19 +332,272 @@ require([
     // });
 
     // create and add imagery layer to view
-    const indicatorLayer = new ImageryLayer({
-        title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-        url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/UKagmets/ImageServer',
-        mosaicRule: mosaicRule,
-        renderer: countOfDayRenderer,
-        renderingRule: serviceRasterFunction,
-        opacity: 0.9,
-        //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
-        popupTemplate: indicatorLayerPopupTemplate
-    });
-    map.add(indicatorLayer);
 
-    // // request for histograms for the specified parameters
+// Adding Ensembles
+
+let map1 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/UKagmets/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate 
+  };
+
+  let map2 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble15/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate 
+  };
+  
+  let map3 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble13/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate  
+  };
+  
+
+  let map4 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Ensemble122/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate  
+  };
+
+  let map5 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble11/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate  
+  };
+
+  let map6 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble10/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate  
+  };
+
+  let map7 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble9/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate  
+  };
+
+  let map8 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble8/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate  
+  };
+
+  let map9 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble7/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate  
+  };
+
+  let map10 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Ensemble666/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate  
+  };
+
+  let map11 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble5/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate  
+  };
+
+  let map12 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble4/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate  
+  };
+
+  let map13 = {
+    title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
+    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Ensemble111/ImageServer',
+    mosaicRule: mosaicRule,
+    renderer: countOfDayRenderer,
+    renderingRule: serviceRasterFunction,
+    opacity: 0.9,
+    //blendMode: "multiply", //https://developers.arcgis.com/javascript/latest/sample-code/intro-blendmode-layer/
+    popupTemplate: indicatorLayerPopupTemplate  
+  };
+
+  // Initialize the indicator layer with the default selected map
+let selectedMap = map1;
+const indicatorLayer = new ImageryLayer(selectedMap);
+map.add(indicatorLayer);
+
+// Add Selector Title
+const title = document.createElement('p');
+title.textContent = 'Select Ensemble:';
+title.style.margin = '0 10px 10px 10px';
+
+// Add Selector Container
+const selectorContainer = document.createElement('div');
+selectorContainer.setAttribute('id', 'selectDiv');
+selectorContainer.setAttribute('class', 'esri-widget');
+selectorContainer.setAttribute('style', 'padding: 0 10px 10px 10px;background-color:white;');
+selectorContainer.setAttribute('title', 'Select Agrometeorological Indicator to display on the map');
+selectorContainer.appendChild(title);
+
+// Add Selector
+const selector = document.createElement('select');
+const layerOptions = [
+  { value: 'map1', text: 'Mean of Ensembles' },
+  { value: 'map2', text: 'Ensemble 15' },
+  { value: 'map3', text: 'Ensemble 13' },
+  { value: 'map4', text: 'Ensemble 12' },
+  { value: 'map5', text: 'Ensemble 11' },
+  { value: 'map6', text: 'Ensemble 10' },
+  { value: 'map7', text: 'Ensemble 9' },
+  { value: 'map8', text: 'Ensemble 8' },
+  { value: 'map9', text: 'Ensemble 7' },
+  { value: 'map10', text: 'Ensemble 6' },
+  { value: 'map11', text: 'Ensemble 5' },
+  { value: 'map12', text: 'Ensemble 4' },
+  { value: 'map13', text: 'Ensemble 1' },
+];
+layerOptions.forEach(option => {
+  const optionElement = document.createElement('option');
+  optionElement.value = option.value;
+  optionElement.text = option.text;
+  selector.add(optionElement);
+});
+
+// Add the same class and style attributes as selectDiv
+selector.setAttribute('class', 'esri-widget');
+selector.setAttribute('style', 'background-color:white;');
+selector.setAttribute('style', 'width: 280px;')
+
+selectorContainer.appendChild(selector);
+view.ui.add(selectorContainer, 'top-left');
+
+  
+
+     // Listen to the value change event of the selector
+    selector.addEventListener('change', function() {
+         // Update year definition with the selected year and indicator
+        const selectedIndicator = selectFilter.value;
+        const selectedYear = parseInt(yearSlider.value);
+         yearDefinition.values = [selectedYear];
+    
+         // Update the selected map based on the selector's value
+        if (this.value === 'map1') {
+        selectedMap = map1;
+        } else if (this.value === 'map2') {
+        selectedMap = map2;
+        } else if(this.value === 'map3') {
+            selectedMap = map3
+        } else if (this.value === 'map4') {
+            selectedMap = map4
+        } else if (this.value === 'map5') {
+            selectedMap = map5
+        } else if (this.value === 'map6') {
+            selectedMap = map6
+        } else if (this.value === 'map7') {
+            selectedMap = map7
+        } else if (this.value === 'map8') {
+            selectedMap = map8
+        } else if (this.value === 'map9') {
+            selectedMap = map9
+        } else if (this.value === 'map10') {
+            selectedMap = map10
+        } else if (this.value === 'map11') {
+            selectedMap = map11
+        } else if (this.value === 'map12') {
+            selectedMap = map12
+        } else if (this.value === 'map13') {
+            selectedMap = map13
+        }
+
+         // Update the indicator layer with the selected map
+        console.log('Selected map:', selectedMap);
+        indicatorLayer.url = selectedMap.url;
+        indicatorLayer.renderer = selectedMap.renderer;
+        indicatorLayer.renderingRule = selectedMap.renderingRule;
+        indicatorLayer.opacity = selectedMap.opacity;
+        indicatorLayer.popupTemplate = selectedMap.popupTemplate;
+        console.log('Indicator layer:', indicatorLayer);
+
+         // Update the indicator dropdown to the selected indicator
+        selectFilter.value = yearDefinition.variableName;
+
+
+         // Create a new mosaic rule with the updated year definition
+        mosaicRule = new MosaicRule({
+          multidimensionalDefinition: [yearDefinition]
+        });
+
+         // Update the indicator layer mosaic rule with the new mosaic rule
+        indicatorLayer.mosaicRule = mosaicRule;
+
+        changeIndicator(selectedIndicator);
+        changeDescriptors(selectedIndicator);
+        stopAnimation();
+        closePopup();
+
+    });
+  
+  
+  
+       // // request for histograms for the specified parameters
     // indicatorLayer.computeHistograms(params).then(function(results) {
     //         // results are returned and process it as needed.
     //         console.log("histograms and stats", results);
@@ -301,478 +621,554 @@ require([
      const indicators = {
         'accumulatedfrost_degreedays': {
             desc: 'Accumulated Frost (degree days)',
-            html: '', // '<p>Sum of degree days in a year when the minimum temperature is less than 0\u00B0C</p><p>Reduced amount of accumulated frost with a continued reduction in the future</p>',
+            html: '<br> The Accumulated Frost Days Indicator is the sum of degree days when the minimum temperature per day is below zero. It thus accumulates the amount of cold temperature per day when the minimum temperature is below zero. It shows where cold temperatures are more likely to be experienced for longer. <br><br><b>Calculation:</b> <i> ∑ of day degrees where Tmin < 0.0 °C', 
             legend: 'Accumulated Frost (degree days): sum of degree days where Tmin < 0\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C'
         },
         'airfrost_count': {
             desc: 'Air Frost (count of days)',
-            html: '', // '<p>Number of days in a year when the minimum temperature is less than 0\u00B0C</p><p>Fewer air frost days in each year with a further reduction in air frost days (c. 12-15 in coastal, 30-40 in lowland and 40-50 in mountain areas).</p>',
-            legend: 'Air Frost (count of days): count of days when Tmin < 0\u00B0C',
+            html: '<br> The Air Frost Indictor is the count of the number of days when the minimum temperature is below zero. This is when we might expect to experience a frost in the air, so is the number of days when air frost is likely to occur. <br><br><b>Calculation:</b> <i> Days when Tmin < 0.0 °C ', 
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C'
         },
         'cold_spell_n': {
             desc: 'Cold Spell (count of days)',
-             html: '', //  '<p>Consecutive days in a year when the maximum temperature is less than the average maximum temperature in a baseline year minus 3\u00B0C (where the minimum is not less than 6 days) </p><p>Reduction in the number of days when the minimum temperature is below the average minimum temperature (1961-1990 period) and less an additional -3\u00B0C for at least 6 consecutive days.</p><p>Reduction continues into the future and becomes geographically more uniform. </p>',
+             html: '<br> The Cold Spell Indicator is the maximum count of days when the minimum temperature is below the average minimum temperature (for the baseline 1960-1990 period) and less an additional -3°C for at least 6 consecutive days. Locations that normally already have low temperatures (e.g. Scottish Highlands) may not necessarily show up more than other locations. This indicator tells us where unusually cold spells may occur. <br><br><b>Calculation:</b> <i> Maximum count of consecutive days when Tmin < Avg Tmin (baseline year) - 3.0 °C (minimum 6 days) ',
             legend: 'Cold Spell (count of days): Max count of consecutive days when Tmax < avgTmax (baseline year) - 3\u00B0C (min 6 days)',
             popup: '<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when the maximum temperature is less than the average maximum temperature in a baseline year minus 3\u00B0C'
         },
         'dry_count': {
-            desc: 'Dry Count (count of days)',
-             html: '', //  '<p>Number of days in a year when precipitation is less than 0.2 mm</p><p>Increasing number of dry days.</p><p>Continued large increase in number of dry days, particularly in the east.</p>',
+            desc: 'Dry Day Count (count of days)',
+             html: '<br> The Dry Days Indicator is the total number of days per year when precipitation is less than 0.2mm per day. I shows the number of days per year with no rain. <br><br><b>Calculation:</b> <i> Days when P < 0.2 mm ',
             legend: 'Dry Count (count of days): count of days when P < 0.2 mm',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when precipitation is less than 0.2 mm '
         },
         'dry_spell_n': {
             desc: 'Dry Spell (count of days)',
-             html: '', //  '<p>Number of consecutive days in a year when precipitation is less 0.2 mm</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna.</p>',
+             html: '<br> The Dry Spell Indicator is the count of the maximum number of consecutive days within a year when rainfall is less than 0.2mm per day. It represents the longest period when there is no rain in a year. <br><br><b>Calculation:</b> <i> Max consecutive count P < 0.2 mm ',
             legend: 'Dry Spell (count of days): max consecutive count P < 0.2 mm',
             popup: '<b>{Raster.ItemPixelValue}</b> consecutive days in <b>{Year}</b> when precipitation is less than 0.2 mm'
         },
         'end_growingseason': {
             desc: 'End of Growing Season (day of year)',
-             html: '', //  '<p>Day of the year (out of 365) when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July</p><p>Shift towards later in the year.</p><p>Continues to occur later and more uniform spatial distribution of when in lowlands.</p>',
+             html: '<br> The End of Growing Season Indicator is the date when there has been five consecutive days when the average temperature is less than 5.6°C (starting from 1st July). It tells us approximately when grass may be expected to stop growing. Whilst warmer temperatures may follow these consecutive days and grass is still able to grow, it is a useful indication of when crop growth ends and also when trafficability (on soil) issues may arise and livestock may start to be housed. <br><br><b>Calculation:</b> <i> Day when 5 consecutive days Tavg < 5.6 °C (from July 1st) ', 
             legend: 'End of Growing Season (day of year): day when 5 consecutive days Tavg < 5.6\u00B0C from 1 July',
             popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when average temperature for five consecutive days is less than 5.6\u00B0C from 1 July'
         },
         'first_airfrost_doy': {
             desc: 'First Airfrost (day of year)',
-             html: '', //  '<p>Day of the year (out of 365) when the minimum temperature is less than 0\u00B0C from 1 July</p><p>Shifted to occuring later in the year, reduced areas of early autumn frost.</p><p>Continuted shift towards occurring later in the year, largest changes in the upland areas.</p>',
+             html: '<br> The First Air Frost Indicator is the first day after the 1st July when the minimum temperature falls below freezing (0.0°C). It tells us the first day in autumn when there is likely to be an air frost. It can be seen as an indicator of when field operations may cease and crops are vulnerable to damage. A later day in the year also indicates an extension to the growing season and is associated with higher minimum temperatures. A delay in the first autumn air frost may also impact on the timing and rate of biological processes. <br><br><b>Calculation:</b> <i> Day when Tmin < 0.0 °C (from July 1st)',
             legend: 'First Airfrost (day of year): first day when Tmin < 0\u00B0C from 1 July',
             popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C from 1 July'
         },
         'first_grassfrost_doy': {
             desc: 'First Grassfrost (day of year)',
-             html: '', //  '<p>Day of the year (out of 365) when the minimum temperature is less than 5\u00B0C from 1 July</p><p>First frost has shifted to later in the year.</p><p>Much reduced area of early frost and continuted shift to later in the year.</p>',
+             html: '<br> The First Grass Frost Indictor is the first day after the 1st July when the temperature is less than 5°C. An air temperature below 5°C means there is a risk of grass frost occurring. <br><br><b>Calculation:</b> <i> Day when Tmin < 5.0 oC (from July 1st)',
             legend: 'First Grassfrost (day of year): first day when Tmin < 5\u00B0C from 1 July',
             popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C from 1 July'
         },
         'grassfrost_count': {
             desc: 'Grassfrost Count (count of days)',
-             html: '', //  '<p>Number of days in a year when the minimum temperature is less than 5\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+             html: '<br> The Grass Frost Indicator is the number of days in a year when minimum temperature is less than 5.0°C and represents the total number of days when grass frost may occur. <br><br><b>Calculation:</b> <i> Count of days per year when Tmin < 5.0°C  ',
             legend: 'Grassfrost (count of days): count of days when Tmin < 5\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C'
         },
         'growing_degreedays': {
-            desc: 'Growing (degree days)',
-             html: '', //  '<p>This is an accumulated sum for mean temperature <i>above</i> a threshold assumed to represent the temperature above which plants are photosynthetically active. A threshold of 5.6\u00B0C is used and the calculation is very similar to that of Heating Degree Days. For example, if the mean temperature for a day is 7.6\u00B0C this equates to 2.0 Growing Degree Days (GDD). Typical values in the early 1960\'s were approximately 950 GDD per annum in North Scotland, 1000 GDD per annum in East Scotland and 1150 GDD per annum in West Scotland. (<a href="https://www.sniffer.org.uk/Handlers/Download.ashx?IDMF=51c75256-1dbe-4086-9cb0-6f37999463a7#page=24" target="_blank" >source</a>)</a></p><p>Sum of degree days in a year when the average temperature is greater than 5.6\u00B0C</p><p>Slight increase in Scotland, large increase in lowland England.</p><p>Continued increase, particularly in lowland areas and southern UK.</p>',
+            desc: 'Growing Degree Days',
+             html: '<br> The Growing Degree Days Indicator represents thermal time accumulation in degree days and is the count of above days when the average temperature is above 5.6°C. It tells us how quickly thermal time is accumulated, and thus how more rapidly plants and insects may progress through their development stages (phenology). <br><br><b>Calculation:</b> <i> ∑ Tavg > 5.6 °C ',
             legend: 'Growing (degree days): sum Tavg > 5.6\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C'
         },
         'growing_season': {
             desc: 'Growing Season (count of days)',
-             html: '', //  '<p>Number of days in a year when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+             html: '<br> The Growing Season Indicator is the count of the number of days in a year when temperature is above 5°C, start from the first period in the year when there are 5 consecutive days above 5°C and ending when there are 5 consecutive days below 5°C. It gives a general representation of how many days in a year plant growth and other biological activity may occur. It is one of three ways of representing the growing season period: see also growing Season Length and Growing Season Range. <br><br><b>Calculation:</b> <i> beginning when the temperature on five consecutive days exceeds 5°C, and ending when the temperature on five consecutive days is below 5°C ', 
             legend: 'Growing Season (count of days): beginning when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the temperature on five consecutive days exceeds 5\u00B0C, and ending when the temperature on five consecutive days is below 5\u00B0C'
         },
         'growseason_length': {
             desc: 'Grow Season Length (count of days)',
-             html: '', //  '<p>This is the number of days between the start and end of the growing season. Growing Start is calculated  as Julian days where the growing season is assumed to start on the 5th consecutive day with a mean temperature of 5\u00B0C or greater. Growing Season End is calculated in Julian days where the growing season is assumed to end ont the 5th consecutive day with a mean temperature of 5\u00B0C or less. (<a href="https://www.sniffer.org.uk/Handlers/Download.ashx?IDMF=51c75256-1dbe-4086-9cb0-6f37999463a7#page=25" target="_blank" >source</a>)</a></p><p>In the early 1960\'s typical values were a growing season of approximately 213 days in East Scotland, 217 days in North Scotland and 237 days in the West.</p><p>Number of days in a year when the average temperature is greater than 5.6\u00B0C between the start and the end of growing season</p><p>Slight shift to increased length.</p><p>Increase in growing season length, by 30+ days from 1960 to 1990 period.</p>',
+             html: '<br> The Growing Season Length Indicator is the count of the number of days when daily average temperature is above 5.6°C between the Start and End of the Growing Season (these are two other types of Indicators). Days when average temperatures are above 5.6°C are ones where grass is likely to grow. It is different from the Growing Season Range in that it covers individual days when average temperature is above 5.6°C and thus all the days when grass may grow. However, it does not take account if days when grass may not grow due to stresses such as water or nitrogen limitations. <br><br><b>Calculation:</b> <i> Days when Tavg > 5.6 °C between Start and End of Growing Season. ', 
             legend: 'Grow Season Length (count of days): days when Tavg > 5.6\u00B0C between start and end of growing season',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the average temperature is greater than 5.6\u00B0C between the start and the end of growing season'
         },
        'growseason_range': {
             desc: 'Grow Season Range (count of days)',
-             html: '', //  '<p>Number of days in a year between the start and the end of the growing season</p><p>Slight shift to longer growing season.</p><p>Continues to increase in length, most particularly for locations normally (in 1960 to 1990 period) with a shorter range.</p>',
+             html: '<br> The Growing Season Range Indicator is the count of days between the Start and End of Growing Season, thus is derived from these other two Indicators. It tells us how the growing season range has and may change. <br><br><b>Calculation:</b> <i> count of days between the start and end of the growing season. Start of Growing Season: Day when 5 consecutive days Tavg > 5.6 °C (from Jan 1st). End of Growing Season: Day when 5 consecutive days Tavg < 5.6 °C (from July 1st). ',
             legend: 'Grow Season Range (count of days): days between start and end of growing season',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> calculated from the count of days between the start and end of the growing season'
         },
         'heating_degreedays': {
-            desc: 'Heating (degree days)',
-             html: '', //  '<p>This is an indicator of household consumption of heat energy. The base temperature for calculation of a heating degree day is 15.5\u00B0C, such that if the mean temperature were <i>below</i> 15.5\u00B0C then the value of the Heating Degree Day (HDD) for that individual day would be 15.5\u00B0C minus the mean temperature. For example, if a day has a mean temperature of 13.5\u00B0C this is equivalent to 2.0 heating degree days. Typical figures at the start of the 1961 to 2018 period were approximately 3200 HDD per annum for North and East Scotland, and 2900 HDD per annum for West Scotland. (<a href="https://www.sniffer.org.uk/Handlers/Download.ashx?IDMF=51c75256-1dbe-4086-9cb0-6f37999463a7#page=24" target="_blank" >source</a>)</a></p><p>Degree days in a year representing the sum of 15.5\u00B0C minus the average temperature where the average temperature is less than 15.5\u00B0C</p><p>Reduction, with associated building heating requirments.</p><p>Further reduction, particularly in upland areas.</p>',
+            desc: 'Heating Degree Days',
+             html: '<br> The Heating Degree Days Indicator is the sum of temperatures below a threshold, in this case the sum of 15.5°C minus the average temperature when this is less than 15.5°C. In other words, it accumulates thermal time below the 15.5°C threshold. It is used to provide information about the requirement to heat buildings. This information tells us when the need to use energy for heating buildings increases or decreases (fewer degree days = less heating requirement). <br><br><b>Calculation:</b> <i> ∑ 15.5 °C - Tavg where Tavg < 15.5 °C ', 
             legend: 'Heating (degree days): Sum of 15.5\u00B0C minus Tavg where Tavg < 15.5\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> representing the sum of 15.5\u00B0C minus the average temperature where the average temperature is less than 15.5\u00B0C'
         },
         'heatwave_n': {
             desc: 'Heatwave (count of days)',
-             html: '', //  '<p>Number of days in a year when the maximum temperature is greater than the average temperature in a baseline year plus 3\u00B0C</p><p>Increasing number of heat wave days, particularly in southern UK.</p><p>Continued increase, particularly in lowland and coastal locations. Less change in Scotland than the rest of the UK.</p>',
+             html: '<br> The Heat Wave Indicator is the maximum count in a year of the number of days when the daily maximum temperature is above the long-term average maximum temperature (estimated from the 1960-1990 period) and an additional 3°C for at least 6 consecutive days. It represents the longest period in a year when the maximum temperature is at least 3°C above the historical long-term average for at least 6 consecutive days.  <br><br><b>Calculation:</b> <i> Maximum count of consecutive days when Tmax >Avg Tmax (baseline year) + 3.0 oC (minimum 6 days) ', 
             legend: 'Heatwave (count of days): Max count of consecutive days when Tmax > avgTmax (baseline year) + 3\u00B0C (min 6 days)',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than the average temperature in a baseline year plus 3\u00B0C'
         },
         'last_airfrost_doy': {
             desc: 'Last Airfrost (day of year)',
-             html: '', //  '<p>Last day of the year (out of 365) when the minimum temperature is less than 0\u00B0C before 1 July</p><p>Shifted to occurring earlier in the year for most lowland areas.</p><p>Large shift to earlier in the year in coastal and lowland Scotland.</p>',
+             html: '<br> The Last Air Frost is the last day from 1st January, but before the 1st July, when the minimum temperature is below zero. It tells us the day of year on which the last air frost may occur in spring. Earlier dates imply the opportunity for the growing season to start sooner and avoid risk of frost damage. <br><br><b>Calculation:</b> <i> The last day when Tmin < 0.0 oC (from Jan 1st) and before 1st July.  ',
             legend: 'Last Airfrost (day of year): last day when Tmin < 0\u00B0C before 1 July',
             popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 0\u00B0C before 1 July'
         },
         'last_grassfrost_doy': {
             desc: 'Last Grassfrost (day of year)',
-             html: '', //  '<p>Last day of the year (out of 365) when the minimum temperature is less than 5\u00B0C before 1 July</p><p>Shifted to occurring earlier in the year for most lowland areas.</p><p>Large shift to earlier in the year in coastal and lowland Scotland.</p>',
+             html: '<br> The Last Grass Frost is the last day from 1st January, but before the 1st July, when the minimum air temperature is below 5.0°C. It tells us the day of year on which the last grass frost may occur in spring. Earlier dates imply the opportunity for the growing season to start sooner and avoid risk of frost damage. <br><br><b>Calculation:</b> <i> The last day when Tmin < 5.0 °C (from Jan 1st) and before the 1st July. ',
             legend: 'Last Grassfrost (day of year): last day when Tmin < 5\u00B0C before 1 July',
             popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the minimum temperature is less than 5\u00B0C before 1 July'
         }, 
         'max_anntemp': {
             desc: 'Maximum Annual Temperature (\u00B0C)',
-            html: '',
+            html: '<br>This is the highest maximum air temperature per year. <br><br><b>Calculation:</b> <i>The highest maximum temperature (\u00B0C)',
             legend: 'Maximum Annual Temperature (\u00B0C): highest temperature per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in <b>{Year}</b>'
         },
         'max_jantemp': {
             desc: '&nbsp;&nbsp;-- max temp in January',
             hideaway: 'Maximum Temperature in January (\u00B0C)',
-            html: '',
+            html: '<br> This is the highest maximum January air temperature',
             legend: 'Maximum Temperature in January (\u00B0C): highest temperature in January per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in January in <b>{Year}</b>'
         },
         'max_febtemp': {
             desc: '&nbsp;&nbsp;-- max temp in February',
             hideaway: 'Maximum Temperature in February (\u00B0C)',
-            html: '',
+            html: '<br> This is the highest maximum February air temperature',
             legend: 'Maximum Temperature in February (\u00B0C): highest temperature in February per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in February in <b>{Year}</b>'
         },
         'max_martemp': {
             desc: '&nbsp;&nbsp;-- max temp in March',
             hideaway: 'Maximum Temperature in March (\u00B0C)',
-            html: '',
+            html: '<br> This is the highest maximum March air temperature',
             legend: 'Maximum Temperature in March (\u00B0C): highest temperature in March per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in March in <b>{Year}</b>'
         },
         'max_aprtemp': {
             desc: '&nbsp;&nbsp;-- max temp in April',
             hideaway: 'Maximum Temperature in April (\u00B0C)',
-            html: '',
+            html: '<br> This is the highest maximum April air temperature',
             legend: 'Maximum Temperature in April (\u00B0C): highest temperature in April per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in April in <b>{Year}</b>'
         },
         'max_maytemp': {
             desc: '&nbsp;&nbsp;-- max temp in May',
             hideaway: 'Maximum Temperature in May (\u00B0C)',
-            html: '',
+            html: '<br> This is the highest maximum May air temperature',
             legend: 'Maximum Temperature in May (\u00B0C): highest temperature in May per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in May in <b>{Year}</b>'
         },
         'max_juntemp': {
             desc: '&nbsp;&nbsp;-- max temp in June',
             hideaway: 'Maximum Temperature in June (\u00B0C)',
-            html: '',
+            html: '<br> This is the highest maximum June air temperature',
             legend: 'Maximum Temperature in June (\u00B0C): highest temperature in June per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in June in <b>{Year}</b>'
         },
         'max_jultemp': {
             desc: '&nbsp;&nbsp;-- max temp in July',
             hideaway: 'Maximum Temperature in July (\u00B0C)',
-            html: '',
+            html: '<br> This is the highest maximum July air temperature',
             legend: 'Maximum Temperature in July (\u00B0C): highest temperature in July per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in July in <b>{Year}</b>'
         },
         'max_augtemp': {
             desc: '&nbsp;&nbsp;-- max temp in August',
             hideaway: 'Maximum Temperature in August (\u00B0C)',
-            html: '',
+            html: '<br> This is the highest maximum August air temperature',
             legend: 'Maximum Temperature in August (\u00B0C): highest temperature in August per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in August in <b>{Year}</b>'
         },
         'max_septemp': {
             desc: '&nbsp;&nbsp;-- max temp in September',
             hideaway: 'Maximum Temperature in September (\u00B0C)',
-            html: '',
+            html: '<br> This is the highest maximum September air temperature',
             legend: 'Maximum Temperature in September (\u00B0C): highest temperature in September per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in September in <b>{Year}</b>'
         },
         'max_octtemp': {
             desc: '&nbsp;&nbsp;-- max temp in October',
             hideaway: 'Maximum Temperature in October (\u00B0C)',
-            html: '',
+            html: '<br> This is the highest maximum October air temperature',
             legend: 'Maximum Temperature in October (\u00B0C): highest temperature in October per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in October in <b>{Year}</b>'
         },
         'max_novtemp': {
             desc: '&nbsp;&nbsp;-- max temp in November',
             hideaway: 'Maximum Temperature in November (\u00B0C)',
-            html: '',
+            html: '<br> This is the highest maximum November air temperature',
             legend: 'Maximum Temperature in November (\u00B0C): highest temperature in November per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in November in <b>{Year}</b>'
         },
         'max_dectemp': {
             desc: '&nbsp;&nbsp;-- max temp in December',
             hideaway: 'Maximum Temperature in December (\u00B0C)',
-            html: '',
+            html: '<br> This is the highest maximum December air temperature',
             legend: 'Maximum Temperature in December (\u00B0C): highest temperature in December per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the highest temperature in December in <b>{Year}</b>'
         },
         'min_anntemp': {
-            desc: 'Minimum Annual Temperature',
-            html: '',
+            desc: 'Minimum Annual Temperature(\u00B0C)',
+            html: '<br>This is the lowest minimum air temperature per year. <br><br><b>Calculation:</b> <i>The lowest minimum temperature (\u00B0C)',
             legend: 'Minimum Annual Temperature (\u00B0C): lowest temperature per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in <b>{Year}</b>'
         },
         'min_jantemp': {
             desc: '&nbsp;&nbsp;-- min temp in January',
             hideaway: 'Minimum Temperature in January (\u00B0C)',
-            html: '',
+            html: '<br> This is the lowest minimum January air temperature',
             legend: 'Minimum Temperature in January (\u00B0C): lowest temperature in January per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in January in <b>{Year}</b>'
         },
         'min_febtemp': {
             desc: '&nbsp;&nbsp;-- min temp in February',
             hideaway: 'Minimum Temperature in February (\u00B0C)',
-            html: '',
+            html: '<br>This is the lowest minimum Februray air temperature',
             legend: 'Minimum Temperature in February (\u00B0C): lowest temperature in February per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in February in <b>{Year}</b>'
         },
         'min_martemp': {
             desc: '&nbsp;&nbsp;-- min temp in March',
             hideaway: 'Minimum Temperature in March (\u00B0C)',
-            html: '',
+            html: '<br>This is the lowest minimum March air temperature',
             legend: 'Minimum Temperature in March (\u00B0C): lowest temperature in March per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in March in <b>{Year}</b>'
         },
         'min_aprtemp': {
             desc: '&nbsp;&nbsp;-- min temp in April',
             hideaway: 'Minimum Temperature in April (\u00B0C)',
-            html: '',
+            html: '<br>This is the lowest minimum April air temperature',
             legend: 'Minimum Temperature in April (\u00B0C): lowest temperature in April per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in April in <b>{Year}</b>'
         },
         'min_maytemp': {
             desc: '&nbsp;&nbsp;-- min temp in May',
             hideaway: 'Minimum Temperature in May (\u00B0C)',
-            html: '',
+            html: '<br>This is the lowest minimum May air temperature',
             legend: 'Minimum Temperature in May (\u00B0C): lowest temperature in May per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in May in <b>{Year}</b>'
         },
         'min_juntemp': {
             desc: '&nbsp;&nbsp;-- min temp in June',
             hideaway: 'Minimum Temperature in June (\u00B0C)',
-            html: '',
+            html: '<br>This is the lowest minimum June air temperature',
             legend: 'Minimum Temperature in June (\u00B0C): lowest temperature in June per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in June in <b>{Year}</b>'
         },
         'min_jultemp': {
             desc: '&nbsp;&nbsp;-- min temp in July',
             hideaway: 'Minimum Temperature in July (\u00B0C)',
-            html: '',
+            html: '<br>This is the lowest minimum July air temperature',
             legend: 'Minimum Temperature in July (\u00B0C): lowest temperature in July per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in July in <b>{Year}</b>'
         },
         'min_augtemp': {
             desc: '&nbsp;&nbsp;-- min temp in August',
             hideaway: 'Minimum Temperature in August (\u00B0C)',
-            html: '',
+            html: '<br>This is the lowest minimum August air temperature',
             legend: 'Minimum Temperature in August (\u00B0C): lowest temperature in August per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in August in <b>{Year}</b>'
         },
         'min_septemp': {
             desc: '&nbsp;&nbsp;-- min temp in September',
             hideaway: 'Minimum Temperature in September (\u00B0C)',
-            html: '',
+            html: '<br>This is the lowest minimum September air temperature',
             legend: 'Minimum Temperature in September (\u00B0C): lowest temperature in September per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in September in <b>{Year}</b>'
         },
         'min_octtemp': {
             desc: '&nbsp;&nbsp;-- min temp in October',
             hideaway: 'Minimum Temperature in October (\u00B0C)',
-            html: '',
+            html: '<br>This is the lowest minimum October air temperature',
             legend: 'Minimum Temperature in October (\u00B0C): lowest temperature in October per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in October in <b>{Year}</b>'
         },
         'min_novtemp': {
             desc: '&nbsp;&nbsp;-- min temp in November',
             hideaway: 'Minimum Temperature in November (\u00B0C)',
-            html: '',
+            html: '<br>This is the lowest minimum November air temperature',
             legend: 'Minimum Temperature in November (\u00B0C): lowest temperature in November per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in November in <b>{Year}</b>'
         },
         'min_dectemp': {
             desc: '&nbsp;&nbsp;-- min temp in December',
             hideaway: 'Minimum Temperature in December (\u00B0C)',
-            html: '',
+            html: '<br>This is the lowest minimum December air temperature',
             legend: 'Minimum Temperature in December (\u00B0C): lowest temperature in December per year',
             popup: '<b>{Raster.ItemPixelValue}</b>\u00B0C is the lowest temperature in December in <b>{Year}</b>'
         },
         'p_heterogeneity': {
-            desc: 'P Heterogeneity (index)',
-             html: '', //  '<p>Precipitation heterogeneity? Index of precipitation intensity in a year</p><p>Slight increase in values (rainfall erosivity) in upland areas.</p><p>Intensifes particularly in northwest Scotland, but some areas see a reduction.</p>',
+            desc: 'Precipitation Heterogeneity (index) ',
+             html: '<br> The Precipitation Heterogeneity Index is a unitless Indicator and provides information about the erosivity of rainfall. It represents the ratio between average monthly rainfall and average annual rainfall, and is a useful indicator of rainfall strength and force and potential erosion risk. See also the Precipitation Intensity Index as an alternative representation of precipitation intensity and erosivity. <br><br><b>Calculation:</b> <i> Modified Fournier Index MFI= ∑i=112Pi2Pt with Pi being the monthly precipitation and Pt the annual precipitation ',
             legend: 'P Heterogeneity (index): P > 0.2 / count days P > 0.2mm',
             popup: '<b>{Raster.ItemPixelValue}</b>: index of precipitation intensity in <b>{Year}</b>'
         },
         'p_intensity': {
-            desc: 'P Intensity (index)',
-             html: '', //  '<p>Precipitation heterogeneity? Index of precipitation intensity in a year</p><p>Slight increase in values (rainfall erosivity) in upland areas.</p><p>Intensifes particularly in northwest Scotland, but some areas see a reduction.</p>',
+            desc: 'Precipitation Intensity (index)',
+             html: '<br> The Precipitation Intensity Indicator is an index calculated by estimating the sum of rainfall when it is above 0.2mm per day and dividing this by the count of the number of days when rainfall is greater than 0.2mm. It does not have any units and provides information about the intensity and erosivity of rainfall, which is more intense where there are high values (due to monthly precipitation concentration and total annual amounts). Unsurprisingly this Indicator often tends to match spatially with rainfall total amounts and elevation. The maps show this, with upland areas often having higher indicator values. <br><br><b>Calculation:</b> <i> ∑P > 0.2mm /Count days P > 0.2mm ',
             legend: 'P Intensity (index): P > 0.2 / count days P > 0.2mm',
             popup: '<b>{Raster.ItemPixelValue}</b>: index of precipitation intensity in <b>{Year}</b>'
         },
        'p_seasonality': {
-            desc: 'P Seasonality (index)',
-             html: '', //  '<p>Precipitation Seasonality. Index of precipitation seasonality in a year</p><p>Some areas shifted to have more rain in the summer than the winter.</p><p>Whole UK except northern Scotland projected to have more in the summer than the winter.</p>',
+            desc: 'Precipitation Seasonality (index)',
+             html: '<br> The Precipitation Seasonality Indicator tells us whether more rain falls in the winter or summer periods. This is for rainfall only, hence snow in the winter is not included. The maps show that overall more rain falls in the summer than the winter (in quantity, not the number of rain days). <br><br><b>Calculation:</b> <i> S = winter P - summer P / annual total P ',
             legend: 'P Seasonality (index): S = winter P - summer P / annual total P',
             popup: '<b>{Raster.ItemPixelValue}</b>: index of precipitation seasonality in <b>{Year}</b>'
         },
         'personheatstress_count': {
             desc: 'Person Heat Stress (count of days)',
-             html: '', //  '<p>Number of days in a year when the maximum temperature is greater than 32\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+             html: '<br> The Person Heat Stress Indicator is the count of the number of days per year when the maximum temperature is over 32°C, which is considered an amount of heat at which people may experience heat stress. <br><br><b>Calculation:</b> <i> count of days when Tmax > 32°C', 
             legend: 'Person Heat Stress (count of days): count of days when Tmax > 32\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 32\u00B0C'
         },
         'plantheatstress_count': {
             desc: 'Plant Heat Stress (count of days)',
-             html: '', //  '<p>Number of days in a year when the maximum temperature is greater than 25\u00B0C</p><p>Slight increase in southern Scotland, large increase in south east England.</p><p>Further slight increase in northern UK, continued large increase (20 days +) in southern England.</p>',
+             html: '<br> The Plant Heat Stress Indicator is the count of the number of days in a year when the maximum temperature is above 25°C. This value is considered as indicator of when crops in general may experience heat stress that may affect growth and implies additional water requirements. The actual level of heat stress will vary between crops and availability of water and canopy cooling by transpiration. <br><br><b>Calculation:</b> <i> count of days when Tmax > 25°C ', 
             legend: 'Plant Heat Stress (count of days): count of days when Tmax > 25\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum temperature is greater than 25\u00B0C'
         },
         'rfall_annualtotal': {
             desc: 'Rainfall Annual Total (mm)',
-             html: '', 
+             html: '<br> This is the total amount of precipitation in a year. <br><br><b>Calculation:</b> <i> It is calculated by summing the daily amount of rainfall per year. ', 
             legend: 'Rainfall Annual Total (mm): sum of rainfall per year',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in <b>{Year}</b>'
         },
         'rfall_springtotal': {
             desc: 'Rainfall Total in Spring (mm)',
-             html: '', 
+             html: '<br> This is the total amount of precipitation in Spring. <br><br><b>Calculation:</b> <i> It is calculated by summing the daily amount of rainfall in March, April and May per year', 
             legend: 'Rainfall Total in Spring (mm): sum of rainfall in March, April and May per year',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in Spring in <b>{Year}</b>'
         },
         'rfall_summertotal': {
             desc: 'Rainfall Total in Summer (mm)',
-             html: '', 
+             html: '<br> This is the total amount of precipitation in Summer. <br><br><b>Calculation:</b> <i> It is calculated by summing the daily amount of rainfall in June, July and August per year ', 
             legend: 'Rainfall Total in Summer (mm): sum of rainfall in June, July and August per year',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in Summer in <b>{Year}</b>'
         },
         'rfall_autumntotal': {
             desc: 'Rainfall Total in Autumn (mm)',
-             html: '', 
+             html: '<br> This is the total amount of precipitation in Autumn. <br><br><b>Calculation:</b> <i> It is calculated by summing the daily amount of rainfall in September, October and November per year ', 
             legend: 'Rainfall Total in Autumn (mm): sum of rainfall in September, October and November per year',
             popup:  '<b>{Raster.ItemPixelValue}</b> mm of rainfall in Autumn in <b>{Year}</b>'
         },
         'rfall_wintertotal': {
             desc: 'Rainfall Total in Winter (mm)',
-             html: '', 
+             html: '<br> This is the total amount of precipitation in Winter. <br><br><b>Calculation:</b> <i> It is calculated by summing the daily amount of rainfall in December (from the year before), January and February ', 
             legend: 'Rainfall Total in Winter (mm): sum of rainfall in December, January and February per year',
             popup:  '<b>{Raster.ItemPixelValue}</b> mm of rainfall in Winter in <b>{Year}</b>'
         },
         'rfall_jantotal': {
             desc: '&nbsp;&nbsp;-- rainfall in January',
             hideaway: 'Rainfall Total in January (mm)',
-            html: '', 
+            html: '<br>This is the total amount of precipitation in a month. It is calculated by summing the daily amount of rainfall for January.', 
             legend: 'Rainfall Total in January (mm): sum of rainfall in January',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in January in <b>{Year}</b>'
         },
         'rfall_febtotal': {
             desc: '&nbsp;&nbsp;-- rainfall in February',
             hideaway: 'Rainfall Total in February (mm)',
-            html: '', 
+            html: '<br>This is the total amount of precipitation in a month. It is calculated by summing the daily amount of rainfall for February.', 
             legend: 'Rainfall Total in February (mm): sum of rainfall in February',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in February in <b>{Year}</b>'
         },
         'rfall_martotal': {
             desc: '&nbsp;&nbsp;-- rainfall in March',
             hideaway: 'Rainfall Total in March (mm)',
-            html: '', 
+            html: '<br>This is the total amount of precipitation in a month. It is calculated by summing the daily amount of rainfall for March.', 
             legend: 'Rainfall Total in March (mm): sum of rainfall in March',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in March in <b>{Year}</b>'
         },
         'rfall_aprtotal': {
             desc: '&nbsp;&nbsp;-- rainfall in April',
             hideaway: 'Rainfall Total in April (mm)',
-            html: '', 
+            html: '<br>This is the total amount of precipitation in a month. It is calculated by summing the daily amount of rainfall for April.', 
             legend: 'Rainfall Total in April (mm): sum of rainfall in April',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in April in <b>{Year}</b>'
         },
         'rfall_maytotal': {
             desc: '&nbsp;&nbsp;-- rainfall in May',
             hideaway: 'Rainfall Total in May (mm)',
-            html: '', 
+            html: '<br>This is the total amount of precipitation in a month. It is calculated by summing the daily amount of rainfall for May.', 
             legend: 'Rainfall Total in May (mm): sum of rainfall in May',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in May in <b>{Year}</b>'
         },
         'rfall_juntotal': {
             desc: '&nbsp;&nbsp;-- rainfall in June',
             hideaway: 'Rainfall Total in June (mm)',
-            html: '', 
+            html: '<br>This is the total amount of precipitation in a month. It is calculated by summing the daily amount of rainfall for June.', 
             legend: 'Rainfall Total in June (mm): sum of rainfall in June',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in June in <b>{Year}</b>'
         },
         'rfall_jultotal': {
             desc: '&nbsp;&nbsp;-- rainfall in July',
             hideaway: 'Rainfall Total in July (mm)',
-            html: '', 
+            html: '<br>This is the total amount of precipitation in a month. It is calculated by summing the daily amount of rainfall for July.', 
             legend: 'Rainfall Total in July (mm): sum of rainfall in July',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in July in <b>{Year}</b>'
         },
         'rfall_augtotal': {
             desc: '&nbsp;&nbsp;-- rainfall in August',
             hideaway: 'Rainfall Total in August (mm)',
-            html: '', 
+            html: '<br>This is the total amount of precipitation in a month. It is calculated by summing the daily amount of rainfall for August.', 
             legend: 'Rainfall Total in August (mm): sum of rainfall in August',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in August in <b>{Year}</b>'
         },
         'rfall_septotal': {
             desc: '&nbsp;&nbsp;-- rainfall in September',
             hideaway: 'Rainfall Total in September (mm)',
-            html: '', 
+            html: '<br>This is the total amount of precipitation in a month. It is calculated by summing the daily amount of rainfall for September.', 
             legend: 'Rainfall Total in September (mm): sum of rainfall in September',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in September in <b>{Year}</b>'
         },
         'rfall_octtotal': {
             desc: '&nbsp;&nbsp;-- rainfall in October',
             hideaway: 'Rainfall Total in October (mm)',
-            html: '', 
+            html: '<br>This is the total amount of precipitation in a month. It is calculated by summing the daily amount of rainfall for October.', 
             legend: 'Rainfall Total in October (mm): sum of rainfall in October',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in October in <b>{Year}</b>'
         },
         'rfall_novtotal': {
             desc: '&nbsp;&nbsp;-- rainfall in November',
             hideaway: 'Rainfall Total in November (mm)',
-            html: '', 
+            html: '<br>This is the total amount of precipitation in a month. It is calculated by summing the daily amount of rainfall for November.', 
             legend: 'Rainfall Total in November (mm): sum of rainfall in November',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in November in <b>{Year}</b>'
         },
         'rfall_dectotal': {
             desc: '&nbsp;&nbsp;-- rainfall in December',
             hideaway: 'Rainfall Total in December (mm)',
-            html: '', 
+            html: '<br>This is the total amount of precipitation in a month. It is calculated by summing the daily amount of rainfall for December.', 
             legend: 'Rainfall Total in December (mm): sum of rainfall in December',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of rainfall in December in <b>{Year}</b>'
         },
         'start_fieldops_doy': {
-            desc: 'Start FieldOps (day of year)',
-             html: '', //  '<p>Day of the year (out of 365) when the sum of the daily average temperatures from 1 Jan is greater than 200\u00B0C, indicating the start of Field Operations</p><p>Shifted to occur earlier in the year.</p><p>Continues to occur earlier and more uniform spatial distriction of when in lowlands.</p>',
+            desc: 'Start of Field Operations (day of year) ',
+             html: '<br> The Start of Field Operations Indicator shows when management activities may be possible near the start of a year. It is based on the ‘Tsum 200’ often used by farmers as a ‘rule of thumb’ for this purpose. It is the time taken to accumulate ‘thermal time’ to 200 day degrees. However, it does not take into account the actual soil water status and other factors such as trafficability that will determine when machinery and livestock can access fields. <br><br><b>Calculation:</b> <i> Day when ∑Tavg from Jan 1st > 200\u00B0C ',
             legend: 'Start FieldOps (day of year): day when Tavg from 1 Jan > 200\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the sum of the daily average temperatures from 1 Jan is greater than 200\u00B0C'
         },
         'start_grow_doy': {
-            desc: 'Start Grow (day of year)',
-             html: '', //  '<p>Day of the year (out of 365) when five consecutive days have an average temperature greater than 5.6\u00B0C</p><p>Shifted to occurring earlier in the year.</p><p>Continues to occur earlier, most particularly for location normally (in 1961-1990 period) with a later start date.</p>',
+            desc: 'Start of Growing Season (day of year) ',
+             html: '<br> The Start of the Growing Season Indicator shows approximately when in late winter or spring grass may start to grow (when the average temperature is above 5.6°C for 5 consecutive days). In actual terms colder periods may follow these 5 days, stopping growth again, but as an Indicator it is useful in providing evidence of changes in the start of plant growth and thus when and what crop management options may be possible. <br><br><b>Calculation:</b> <i> Day when 5 consecutive days Tavg > 5.6\u00B0C (from Jan 1st) ',
             legend: 'Start Grow (day of year): day when 5 consecutive days Tavg > 5.6\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when five consecutive days have an average temperature greater than 5.6\u00B0C'
         },
         'tempgrowingperiod_length': {
             desc: 'Temp Growing Period (count of days)',
-             html: '', //  '<p>Number of days in a year between the average five-day temperature being greater than 5\u00B0C and the average five-day temperature being less than 5\u00B0C</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+             html: '<br>Temp Growing Period (count of days): count of days between average 5 day temp > 5\u00B0C and average 5 day temp < 5\u00B0C where average daily temp greater than 5\u00B0C',
             legend: 'Temp Growing Period (count of days): count of days between average 5 day temp > 5\u00B0C and average 5 day temp < 5\u00B0C where average daily temp greater than 5\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> between when the average five-day temperature is greater than 5\u00B0C and when the average five-day temperature is less than 5\u00B0C'
         },
         'thermaltime_sum': {
             desc: 'Thermal Time (degree days)',
-             html: '', //  '<p></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+             html: '<br> The Thermal Time Indicator shows the accumulation of thermal time from the fifth day in a five day period when daily mean temperature is above 5°C (e.g. in the spring) and when the mean temperature is less than 5°C. Thermal time accumulation is a good indicator of the heat energy input into biotic systems and determines how quickly plants and insects progress through their growth stages (phenology). <br><br><b>Calculation:</b> <i> ∑day degrees for period from 5th of 5 day period where Tavg > 5°C to end point where Tavg less than 5°C ',
             legend: 'Thermal Time (degree days): sum of day degrees for period from 5th of 5 day period where Tavg greater than 5\u00B0C to end point where Tavg less than 5\u00B0C',
             popup: '<b>{Raster.ItemPixelValue}</b> degree days in <b>{Year}</b> for the period from fifth day of a five-day period where the average temperater is greater than 5\u00B0C to the end point when the average temperature is less than 5\u00B0C'
         },
         'wet_count': {
-            desc: 'Wet Count (count of days)',
-             html: '', //  '<p>Wet Days</p><p>Reduction in the number of wet days.</p><p>Extenuation of rain shadow effect, with further reduction in wet days, particularly in the west?</p>',
+            desc: 'Wet Day Count (count of days) ',
+             html: '<br> The Wet Day Count Indicator is the number of days in a year when there is precipitation greater than 0.2mm per day. It shows the number of days per year when there is measureable rainfall. <br><br><b>Calculation:</b> <i> Count of days when daily P >= 0.2 mm ',
             legend: 'Wet Count (count of days): days when P >= 0.2 mm',
             popup: '<b>{Raster.ItemPixelValue}</b> total wet days in <b>{Year}</b> when precipitation is greater than or equal to 0.2 mm'
         },
         'wet_spell_n': {
             desc: 'Wet Spell (count of days)',
-             html: '', //  '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+             html: '<br> The Wet Spell Indicator is the highest count of the number of consecutive days per year when precipitation is greater than 0.2mm. It shows how long the longest continuous period is when there is rainfall every day in a year. <br><br><b>Calculation:</b> <i> Maximum consecutive count of days when P > 0.2 mm ',
             legend: 'Wet Spell (count of days): max consecutive count P > 0.2 mm',
             popup: '<b>{Raster.ItemPixelValue}</b> total days in <b>{Year}</b> when the maximum consecutive count of precipitation is greater than 0.2 mm'
         },
         'wettestweek_doy': {
             desc: 'Wettest Week (day of year)',
-             html: '', //  '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+             html: '<br> The Wettest Week Indicator shows the day of year when the wettest week occurs. It is the mid-week date when the largest rainfall occurs in a seven day period. <br><br><b>Calculation:</b> <i> Mid-week date when maximum 7 day value of P occurs',
             legend: 'Wettest Week (day of year): mid-week date when maximum 7d value of P occurs',
             popup: '<b>{Raster.ItemPixelValue}</b>th day of the year (out of 365) in <b>{Year}</b> when the maximum seven-day value of precipitation occurs'
         },
         'wettestweek_mm': {
             desc: 'Wettest Week (mm)',
-            html: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae magna efficitur, tempus lacus facilisis, vestibulum urna. Morbi dignissim pulvinar enim in faucibus. Donec cursus consequat ex. Fusce lacinia faucibus magna in consequat.</p>',
+            html: '<br> The Wettest Week Amount Indicator shows the maximum amount of rainfall in the Wettest Week (see Wettest Week Indicator). <br> <b>Calculation:</b> <i>Maximum amount of P (7 consecutive days) in the Wettest Week<i>',
             legend: 'Wettest Week (mm): Maximum amount of P (7 consecutive days)',
             popup: '<b>{Raster.ItemPixelValue}</b> mm of precipitation in <b>{Year}</b> calculated from the maximum amount of precipitation in seven consecutive days'
         }
+    };
+
+
+    const colorRamps = {
+        'accumulatedfrost_degreedays' : colorBlue,
+        'airfrost_count' : colorBlue,
+        'cold_spell_n' : colorBlue,
+        'dry_count' : colorRed,
+        'dry_spell_n' : colorRed,
+        'end_growingseason' : combineColorRamp,
+        'first_airfrost_doy' : combineColorRamp,
+        'first_grassfrost_doy' : combineColorRamp,
+        'grassfrost_count' : combineColorRamp,
+        'growing_degreedays' : combineColorRamp,
+        'growing_season': combineColorRamp,
+        'growseason_length' : combineColorRamp,
+        'growseason_range': combineColorRamp,
+        'heating_degreedays': combineColorRamp,
+        'heatwave_n' : combineColorRamp,
+        'last_airfrost_doy' : combineColorRamp,
+        'last_grassfrost_doy' : combineColorRamp,
+        'max_anntemp' : combineColorRamp,
+        'max_jantemp' : combineColorRamp,
+        'max_febtemp' : combineColorRamp,
+        'max_martemp' : combineColorRamp,
+        'max_aprtemp' : combineColorRamp,
+        'max_maytemp' : combineColorRamp,
+        'max_juntemp' : combineColorRamp,
+        'max_jultemp' : combineColorRamp,
+        'max_augtemp' : combineColorRamp,
+        'max_septemp' : combineColorRamp,
+        'max_octtemp' : combineColorRamp,
+        'max_novtemp' : combineColorRamp,
+        'max_dectemp' : combineColorRamp,
+        'min_anntemp' : combineColorRamp,
+        'min_jantemp' : combineColorRamp,
+        'min_febtemp' : combineColorRamp,
+        'min_martemp' : combineColorRamp,
+        'min_aprtemp' : combineColorRamp,
+        'min_maytemp' : combineColorRamp,
+        'min_juntemp' : combineColorRamp,
+        'min_jultemp' : combineColorRamp,
+        'min_augtemp' : combineColorRamp,
+        'min_septemp' : combineColorRamp,
+        'min_octtemp' : combineColorRamp,
+        'min_novtemp' : combineColorRamp,
+        'min_dectemp' : combineColorRamp,
+        'p_heterogeneity' : combineColorRamp,
+        'p_intensity' : combineColorRamp,
+        'p_seasonality' : combineColorRamp,
+        'personheatstress_count' : combineColorRamp,
+        'plantheatstress_count' : combineColorRamp,
+        'rfall_annualtotal' : combineColorRamp,
+        'rfall_springtotal' : combineColorRamp,
+        'rfall_summertotal' : combineColorRamp,
+        'rfall_autumntotal' : combineColorRamp,
+        'rfall_wintertotal' : combineColorRamp,
+        'rfall_jantotal' : combineColorRamp,
+        'rfall_febtotal' : combineColorRamp,
+        'rfall_martotal' : combineColorRamp,
+        'rfall_aprtotal' : combineColorRamp,
+        'rfall_maytotal' : combineColorRamp,
+        'rfall_juntotal' : combineColorRamp,
+        'rfall_jultotal' : combineColorRamp,
+        'rfall_augtotal' : combineColorRamp,
+        'rfall_septotal' : combineColorRamp,
+        'rfall_octtotal' : combineColorRamp,
+        'rfall_novtotal' : combineColorRamp,
+        'rfall_dectotal' : combineColorRamp,
+        'start_fieldops_doy' : combineColorRamp,
+        'start_grow_doy' : combineColorRamp,
+        'tempgrowingperiod_length' : combineColorRamp,
+        'thermaltime_sum' : combineColorRamp,
+        'wet_count' : combineColorRamp,
+        'wet_spell_n' : combineColorRamp,
+        'wettestweek_doy' : combineColorRamp,
+        'wettestweek_mm' : combineColorRamp
     };
 
     const selectorExpression = [
@@ -887,6 +1283,7 @@ require([
     // make plantheatstress_count selected
     selectFilter.value = 'plantheatstress_count';
 
+    
     // add selectDivs to view
     view.ui.add(selectDiv, 'top-left');
 
@@ -894,54 +1291,69 @@ require([
      * selectorDiv configs
      * ****************************/
     //listen to change events on indicatorSelect and change multidimensional variable
+    
     selectFilter.addEventListener('change', () => {
-        let chosenIndicator = selectFilter.value;
-
-        changeIndicator(chosenIndicator);
-        changeDescriptors(chosenIndicator);
+        const selectedIndicator = selectFilter.value;
+        const selectedYear = parseInt(yearSlider.value);
+        yearDefinition.values = [selectedYear];
+        yearDefinition.variableName = selectedIndicator;
+        changeIndicator(selectedIndicator);
+        changeDescriptors(selectedIndicator);
         stopAnimation();
         closePopup();
     });
 
-    function changeIndicator(chosenIndicator) {
+    function createRenderer(selectedIndicator) {
+        const colorRamp = colorRamps[selectedIndicator];
+        const renderer = new RasterStretchRenderer({
+          colorRamp: colorRamp, 
+          stretchType: 'min-max'
+        });
+        return renderer;
+      };
+
+    function changeIndicator(selectedIndicator) {
         // change mosaicRule of layer as clone and reassign
         const mosaicRuleClone = indicatorLayer.mosaicRule.clone(); // makes clone of layer's mosaicRule
         const indicatorVariable = mosaicRuleClone.multidimensionalDefinition[0];
+        const renderer = createRenderer(selectedIndicator);
 
         indicatorVariable.values = yearSlider.get('values');
-        indicatorVariable.variableName = chosenIndicator;
+        indicatorVariable.variableName = selectedIndicator;
 
         mosaicRuleClone.multidimensionalDefinition = [indicatorVariable];
         indicatorLayer.mosaicRule = mosaicRuleClone;
 
         // change renderingRule (raster function) of layer as clone and reassign
         const renderingRuleClone = indicatorLayer.renderingRule.clone();
-        renderingRuleClone.functionName = chosenIndicator;
+        renderingRuleClone.functionName = selectedIndicator;
+        indicatorLayer.renderer = renderer;
         indicatorLayer.renderingRule = renderingRuleClone;
     };
 
-    function changeDescriptors(chosenIndicator) {
+    function changeDescriptors(selectedIndicator) {
         // change title of layer for Legend display
-        indicatorLayer.title = indicators[chosenIndicator].legend;
+        indicatorLayer.title = indicators[selectedIndicator].legend;
 
         // change innerHTML of hideaway div
         const hideaway = document.getElementById('hideaway');
         const HTML30yrmaps = `
+        <div><p ><b>Ensemble Means for two Observed and two Future Projection Periods</b></p></div>
         <div id='imgGrid'>
-            <div><p>1961-1990 Average</p><img src='img/${chosenIndicator}_avg1961_1990.png' alt=''></div>
-            <div><p>1991-2018 Average</p><img src='img/${chosenIndicator}_avg1991_2020.png' alt=''></div>
-            <div><p>2019-2050 Average</p><img src='img/${chosenIndicator}_avg2021_2050.png' alt=''></div>
-            <div><p>2051-2080 Average</p><img src='img/${chosenIndicator}_avg2051_2080.png' alt=''></div>
+            <div><p>1961-1990 Average</p><img src='img/${selectedIndicator}_avg1961_1990.png' alt=''></div>
+            <div><p>1991-2018 Average</p><img src='img/${selectedIndicator}_avg1991_2020.png' alt=''></div>
+            <div><p>2019-2050 Average</p><img src='img/${selectedIndicator}_avg2021_2050.png' alt=''></div>
+            <div><p>2051-2080 Average</p><img src='img/${selectedIndicator}_avg2051_2080.png' alt=''></div>
         </div>`
-        const htmlContent = HTML30yrmaps + indicators[chosenIndicator].html;
+        const htmlContent = indicators[selectedIndicator].html + HTML30yrmaps;
 
-        if (indicators[chosenIndicator].desc.includes('--')) {
-            hideaway.innerHTML = `<h2>${indicators[chosenIndicator].hideaway}</h2>${htmlContent}`
-        } else {hideaway.innerHTML = `<h2>${indicators[chosenIndicator].desc}</h2>${htmlContent}`}
+        if (indicators[selectedIndicator].desc.includes('--')) {
+            hideaway.innerHTML = `<h2>${indicators[selectedIndicator].hideaway}</h2>${htmlContent}`
+        } else {hideaway.innerHTML = `<h2>${indicators[selectedIndicator].desc}</h2>${htmlContent}`}
     
         // change popup contents
         const popupTemplateClone = indicatorLayer.popupTemplate.clone();
-        popupTemplateClone.content = indicators[chosenIndicator].popup;
+        popupTemplateClone.content = indicators[selectedIndicator].popup;
         indicatorLayer.popupTemplate = popupTemplateClone;
     };
 
@@ -952,7 +1364,7 @@ require([
         container: 'yearSlider',
         min: 1961,
         max: 2080,
-        values: [2022], // current value shown on load
+        values: [2021], // current value shown on load
         precision: 0,
         snapOnClickEnabled: true,
         visibleElements: {
@@ -963,7 +1375,7 @@ require([
             mode: 'position',
             values: [1970, 1980, 1990, 2000, 2010, 2020, 2030, 2040, 2050, 2060, 2070, 2080],
             // mode: 'count',
-            // values: 119,
+            // values: 100,
             labelsVisible: false,
         }]
     });
@@ -1017,7 +1429,7 @@ require([
                 updateYearDef(year);
             // }
 
-        }, 700) // speed of playback, milliseconds
+        }, 1400) // speed of playback, milliseconds
         playButton.classList.add('toggled'); // see .toggled in css
     };
 
