@@ -7,3 +7,6 @@ In the latest update, 12 new ensembles have been added to the website. These add
 Additionally, the colour ramp for some of the indicators has been changed, which further enhances the clarity of the dataset.
 
 To improve the user experience, an explanation for each indicator has been added to the hide side average maps. This feature will help users better understand the meaning and significance of each indicator and enable them to make more informed interpretations of the data.
+
+22/06/2023
+I have identified an issue related to the display of ensembles in JavaScript. The current algorithm being utilized for the display is the max-min method. However, a problem arises as the calculations are performed individually for each ensemble, resulting in varying ranges. In order to effectively compare the ensembles, it is imperative to establish a consistent range for displaying.
