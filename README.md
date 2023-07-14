@@ -10,3 +10,9 @@ To improve the user experience, an explanation for each indicator has been added
 
 22/06/2023
 I have identified an issue related to the display of ensembles in JavaScript. The current algorithm being utilized for the display is the max-min method. However, a problem arises as the calculations are performed individually for each ensemble, resulting in varying ranges. In order to effectively compare the ensembles, it is imperative to establish a consistent range for displaying.
+<br/>
+
+10/07/2023 <br>
+Finally, I have found a solution to the range problem. Firstly, I added statistics to the renderer function and set the maximum and minimum values for each indicator separately. However, upon adding the statistics, I encountered difficulties with loading and displaying some indicators. After thoroughly checking everything, I discovered that the issue lay in the colorRamp algorithm. Ultimately, I found the most suitable algorithm for blending colors (hsv).
+
+The next step involves calculating the maximum and minimum values for each indicator in Python.
