@@ -20,7 +20,7 @@ The next step involves calculating the maximum and minimum values for each indic
 12/07/2023 <br>
 
 The puthon code for calculating max-min:
-
+```
 # for tiff files
 
 import rasterio
@@ -65,3 +65,4 @@ if max_values and min_values:
     print("Global Minimum Value:", global_min)
 else:
     print("No valid raster data found.")
+```
