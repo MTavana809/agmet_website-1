@@ -19,7 +19,7 @@ The next step involves calculating the maximum and minimum values for each indic
 
 12/07/2023 <br>
 
-The puthon code for calculating max-min:
+The python code for calculating max-min:
 ```
 # for tiff files
 
