@@ -120,3 +120,6 @@ for tif_file in tif_files:
     output_file = os.path.join(input_folder, tif_file.replace('.tiff', '.tiff'))
     replace_zero_with_max_value(input_file, output_file)
 ```
+18/08/2023
+
+All the new ensembles uploaded to website and all avg maps replaced. it is ready to use.
