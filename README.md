@@ -66,3 +66,57 @@ if max_values and min_values:
 else:
     print("No valid raster data found.")
 ```
+<br>
+27/07/2023 <br>
+
+During the meeting attended by Mike, Keith, Dave, and Doug, a notable issue concerning the accuracy of day indicators' data was discussed. The day indicators displayed a lack of data, presenting a value of 0. This inconsistency led to misunderstandings when interpreting the associated maps.
+
+To address this concern, a decision was reached during the meeting. It was agreed that replacing the 0 value with the maximum possible value would enhance the clarity and comprehension of the map readings. However, implementing this solution requires a series of steps involving the manipulation of data files and geospatial tools.
+
+Resolution Steps:
+
+Data Revaluation: To rectify the issue, it will be necessary to revisit the raster data files. These files need to be recalculated to replace 0 with the maximum allowable value.
+
+Recreation of Multidimensional Mosaics: Following the rasters revaluation, the next step involves the recreation of the multidimensional mosaics in the GIS environment. 
+
+GIS Service Upload: The updated mosaics need to be uploaded to the GIS Service. 
+
+Integration with JavaScript: Finally, the corrected mosaics will be incorporated into JavaScript applications for visualization and interaction purposes. 
+
+Conclusion:
+
+The decision to address the issue of 0 values in day indicators by replacing them with the maximum value was agreed upon during the meeting. The resolution process involves revisiting the data files, recalculating the values, recreating mosaics, uploading them to the GIS Service, and integrating them with JavaScript applications. This comprehensive approach ensures that the corrected data will be accurately represented and interpreted, leading to improved map readings and a better understanding of the underlying spatial information.
+
+I used python to replace 0 with max value:
+
+```
+import os
+import rasterio
+
+def replace_zero_with_max_value(input_file, output_file):
+    with rasterio.open(input_file) as src:
+        data = src.read(1)  # Read the first band of the raster
+        max_value = data.max()  # Find the maximum value in the raster
+
+        # Replace 0 values with the maximum value
+        data[data == 0] = 366
+
+        # Copy the raster metadata to the output file
+        profile = src.profile
+
+    # Write the modified data to the output file
+    with rasterio.open(output_file, 'w', **profile) as dst:
+        dst.write(data, 1)
+
+# Specify the folder where your raster files are located
+input_folder = 'B:/indicators/ZERO TO MAX' 
+
+# Get a list of all TIFF files in the folder
+tif_files = [f for f in os.listdir(input_folder) if f.endswith('.tiff')]
+
+# Process each TIFF file in the folder
+for tif_file in tif_files:
+    input_file = os.path.join(input_folder, tif_file)
+    output_file = os.path.join(input_folder, tif_file.replace('.tiff', '.tiff'))
+    replace_zero_with_max_value(input_file, output_file)
+```
