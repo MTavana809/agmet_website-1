@@ -61,6 +61,22 @@ require([
         //zoom: 6.5
     });
 
+    // Create a logo element and add it to the map container
+        let logoElement = document.createElement('a');
+        logoElement.href = 'https://www.hutton.ac.uk/'; 
+        logoElement.target = '_blank'; // Open the link in a new tab
+        logoElement.style.position = 'absolute';
+        logoElement.style.top = '10px'; 
+        logoElement.style.right = '10px'; 
+        logoElement.style.width = '100px'; 
+        
+        let logoImg = document.createElement('img');
+        logoImg.src = 'images/logo.jpg'; 
+        logoImg.style.width = '100%'; 
+        
+        logoElement.appendChild(logoImg);
+        document.getElementById('mapDiv').appendChild(logoElement);
+
     /******************************
      * Renderers for Layers -- aka symbology
      * ****************************/
@@ -348,7 +364,7 @@ let map1 = {
 
   let map2 = {
     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble15/ImageServer',
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble15/ImageServer',
     mosaicRule: mosaicRule,
     renderer: countOfDayRenderer,
     renderingRule: serviceRasterFunction,
@@ -359,7 +375,7 @@ let map1 = {
   
   let map3 = {
     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble13/ImageServer',
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble13/ImageServer',
     mosaicRule: mosaicRule,
     renderer: countOfDayRenderer,
     renderingRule: serviceRasterFunction,
@@ -371,7 +387,7 @@ let map1 = {
 
   let map4 = {
     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Ensemble122/ImageServer',
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble122/ImageServer',
     mosaicRule: mosaicRule,
     renderer: countOfDayRenderer,
     renderingRule: serviceRasterFunction,
@@ -382,7 +398,7 @@ let map1 = {
 
   let map5 = {
     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble11/ImageServer',
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble11/ImageServer',
     mosaicRule: mosaicRule,
     renderer: countOfDayRenderer,
     renderingRule: serviceRasterFunction,
@@ -393,7 +409,7 @@ let map1 = {
 
   let map6 = {
     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble10/ImageServer',
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble10/ImageServer',
     mosaicRule: mosaicRule,
     renderer: countOfDayRenderer,
     renderingRule: serviceRasterFunction,
@@ -404,7 +420,7 @@ let map1 = {
 
   let map7 = {
     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble9/ImageServer',
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble9/ImageServer',
     mosaicRule: mosaicRule,
     renderer: countOfDayRenderer,
     renderingRule: serviceRasterFunction,
@@ -415,7 +431,7 @@ let map1 = {
 
   let map8 = {
     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble8/ImageServer',
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Ensemble8/ImageServer',
     mosaicRule: mosaicRule,
     renderer: countOfDayRenderer,
     renderingRule: serviceRasterFunction,
@@ -426,7 +442,7 @@ let map1 = {
 
   let map9 = {
     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble7/ImageServer',
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble7/ImageServer',
     mosaicRule: mosaicRule,
     renderer: countOfDayRenderer,
     renderingRule: serviceRasterFunction,
@@ -437,7 +453,7 @@ let map1 = {
 
   let map10 = {
     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Ensemble666/ImageServer',
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble666/ImageServer',
     mosaicRule: mosaicRule,
     renderer: countOfDayRenderer,
     renderingRule: serviceRasterFunction,
@@ -448,7 +464,7 @@ let map1 = {
 
   let map11 = {
     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble5/ImageServer',
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble5/ImageServer',
     mosaicRule: mosaicRule,
     renderer: countOfDayRenderer,
     renderingRule: serviceRasterFunction,
@@ -459,7 +475,7 @@ let map1 = {
 
   let map12 = {
     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Agmet/Ensemble4/ImageServer',
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Ensemble4/ImageServer',
     mosaicRule: mosaicRule,
     renderer: countOfDayRenderer,
     renderingRule: serviceRasterFunction,
@@ -470,7 +486,7 @@ let map1 = {
 
   let map13 = {
     title: [], //The legend automatically updates when a layer's renderer, opacity, or title is changed
-    url: 'https://abgis03.hutton.ac.uk/arcgis/rest/services/Ensemble111/ImageServer',
+    url: 'https://druid.hutton.ac.uk/arcgis/rest/services/Ensemble111/ImageServer',
     mosaicRule: mosaicRule,
     renderer: countOfDayRenderer,
     renderingRule: serviceRasterFunction,
@@ -544,27 +560,27 @@ view.ui.add(selectorContainer, 'top-left');
         } else if (this.value === 'map2') {
         selectedMap = map2;
         } else if(this.value === 'map3') {
-            selectedMap = map3
+            selectedMap = map3;
         } else if (this.value === 'map4') {
-            selectedMap = map4
+            selectedMap = map4;
         } else if (this.value === 'map5') {
-            selectedMap = map5
+            selectedMap = map5;
         } else if (this.value === 'map6') {
-            selectedMap = map6
+            selectedMap = map6;
         } else if (this.value === 'map7') {
-            selectedMap = map7
+            selectedMap = map7;
         } else if (this.value === 'map8') {
-            selectedMap = map8
+            selectedMap = map8;
         } else if (this.value === 'map9') {
-            selectedMap = map9
+            selectedMap = map9;
         } else if (this.value === 'map10') {
-            selectedMap = map10
+            selectedMap = map10;
         } else if (this.value === 'map11') {
-            selectedMap = map11
+            selectedMap = map11;
         } else if (this.value === 'map12') {
-            selectedMap = map12
+            selectedMap = map12;
         } else if (this.value === 'map13') {
-            selectedMap = map13
+            selectedMap = map13;
         }
 
          // Update the indicator layer with the selected map
